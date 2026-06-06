@@ -2,7 +2,7 @@
 
 ## Current Status
 
-Day 2 implementation is complete and deployed through GitHub to Vercel. GitHub `main` is updated, Vercel build succeeded, and the remaining issue is Vercel Authentication / deployment protection blocking public access.
+Day 2 implementation is complete and deployed through GitHub to Vercel. GitHub `main` is updated, the Vercel build succeeded, and the public production URL is now serving the app without the previous 404.
 
 ## Completed
 
@@ -41,6 +41,8 @@ Day 2 implementation is complete and deployed through GitHub to Vercel. GitHub `
 - Pushed local work to GitHub `main`.
 - Merged the GitHub initial README commit and updated `README.md`.
 - Triggered Vercel Git deployment for commit `76bc268`.
+- Fixed the public Vercel 404 by using the Next.js framework preset with an empty output directory and triggering a new production redeploy.
+- Pushed empty redeploy trigger commit `056bd43` to GitHub `main`.
 
 ## Verification
 
@@ -64,6 +66,13 @@ Day 2 implementation is complete and deployed through GitHub to Vercel. GitHub `
 - GitHub commit status reported Vercel success for commit `76bc268`.
 - Vercel deployment `dpl_CA6f4mNNJ4hKTmyqkgBLcWvyhQdp` is `READY`.
 - Vercel build logs show `npm run build` passed and generated `/`, `/dashboard`, `/setup`, `/generate/inquiry`, `/generate/review`, and `/generate/promo`.
+- Latest production deployment `dpl_AnRfTGbJ8kf5odamiMBPhrnuAAZD` is `READY`.
+- `https://ai-sales-secretary.vercel.app/` returned HTTP 200 and rendered the landing page.
+- `https://ai-sales-secretary.vercel.app/dashboard` returned HTTP 200 and rendered the dashboard.
+- `https://ai-sales-secretary.vercel.app/setup` returned HTTP 200 and rendered the setup page.
+- `https://ai-sales-secretary.vercel.app/generate/inquiry` returned HTTP 200 and rendered the inquiry generator page.
+- `https://ai-sales-secretary.vercel.app/generate/review` returned HTTP 200 and rendered the review generator page.
+- `https://ai-sales-secretary.vercel.app/generate/promo` returned HTTP 200 and rendered the promotional post generator page.
 
 ## Blockers
 
@@ -73,11 +82,8 @@ Day 2 implementation is complete and deployed through GitHub to Vercel. GitHub `
 - Canva-generated copy needs manual cleanup before public posting because it included some awkward Korean wording and a dummy phone number.
 - Direct browser screenshot verification was not performed on Day 2 because a browser control tool was not directly exposed in the current tool list. HTTP and HTML checks passed.
 - FAQ management and generation history remain intentionally unimplemented until Day 3.
-- Public Vercel access is still blocked. `https://ai-sales-secretary.vercel.app/` returns 404 at the Vercel edge/alias layer.
-- Team, branch, and deployment URLs return 401 because Vercel Authentication is enabled.
-- Runtime logs show no application-level 404, so the app code is not the cause.
 - Vercel CLI is not globally installed; `npx vercel whoami` currently fails with a Vercel CLI header-value error on this Windows environment.
 
 ## Next Action
 
-In the Vercel dashboard, disable Vercel Authentication / Deployment Protection for this project or environment, then verify `https://ai-sales-secretary.vercel.app/`. Start Day 3 only after deployment public access is resolved or the user approves moving on.
+Open `https://ai-sales-secretary.vercel.app/` in the browser for a manual visual check. Start Day 3 FAQ management and generation history UI only after user approval.

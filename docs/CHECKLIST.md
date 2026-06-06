@@ -4,11 +4,10 @@ This is the live checklist shown and maintained by Codex.
 
 ## In Progress
 
-- [ ] Disable Vercel Authentication or deployment protection for public access.
+- [ ] Wait for user approval before starting Day 3 FAQ management and generation history UI.
 
 ## Up Next
 
-- [ ] Confirm `https://ai-sales-secretary.vercel.app/` returns the app after protection settings change.
 - [ ] Start Day 3 FAQ management and generation history UI after approval.
 - [ ] Keep OpenAI, Supabase, login, and payment out until the planned integration step.
 - [ ] Use local state or mock data for the next frontend workflow.
@@ -88,7 +87,9 @@ This is the live checklist shown and maintained by Codex.
 - [x] Link project to Vercel through Git integration.
 - [x] Deploy to Vercel.
 - [x] Confirm Vercel build generated `/`, `/dashboard`, `/setup`, and `/generate/*` routes.
-- [ ] Make Vercel deployment publicly accessible without Vercel Authentication.
+- [x] Make Vercel deployment publicly accessible without Vercel Authentication.
+- [x] Confirm `https://ai-sales-secretary.vercel.app/` returns HTTP 200.
+- [x] Confirm deployed core routes return HTTP 200.
 
 ## Completion Rules
 
