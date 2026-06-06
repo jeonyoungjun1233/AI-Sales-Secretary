@@ -4,12 +4,12 @@ This is the live checklist shown and maintained by Codex.
 
 ## In Progress
 
-- [ ] Push Day 3 changes and verify Vercel production deployment.
+- [ ] Wait for user approval before Day 4 AI provider structure work.
 
 ## Up Next
 
-- [ ] Confirm Day 3 commit appears on GitHub `main`.
-- [ ] Confirm Vercel production deployment is ready.
+- [ ] Review the Day 3 production UI on Vercel.
+- [ ] Prepare Day 4 AI provider structure only after user approval.
 - [ ] Keep OpenAI, Supabase, login, and payment out until the planned integration step.
 - [ ] Use local state or mock data for the next frontend workflow.
 
@@ -91,9 +91,9 @@ This is the live checklist shown and maintained by Codex.
 - [x] Make Vercel deployment publicly accessible without Vercel Authentication.
 - [x] Confirm `https://ai-sales-secretary.vercel.app/` returns HTTP 200.
 - [x] Confirm deployed core routes return HTTP 200.
-- [ ] Commit and push Day 3 mobile app changes.
-- [ ] Confirm Day 3 Vercel deployment generated `/calendar`.
-- [ ] Confirm Day 3 production routes return HTTP 200.
+- [x] Commit and push Day 3 mobile app changes.
+- [x] Confirm Day 3 Vercel deployment generated `/calendar`.
+- [x] Confirm Day 3 production routes return HTTP 200.
 
 ## Day 3 Implementation
 

@@ -2,7 +2,7 @@
 
 ## Current Status
 
-Day 3 implementation is complete locally and is ready to be committed, pushed, and deployed to Vercel. The app now has a mobile app shell, bottom tab navigation, a mobile-first dashboard home, a calendar screen, and improved mock generation copy.
+Day 3 implementation has been committed, pushed to GitHub `main`, and deployed to Vercel production. The app now serves the mobile app shell, bottom tab navigation, mobile-first dashboard home, calendar screen, and improved mock generation copy at `https://ai-sales-secretary.vercel.app/`.
 
 ## Completed
 
@@ -51,6 +51,9 @@ Day 3 implementation is complete locally and is ready to be committed, pushed, a
 - Improved landing page positioning with a stronger mobile app preview and loss-focused problem copy.
 - Expanded mock generation result variety for inquiry replies, review replies, and promotional posts.
 - Created `docs/DAY3_REPORT.md`.
+- Committed Day 3 mobile app UX changes as `592b62a`.
+- Pushed Day 3 changes to GitHub `main`.
+- Deployed Day 3 to Vercel production.
 
 ## Verification
 
@@ -85,6 +88,14 @@ Day 3 implementation is complete locally and is ready to be committed, pushed, a
 - Day 3 `npm run build` passed.
 - Local dev server returned HTTP 200 for `/`, `/dashboard`, `/setup`, `/generate/inquiry`, `/generate/review`, `/generate/promo`, and `/calendar`.
 - Checked user-facing app and component code for developer-facing words. Only internal import paths contain `mock`; user-visible text does not expose those terms.
+- Vercel production deployment `dpl_JCd9y34h9sizZXMbzJ7ZXTmLUoVC` is `READY`.
+- `https://ai-sales-secretary.vercel.app/` returned HTTP 200 and rendered the Day 3 landing page.
+- `https://ai-sales-secretary.vercel.app/dashboard` returned HTTP 200 and rendered the Day 3 dashboard.
+- `https://ai-sales-secretary.vercel.app/setup` returned HTTP 200 and rendered the setup page.
+- `https://ai-sales-secretary.vercel.app/generate/inquiry` returned HTTP 200 and rendered the inquiry generator page.
+- `https://ai-sales-secretary.vercel.app/generate/review` returned HTTP 200 and rendered the review generator page.
+- `https://ai-sales-secretary.vercel.app/generate/promo` returned HTTP 200 and rendered the promotional post generator page.
+- `https://ai-sales-secretary.vercel.app/calendar` returned HTTP 200 and rendered the calendar page.
 
 ## Blockers
 
@@ -95,9 +106,8 @@ Day 3 implementation is complete locally and is ready to be committed, pushed, a
 - Direct browser screenshot verification was not performed on Day 2 because a browser control tool was not directly exposed in the current tool list. HTTP and HTML checks passed.
 - Direct browser screenshot verification was not performed on Day 3 because Playwright is not installed and no package was added.
 - FAQ management and generation history remain intentionally unimplemented.
-- Day 3 deployment verification is in progress.
 - Vercel CLI is not globally installed; `npx vercel whoami` currently fails with a Vercel CLI header-value error on this Windows environment.
 
 ## Next Action
 
-Commit and push Day 3 changes, then verify the Vercel production deployment. Next implementation should prepare the Day 4 AI provider structure without connecting real API keys.
+Review the Day 3 production UI on Vercel. After user approval, the next implementation should prepare the Day 4 AI provider structure without connecting real API keys.
