@@ -4,12 +4,11 @@ This is the live checklist shown and maintained by Codex.
 
 ## In Progress
 
-- [ ] Wait for GitHub remote URL and Vercel authentication/project link before remote deployment.
+- [ ] Disable Vercel Authentication or deployment protection for public access.
 
 ## Up Next
 
-- [ ] Push commit `bb13144` to GitHub after `origin` is configured.
-- [ ] Deploy to Vercel after CLI login or Vercel project link is available.
+- [ ] Confirm `https://ai-sales-secretary.vercel.app/` returns the app after protection settings change.
 - [ ] Start Day 3 FAQ management and generation history UI after approval.
 - [ ] Keep OpenAI, Supabase, login, and payment out until the planned integration step.
 - [ ] Use local state or mock data for the next frontend workflow.
@@ -84,10 +83,12 @@ This is the live checklist shown and maintained by Codex.
 - [x] Run `npm run lint` before deployment attempt.
 - [x] Run `npm run build` before deployment attempt.
 - [x] Commit Day 1 and Day 2 work locally.
-- [ ] Configure GitHub `origin` remote.
-- [ ] Push local commit to GitHub.
-- [ ] Link project to Vercel.
-- [ ] Deploy to Vercel.
+- [x] Configure GitHub `origin` remote.
+- [x] Push local commit to GitHub `main`.
+- [x] Link project to Vercel through Git integration.
+- [x] Deploy to Vercel.
+- [x] Confirm Vercel build generated `/`, `/dashboard`, `/setup`, and `/generate/*` routes.
+- [ ] Make Vercel deployment publicly accessible without Vercel Authentication.
 
 ## Completion Rules
 

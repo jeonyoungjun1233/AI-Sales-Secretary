@@ -2,7 +2,7 @@
 
 ## Current Status
 
-Day 2 implementation is complete and committed locally. Remote GitHub and Vercel deployment are pending because the repository has no GitHub `origin` remote, GitHub CLI is not installed, and the Vercel project is not linked in `.vercel/project.json`.
+Day 2 implementation is complete and deployed through GitHub to Vercel. GitHub `main` is updated, Vercel build succeeded, and the remaining issue is Vercel Authentication / deployment protection blocking public access.
 
 ## Completed
 
@@ -37,6 +37,10 @@ Day 2 implementation is complete and committed locally. Remote GitHub and Vercel
 - Added temporary save feedback to `/setup`.
 - Created `docs/DAY2_REPORT.md` with a Day 3 command draft.
 - Created local commit `bb13144` with Day 1 and Day 2 project work.
+- Connected Git remote `origin` to `https://github.com/jeonyoungjun1233/AI-Sales-Secretary.git`.
+- Pushed local work to GitHub `main`.
+- Merged the GitHub initial README commit and updated `README.md`.
+- Triggered Vercel Git deployment for commit `76bc268`.
 
 ## Verification
 
@@ -56,6 +60,10 @@ Day 2 implementation is complete and committed locally. Remote GitHub and Vercel
 - Checked that user-facing app and component code does not expose words like prompt, token, model, API, Supabase, OpenAI, or mock.
 - Deployment pre-check `npm run lint` passed.
 - Deployment pre-check `npm run build` passed.
+- GitHub repository `jeonyoungjun1233/AI-Sales-Secretary` returned HTTP 200.
+- GitHub commit status reported Vercel success for commit `76bc268`.
+- Vercel deployment `dpl_CA6f4mNNJ4hKTmyqkgBLcWvyhQdp` is `READY`.
+- Vercel build logs show `npm run build` passed and generated `/`, `/dashboard`, `/setup`, `/generate/inquiry`, `/generate/review`, and `/generate/promo`.
 
 ## Blockers
 
@@ -65,10 +73,11 @@ Day 2 implementation is complete and committed locally. Remote GitHub and Vercel
 - Canva-generated copy needs manual cleanup before public posting because it included some awkward Korean wording and a dummy phone number.
 - Direct browser screenshot verification was not performed on Day 2 because a browser control tool was not directly exposed in the current tool list. HTTP and HTML checks passed.
 - FAQ management and generation history remain intentionally unimplemented until Day 3.
-- GitHub deployment is blocked until a GitHub repository URL is provided and set as `origin`.
-- Vercel CLI is not globally installed; `npx vercel` runs, but `npx vercel whoami` currently fails with a Vercel CLI header-value error on this Windows environment.
-- Vercel connector returned CLI instructions instead of performing the deployment directly.
+- Public Vercel access is still blocked. `https://ai-sales-secretary.vercel.app/` returns 404 at the Vercel edge/alias layer.
+- Team, branch, and deployment URLs return 401 because Vercel Authentication is enabled.
+- Runtime logs show no application-level 404, so the app code is not the cause.
+- Vercel CLI is not globally installed; `npx vercel whoami` currently fails with a Vercel CLI header-value error on this Windows environment.
 
 ## Next Action
 
-To deploy remotely, provide a GitHub repository URL for `origin` and complete Vercel login/project linking. After that, push commit `bb13144` to GitHub and deploy the linked project to Vercel. Start Day 3 only after deployment status is resolved or the user approves moving on.
+In the Vercel dashboard, disable Vercel Authentication / Deployment Protection for this project or environment, then verify `https://ai-sales-secretary.vercel.app/`. Start Day 3 only after deployment public access is resolved or the user approves moving on.
