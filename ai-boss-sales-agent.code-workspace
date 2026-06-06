@@ -1,0 +1,12 @@
+{
+  "folders": [
+    {
+      "name": "AI Boss Sales Agent",
+      "path": "."
+    }
+  ],
+  "settings": {
+    "explorer.autoReveal": true,
+    "workbench.startupEditor": "none"
+  }
+}
