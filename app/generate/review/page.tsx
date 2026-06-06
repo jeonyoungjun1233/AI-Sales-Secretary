@@ -78,7 +78,7 @@ export default function ReviewGenerationPage() {
             <legend className="text-sm font-bold text-slate-800">
               리뷰 유형
             </legend>
-            <div className="grid gap-2 sm:grid-cols-3">
+            <div className="grid gap-2">
               {reviewTypes.map((type) => (
                 <OptionChip
                   description={reviewTypeDescriptions[type]}
@@ -109,7 +109,7 @@ export default function ReviewGenerationPage() {
           </fieldset>
 
           <button
-            className="min-h-12 rounded-xl bg-emerald-500 px-5 py-3 text-base font-black text-white shadow-lg shadow-emerald-200/80 transition hover:bg-emerald-600 active:scale-[0.99]"
+            className="min-h-14 rounded-2xl bg-emerald-500 px-5 py-3 text-base font-black text-white shadow-lg shadow-emerald-200/80 transition hover:bg-emerald-600 active:scale-[0.99]"
             onClick={handleGenerate}
             type="button"
           >

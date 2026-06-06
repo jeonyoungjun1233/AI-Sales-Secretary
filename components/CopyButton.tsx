@@ -52,7 +52,7 @@ export function CopyButton({ text, className = "" }: CopyButtonProps) {
   return (
     <div className={`grid gap-2 ${className}`}>
       <button
-        className="min-h-12 w-full rounded-xl bg-slate-950 px-5 py-3 text-base font-bold text-white shadow-lg shadow-slate-200 transition hover:bg-slate-800 active:scale-[0.99]"
+        className="min-h-14 w-full rounded-2xl bg-slate-950 px-5 py-3 text-base font-black text-white shadow-lg shadow-slate-200 transition hover:bg-slate-800 active:scale-[0.99]"
         onClick={handleCopy}
         type="button"
       >

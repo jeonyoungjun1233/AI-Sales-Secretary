@@ -6,12 +6,14 @@ Build an AI work assistant SaaS for Korean and global small business owners. The
 
 ## Current Phase
 
-Day 2 mock generation screens are complete. The app now has customer inquiry reply, review reply, and promotional post generation flows using local state and mock data only.
+Day 3 mobile app UX improvement is in progress. Day 2 mock generation screens are complete, and the next priority is making the core app routes feel like a 9:16 mobile work assistant that owners can use every day.
 
 ## Priorities
 
 - Build the minimum workflow for store setup, mock text generation, FAQ management, and copy-ready result previews.
 - Keep the first experience simple enough for non-technical owners to use in minutes.
+- Make the core app routes look and behave like a mobile app, not a blog or desktop dashboard.
+- Add a calendar-style daily work view so owners have a reason to return every day.
 - Defer platform integrations, automation, payments, and advanced analytics until after MVP validation.
 
 ## Working Decisions
@@ -32,9 +34,9 @@ Day 2 mock generation screens are complete. The app now has customer inquiry rep
 
 - Which auth method should be used first: email OTP, password, or social login?
 - Which OpenAI model should be the MVP default?
-- Should generation history be included in the first deploy or remain P1?
-- For Day 3, should FAQ management come before generation history, or should recent generated results become the next monetization signal?
+- Should FAQ management or generation history come immediately after the Day 3 mobile app/calendar improvements?
+- Which daily workflow creates the strongest reason to subscribe: calendar, generation history, or FAQ quality improvement?
 
 ## Next Milestone
 
-Implement Day 3 FAQ management and generation history UI without OpenAI, Supabase, login, or payment integrations.
+Complete Day 3 mobile app shell, bottom navigation, mobile dashboard, calendar mock screen, and improved mock generation copy without OpenAI, Supabase, login, or payment integrations.

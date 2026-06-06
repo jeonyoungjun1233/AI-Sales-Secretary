@@ -4,11 +4,12 @@ This is the live checklist shown and maintained by Codex.
 
 ## In Progress
 
-- [ ] Wait for user approval before starting Day 3 FAQ management and generation history UI.
+- [ ] Push Day 3 changes and verify Vercel production deployment.
 
 ## Up Next
 
-- [ ] Start Day 3 FAQ management and generation history UI after approval.
+- [ ] Confirm Day 3 commit appears on GitHub `main`.
+- [ ] Confirm Vercel production deployment is ready.
 - [ ] Keep OpenAI, Supabase, login, and payment out until the planned integration step.
 - [ ] Use local state or mock data for the next frontend workflow.
 
@@ -90,6 +91,27 @@ This is the live checklist shown and maintained by Codex.
 - [x] Make Vercel deployment publicly accessible without Vercel Authentication.
 - [x] Confirm `https://ai-sales-secretary.vercel.app/` returns HTTP 200.
 - [x] Confirm deployed core routes return HTTP 200.
+- [ ] Commit and push Day 3 mobile app changes.
+- [ ] Confirm Day 3 Vercel deployment generated `/calendar`.
+- [ ] Confirm Day 3 production routes return HTTP 200.
+
+## Day 3 Implementation
+
+- [x] Read required Day 3 planning documents.
+- [x] Read relevant installed Next.js docs.
+- [x] Add mobile app shell.
+- [x] Add bottom tab navigation.
+- [x] Redesign `/dashboard` as a mobile app home screen.
+- [x] Add `/calendar` with local state schedule UI.
+- [x] Apply mobile app shell to `/setup`.
+- [x] Apply mobile app shell to `/generate/inquiry`, `/generate/review`, and `/generate/promo`.
+- [x] Improve mock generation result variety.
+- [x] Improve landing page app preview and loss-focused problem copy.
+- [x] Run `npm run lint`.
+- [x] Run `npm run build`.
+- [x] Verify `/`, `/dashboard`, `/setup`, `/generate/inquiry`, `/generate/review`, `/generate/promo`, and `/calendar`.
+- [x] Create `docs/DAY3_REPORT.md`.
+- [x] Update `docs/PROGRESS.md`.
 
 ## Completion Rules
 

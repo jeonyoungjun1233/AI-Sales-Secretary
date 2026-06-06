@@ -80,7 +80,7 @@ export default function PromoGenerationPage() {
             <legend className="text-sm font-bold text-slate-800">
               홍보 목적
             </legend>
-            <div className="grid gap-2 sm:grid-cols-2">
+            <div className="grid gap-2">
               {promoPurposes.map((item) => (
                 <OptionChip
                   description={purposeDescriptions[item]}
@@ -95,7 +95,7 @@ export default function PromoGenerationPage() {
 
           <fieldset className="grid gap-3">
             <legend className="text-sm font-bold text-slate-800">업종</legend>
-            <div className="grid gap-2 sm:grid-cols-3">
+            <div className="grid gap-2 sm:grid-cols-2">
               {businessTypes.map((item) => (
                 <OptionChip
                   description={businessDescriptions[item]}
@@ -112,7 +112,7 @@ export default function PromoGenerationPage() {
             <legend className="text-sm font-bold text-slate-800">
               홍보 채널
             </legend>
-            <div className="grid gap-2 sm:grid-cols-3">
+            <div className="grid gap-2">
               {promoChannels.map((item) => (
                 <OptionChip
                   description={channelDescriptions[item]}
@@ -138,7 +138,7 @@ export default function PromoGenerationPage() {
           </label>
 
           <button
-            className="min-h-12 rounded-xl bg-emerald-500 px-5 py-3 text-base font-black text-white shadow-lg shadow-emerald-200/80 transition hover:bg-emerald-600 active:scale-[0.99]"
+            className="min-h-14 rounded-2xl bg-emerald-500 px-5 py-3 text-base font-black text-white shadow-lg shadow-emerald-200/80 transition hover:bg-emerald-600 active:scale-[0.99]"
             onClick={handleGenerate}
             type="button"
           >

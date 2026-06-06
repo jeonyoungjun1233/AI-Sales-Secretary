@@ -1,182 +1,155 @@
-import { DashboardActionCard } from "@/components/DashboardActionCard";
-import { PreviewReplyCard } from "@/components/PreviewReplyCard";
-import { PrimaryButton } from "@/components/PrimaryButton";
-import { SectionTitle } from "@/components/SectionTitle";
-import { UsageSummaryCard } from "@/components/UsageSummaryCard";
+import Link from "next/link";
 
-const recommendationCards = [
-  {
-    title: "비 오는 날 홍보글 만들기",
-    description: "따뜻한 메뉴나 당일 할인 소식을 손님에게 알리기 좋습니다.",
-    iconText: "☔",
-    buttonText: "홍보글 만들기",
-    href: "/generate/promo",
-    helperText: "오늘 추천",
-    accent: "blue" as const,
-  },
-  {
-    title: "최근 리뷰 답글 작성하기",
-    description: "밀린 리뷰에 짧고 정중한 답글을 남겨 신뢰를 높입니다.",
-    iconText: "⭐",
-    buttonText: "답글 만들기",
-    href: "/generate/review",
-    helperText: "리뷰 2개 대기",
-    accent: "amber" as const,
-  },
-  {
-    title: "자주 묻는 질문 정리하기",
-    description: "영업시간, 예약, 주차 안내를 미리 정리해 답장을 빠르게 합니다.",
-    iconText: "📝",
-    buttonText: "준비 중",
-    helperText: "처음 3개 추천",
-    accent: "mint" as const,
-    disabled: true,
-  },
+import { CalendarEventCard } from "@/components/CalendarEventCard";
+import { MobileAppShell } from "@/components/MobileAppShell";
+import { QuickActionButton } from "@/components/QuickActionButton";
+import { todayCalendarEvents } from "@/lib/mockCalendar";
+
+const stats = [
+  { label: "절약한 시간", value: "약 15분", tone: "bg-emerald-500 text-white" },
+  { label: "오늘 생성", value: "3회", tone: "bg-white text-slate-950" },
+  { label: "남은 횟수", value: "7회", tone: "bg-white text-slate-950" },
 ];
 
-const mainActions = [
+const recentCopies = [
   {
-    title: "손님 문의 답장 만들기",
-    description: "손님 질문을 붙여넣고 바로 보낼 답장을 만듭니다.",
-    iconText: "💬",
-    buttonText: "답장 만들기",
-    href: "/generate/inquiry",
-    accent: "mint" as const,
+    type: "문의 답장",
+    title: "주차 문의 답장",
+    text: "매장 앞 주차는 어렵지만 도보 2분 거리 공영주차장을 이용하실 수 있습니다.",
   },
   {
-    title: "리뷰 답글 만들기",
-    description: "감사, 사과, 재방문 안내를 자연스럽게 정리합니다.",
-    iconText: "⭐",
-    buttonText: "답글 만들기",
-    href: "/generate/review",
-    accent: "amber" as const,
-  },
-  {
-    title: "오늘의 홍보글 만들기",
-    description: "신메뉴와 이벤트 소식을 쉽게 올릴 문장으로 바꿉니다.",
-    iconText: "📣",
-    buttonText: "홍보글 만들기",
-    href: "/generate/promo",
-    accent: "pink" as const,
-  },
-  {
-    title: "FAQ 관리",
-    description: "반복되는 질문과 답변을 미리 정리합니다.",
-    iconText: "📝",
-    buttonText: "준비 중",
-    accent: "blue" as const,
-    disabled: true,
-  },
-  {
-    title: "가게 정보 관리",
-    description: "영업시간, 주소, 대표 메뉴, 말투를 정리합니다.",
-    iconText: "🏪",
-    buttonText: "정보 수정",
-    href: "/setup",
-    accent: "slate" as const,
-  },
-];
-
-const usageItems = [
-  { label: "오늘 생성", value: "3회" },
-  { label: "무료 이용", value: "10회 중" },
-  { label: "남은 횟수", value: "7회" },
-];
-
-const recentReplies = [
-  {
-    question: "주차 가능한가요?",
-    reply:
-      "안녕하세요. 매장 앞 주차는 어렵지만, 도보 2분 거리에 공영주차장이 있습니다. 방문 전 편하게 문의 주세요.",
-  },
-  {
-    question: "오늘 케이크 예약 되나요?",
-    reply:
-      "문의 주셔서 감사합니다. 오늘 케이크 예약 가능합니다. 원하시는 픽업 시간과 성함을 남겨주시면 준비해드릴게요.",
+    type: "홍보글",
+    title: "오늘 저녁 홍보글",
+    text: "오늘 저녁 따뜻한 메뉴 준비되어 있습니다. 방문 전 편하게 문의 주세요.",
   },
 ];
 
 export default function DashboardPage() {
   return (
-    <main className="min-h-screen bg-[#fbfffd] pb-24 text-slate-950 sm:pb-0">
-      <section className="mx-auto w-full max-w-6xl px-4 py-8 sm:px-6 lg:py-12">
-        <div className="grid gap-6 lg:grid-cols-[1fr_340px]">
-          <div className="rounded-lg border border-emerald-100 bg-[linear-gradient(135deg,#ecfdf5_0%,#ffffff_55%,#ecfeff_100%)] p-6 shadow-xl shadow-emerald-950/5 sm:p-8">
-            <p className="text-sm font-black text-emerald-700">
-              오늘의 업무 줄이기
-            </p>
-            <h1 className="mt-3 text-3xl font-black leading-tight tracking-[-0.02em] text-slate-950 sm:text-4xl">
-              사장님, 오늘은 어떤 일을 줄여드릴까요?
-            </h1>
-            <p className="mt-4 max-w-2xl text-base leading-7 text-slate-600">
-              금요일 오후, 문의 답장과 리뷰 답글을 먼저 정리하기 좋은
-              시간입니다.
-            </p>
-            <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-              <PrimaryButton href="/generate/inquiry">답장 만들기</PrimaryButton>
-              <PrimaryButton href="/setup" variant="outline">
-                가게 정보 정리하기
-              </PrimaryButton>
+    <MobileAppShell
+      actionHref="/calendar"
+      actionLabel="일정"
+      title="사장님, 오늘은 이 일부터 줄여볼까요?"
+      subtitle="문의, 리뷰, 홍보 일정을 한눈에 보고 바로 처리할 수 있어요."
+    >
+      <section className="rounded-[1.75rem] bg-slate-950 p-5 text-white shadow-2xl shadow-slate-300">
+        <p className="text-sm font-bold text-emerald-300">오늘의 업무</p>
+        <h2 className="mt-3 text-2xl font-black leading-tight">
+          답장 늦기 전에 먼저 처리할 일을 골라봤어요.
+        </h2>
+        <div className="mt-5 grid grid-cols-3 gap-2">
+          {stats.map((item) => (
+            <div
+              className={`rounded-2xl p-3 text-center shadow-sm ${item.tone}`}
+              key={item.label}
+            >
+              <p className="text-[0.68rem] font-bold opacity-70">
+                {item.label}
+              </p>
+              <p className="mt-1 text-base font-black">{item.value}</p>
             </div>
-          </div>
+          ))}
+        </div>
+      </section>
 
-          <UsageSummaryCard
-            title="오늘 사용량"
-            description="오늘 3회 생성 / 무료 플랜 10회 중"
-            items={usageItems}
+      <section className="mt-4 rounded-[1.75rem] border border-emerald-100 bg-[linear-gradient(135deg,#ecfdf5_0%,#ffffff_68%,#ecfeff_100%)] p-5 shadow-lg shadow-emerald-950/5">
+        <div className="flex items-start justify-between gap-4">
+          <div>
+            <p className="text-sm font-black text-emerald-700">
+              가장 먼저 할 일
+            </p>
+            <h2 className="mt-2 text-xl font-black leading-7 text-slate-950">
+              오후 예약 문의에 답장하기
+            </h2>
+            <p className="mt-2 text-sm font-semibold leading-6 text-slate-600">
+              답장이 늦으면 예약을 놓칠 수 있어요. 10초 답장부터
+              만들어보세요.
+            </p>
+          </div>
+          <span className="rounded-full bg-white px-3 py-1 text-xs font-black text-emerald-700 shadow-sm">
+            추천
+          </span>
+        </div>
+        <Link
+          className="mt-5 flex min-h-14 items-center justify-center rounded-2xl bg-emerald-500 px-5 py-3 text-base font-black text-white shadow-lg shadow-emerald-200 transition active:scale-[0.99]"
+          href="/generate/inquiry"
+        >
+          문의 답장 만들기
+        </Link>
+      </section>
+
+      <section className="mt-6">
+        <div className="mb-3 flex items-center justify-between">
+          <h2 className="text-xl font-black text-slate-950">빠른 실행</h2>
+          <p className="text-xs font-bold text-slate-400">엄지로 바로 실행</p>
+        </div>
+        <div className="grid grid-cols-3 gap-3">
+          <QuickActionButton
+            description="예약, 위치, 가격"
+            href="/generate/inquiry"
+            icon="💬"
+            title="문의"
+          />
+          <QuickActionButton
+            accent="amber"
+            description="감사, 사과 답글"
+            href="/generate/review"
+            icon="★"
+            title="리뷰"
+          />
+          <QuickActionButton
+            accent="rose"
+            description="오늘 올릴 글"
+            href="/generate/promo"
+            icon="↗"
+            title="홍보"
           />
         </div>
       </section>
 
-      <section className="mx-auto w-full max-w-6xl px-4 pb-12 sm:px-6">
-        <SectionTitle
-          eyebrow="오늘의 추천 작업"
-          title="지금 하면 좋은 일을 골라봤습니다."
-          description="처음 화면에서 바로 눌러볼 수 있도록 자주 쓰는 일을 앞에 배치했습니다."
-        />
-        <div className="mt-8 grid gap-5 md:grid-cols-3">
-          {recommendationCards.map((card) => (
-            <DashboardActionCard {...card} key={card.title} />
+      <section className="mt-6">
+        <div className="mb-3 flex items-center justify-between">
+          <h2 className="text-xl font-black text-slate-950">오늘 일정</h2>
+          <Link
+            className="text-sm font-black text-emerald-700"
+            href="/calendar"
+          >
+            전체 보기
+          </Link>
+        </div>
+        <div className="grid gap-3">
+          {todayCalendarEvents.map((event) => (
+            <CalendarEventCard {...event} key={event.id} />
           ))}
         </div>
       </section>
 
-      <section className="mx-auto w-full max-w-6xl px-4 pb-12 sm:px-6">
-        <SectionTitle
-          eyebrow="주요 기능"
-          title="사장님이 자주 쓰는 기능"
-          description="문의 답장, 리뷰 답글, 홍보글, FAQ, 가게 정보를 한곳에서 시작합니다."
-        />
-        <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-          {mainActions.map((card) => (
-            <DashboardActionCard {...card} key={card.title} />
+      <section className="mt-6">
+        <h2 className="text-xl font-black text-slate-950">최근 만든 문구</h2>
+        <div className="mt-3 grid gap-3">
+          {recentCopies.map((item) => (
+            <article
+              className="rounded-[1.5rem] border border-slate-200 bg-white p-4 shadow-lg shadow-slate-950/5"
+              key={item.title}
+            >
+              <div className="flex items-center justify-between gap-3">
+                <span className="rounded-full bg-emerald-50 px-3 py-1 text-xs font-black text-emerald-700">
+                  {item.type}
+                </span>
+                <span className="text-xs font-bold text-slate-400">
+                  방금 전
+                </span>
+              </div>
+              <h3 className="mt-3 text-base font-black text-slate-950">
+                {item.title}
+              </h3>
+              <p className="mt-2 text-sm font-semibold leading-6 text-slate-600">
+                {item.text}
+              </p>
+            </article>
           ))}
         </div>
       </section>
-
-      <section className="mx-auto w-full max-w-6xl px-4 pb-16 sm:px-6">
-        <SectionTitle
-          eyebrow="최근 답장 미리보기"
-          title="복사해서 쓸 수 있는 문안이 이렇게 보입니다."
-          description="마음에 드는 문안은 복사해서 실제 채널에 바로 붙여넣을 수 있습니다."
-        />
-        <div className="mt-8 grid gap-5 lg:grid-cols-2">
-          {recentReplies.map((reply) => (
-            <PreviewReplyCard
-              key={reply.question}
-              question={reply.question}
-              reply={reply.reply}
-              label="최근 만든 답장"
-            />
-          ))}
-        </div>
-      </section>
-
-      <div className="fixed inset-x-0 bottom-0 z-20 border-t border-emerald-100 bg-white/95 p-4 shadow-2xl shadow-slate-300 backdrop-blur sm:hidden">
-        <PrimaryButton className="w-full" href="/generate/inquiry">
-          답장 만들기
-        </PrimaryButton>
-      </div>
-    </main>
+    </MobileAppShell>
   );
 }

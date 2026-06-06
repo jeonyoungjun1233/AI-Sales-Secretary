@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { PrimaryButton } from "./PrimaryButton";
 
 const navItems = [
@@ -8,6 +11,17 @@ const navItems = [
 ];
 
 export function AppHeader() {
+  const pathname = usePathname();
+  const isAppRoute =
+    pathname.startsWith("/dashboard") ||
+    pathname.startsWith("/setup") ||
+    pathname.startsWith("/generate") ||
+    pathname.startsWith("/calendar");
+
+  if (isAppRoute) {
+    return null;
+  }
+
   return (
     <header className="sticky top-0 z-20 border-b border-emerald-100 bg-white/90 backdrop-blur-xl">
       <div className="mx-auto flex min-h-16 w-full max-w-6xl items-center justify-between gap-3 px-4 sm:px-6">

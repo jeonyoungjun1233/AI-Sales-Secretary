@@ -18,6 +18,8 @@ const inquiryTypeDescriptions: Record<InquiryType, string> = {
   "예약 문의": "날짜, 시간, 인원 안내",
   "영업시간 문의": "오늘 방문 가능 여부",
   "가격 문의": "가격과 이용 방법 안내",
+  "주차 문의": "주차 위치와 이동 안내",
+  "메뉴 문의": "대표 메뉴와 준비 여부",
   "위치 문의": "주소와 찾아오는 길",
   "불만 문의": "사과와 개선 약속",
   "기타 문의": "상황에 맞는 기본 답장",
@@ -81,7 +83,7 @@ export default function InquiryGenerationPage() {
             <legend className="text-sm font-bold text-slate-800">
               문의 유형
             </legend>
-            <div className="grid gap-2 sm:grid-cols-2">
+            <div className="grid gap-2">
               {inquiryTypes.map((type) => (
                 <OptionChip
                   description={inquiryTypeDescriptions[type]}
@@ -112,7 +114,7 @@ export default function InquiryGenerationPage() {
           </fieldset>
 
           <button
-            className="min-h-12 rounded-xl bg-emerald-500 px-5 py-3 text-base font-black text-white shadow-lg shadow-emerald-200/80 transition hover:bg-emerald-600 active:scale-[0.99]"
+            className="min-h-14 rounded-2xl bg-emerald-500 px-5 py-3 text-base font-black text-white shadow-lg shadow-emerald-200/80 transition hover:bg-emerald-600 active:scale-[0.99]"
             onClick={handleGenerate}
             type="button"
           >

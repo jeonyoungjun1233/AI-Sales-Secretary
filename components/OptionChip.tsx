@@ -16,7 +16,7 @@ export function OptionChip({
   return (
     <button
       aria-pressed={selected}
-      className={`min-h-12 rounded-xl border px-4 py-3 text-left transition active:scale-[0.99] ${
+      className={`min-h-12 rounded-2xl border px-4 py-3 text-left transition active:scale-[0.99] ${
         selected
           ? "border-emerald-400 bg-emerald-50 text-emerald-950 shadow-sm shadow-emerald-100"
           : "border-slate-200 bg-white text-slate-700 hover:border-emerald-200 hover:bg-emerald-50/50"
