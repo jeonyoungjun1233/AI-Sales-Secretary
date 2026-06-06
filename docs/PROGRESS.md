@@ -2,7 +2,7 @@
 
 ## Current Status
 
-Day 2 implementation is complete. The app now has mock-based customer inquiry reply, review reply, and promotional post generation screens with result previews and copy feedback.
+Day 2 implementation is complete and committed locally. Remote GitHub and Vercel deployment are pending because the repository has no GitHub `origin` remote, GitHub CLI is not installed, and the Vercel project is not linked in `.vercel/project.json`.
 
 ## Completed
 
@@ -36,6 +36,7 @@ Day 2 implementation is complete. The app now has mock-based customer inquiry re
 - Connected landing page and dashboard CTA buttons to the Day 2 generation routes.
 - Added temporary save feedback to `/setup`.
 - Created `docs/DAY2_REPORT.md` with a Day 3 command draft.
+- Created local commit `bb13144` with Day 1 and Day 2 project work.
 
 ## Verification
 
@@ -53,6 +54,8 @@ Day 2 implementation is complete. The app now has mock-based customer inquiry re
 - Local dev server returned HTTP 200 for `/`, `/dashboard`, `/setup`, `/generate/inquiry`, `/generate/review`, and `/generate/promo`.
 - Expected Korean page headings were present in the rendered HTML for all six routes.
 - Checked that user-facing app and component code does not expose words like prompt, token, model, API, Supabase, OpenAI, or mock.
+- Deployment pre-check `npm run lint` passed.
+- Deployment pre-check `npm run build` passed.
 
 ## Blockers
 
@@ -62,7 +65,10 @@ Day 2 implementation is complete. The app now has mock-based customer inquiry re
 - Canva-generated copy needs manual cleanup before public posting because it included some awkward Korean wording and a dummy phone number.
 - Direct browser screenshot verification was not performed on Day 2 because a browser control tool was not directly exposed in the current tool list. HTTP and HTML checks passed.
 - FAQ management and generation history remain intentionally unimplemented until Day 3.
+- GitHub deployment is blocked until a GitHub repository URL is provided and set as `origin`.
+- Vercel CLI is not globally installed; `npx vercel` runs, but `npx vercel whoami` currently fails with a Vercel CLI header-value error on this Windows environment.
+- Vercel connector returned CLI instructions instead of performing the deployment directly.
 
 ## Next Action
 
-Start Day 3 only after user approval: implement local state FAQ management and generation history UI without OpenAI, Supabase, login, or payment integrations.
+To deploy remotely, provide a GitHub repository URL for `origin` and complete Vercel login/project linking. After that, push commit `bb13144` to GitHub and deploy the linked project to Vercel. Start Day 3 only after deployment status is resolved or the user approves moving on.

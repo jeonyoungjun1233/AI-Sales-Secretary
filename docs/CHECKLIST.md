@@ -4,10 +4,12 @@ This is the live checklist shown and maintained by Codex.
 
 ## In Progress
 
-- [ ] Wait for user approval before starting Day 3 implementation.
+- [ ] Wait for GitHub remote URL and Vercel authentication/project link before remote deployment.
 
 ## Up Next
 
+- [ ] Push commit `bb13144` to GitHub after `origin` is configured.
+- [ ] Deploy to Vercel after CLI login or Vercel project link is available.
 - [ ] Start Day 3 FAQ management and generation history UI after approval.
 - [ ] Keep OpenAI, Supabase, login, and payment out until the planned integration step.
 - [ ] Use local state or mock data for the next frontend workflow.
@@ -76,6 +78,16 @@ This is the live checklist shown and maintained by Codex.
 - [x] Verify `/`, `/dashboard`, `/setup`, `/generate/inquiry`, `/generate/review`, and `/generate/promo`.
 - [x] Create `docs/DAY2_REPORT.md`.
 - [x] Update `docs/PROGRESS.md`.
+
+## Deployment
+
+- [x] Run `npm run lint` before deployment attempt.
+- [x] Run `npm run build` before deployment attempt.
+- [x] Commit Day 1 and Day 2 work locally.
+- [ ] Configure GitHub `origin` remote.
+- [ ] Push local commit to GitHub.
+- [ ] Link project to Vercel.
+- [ ] Deploy to Vercel.
 
 ## Completion Rules
 
