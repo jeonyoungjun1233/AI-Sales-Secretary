@@ -86,23 +86,23 @@ export default function FaqPage() {
     <MobileAppShell
       actionHref="/dashboard"
       actionLabel="홈"
-      title="자주 묻는 질문을 미리 정리해두세요."
-      subtitle="반복 문의를 줄이고, 답장 문구를 더 빠르게 만들 수 있어요."
+      title="자주 묻는 질문"
+      subtitle="반복 답장을 줄여보세요."
     >
       <section className="rounded-[1.75rem] bg-slate-950 p-5 text-white shadow-2xl shadow-slate-300">
         <p className="text-sm font-bold text-emerald-300">가게 답변 모음</p>
         <h2 className="mt-3 text-2xl font-black leading-tight">
-          손님이 자주 묻는 질문을 한곳에 모아둡니다.
+          질문을 미리 정리합니다.
         </h2>
         <p className="mt-3 text-sm font-semibold leading-6 text-slate-300">
-          실제 저장 기능은 다음 단계에서 연결됩니다. 지금은 화면에서 바로 추가해보는 방식입니다.
+          답장이 더 빨라집니다.
         </p>
       </section>
 
       <section className="mt-5 rounded-[1.75rem] border border-slate-200 bg-white p-4 shadow-lg shadow-slate-950/5">
         <h2 className="text-xl font-black text-slate-950">질문 추가</h2>
         <p className="mt-2 text-sm font-semibold leading-6 text-slate-600">
-          손님이 자주 묻는 질문과 기본 답변을 적어두세요.
+          질문과 답변을 적어두세요.
         </p>
 
         <div className="mt-5 grid gap-4">

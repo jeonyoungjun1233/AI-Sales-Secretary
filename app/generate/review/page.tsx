@@ -16,9 +16,9 @@ import {
 } from "@/lib/ai/types";
 
 const sideNoteItems = [
-  "답글이 꾸준하면 가게가 더 신뢰감 있게 보입니다.",
-  "불만 리뷰에도 차분히 답하면 다음 손님에게 좋은 인상을 남깁니다.",
-  "바쁜 날에도 짧고 정중한 답글을 빠르게 준비할 수 있습니다.",
+  "꾸준한 답글이 신뢰를 만듭니다.",
+  "아쉬운 리뷰도 차분히 답하세요.",
+  "바쁜 날에도 짧게 준비합니다.",
 ];
 
 export default function ReviewGenerationPage() {
@@ -66,15 +66,15 @@ export default function ReviewGenerationPage() {
   return (
     <GenerationPageLayout
       eyebrow="리뷰 답글"
-      title="리뷰에 맞는 답글을 10초 안에 정리합니다."
-      description="좋은 리뷰에는 감사 인사를, 아쉬운 리뷰에는 정중한 사과와 개선 의지를 담아보세요."
-      sideNoteTitle="리뷰 관리가 중요한 이유"
+      title="리뷰를 붙여넣으세요."
+      description="상황에 맞는 답글을 준비합니다."
+      sideNoteTitle="리뷰가 중요한 이유"
       sideNoteItems={sideNoteItems}
     >
       <div className="grid gap-6">
         <InputCard
           title="손님 리뷰 내용"
-          description="손님이 남긴 리뷰를 붙여넣고 리뷰 분위기에 맞는 답글을 만들어보세요."
+          description="리뷰를 넣고 분위기를 고르세요."
         >
           <label className="grid gap-2">
             <span className="text-sm font-bold text-slate-800">

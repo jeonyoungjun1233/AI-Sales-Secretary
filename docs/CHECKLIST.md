@@ -4,13 +4,14 @@ This is the live checklist shown and maintained by Codex.
 
 ## In Progress
 
-- [ ] Review Day 4 production deployment output with the user.
+- [ ] Push Day 5 changes and verify Vercel production deployment.
 
 ## Up Next
 
-- [ ] Decide Day 5 scope: real provider preparation, FAQ persistence, or generation history persistence.
-- [ ] Confirm whether real external generation connection is approved for Day 5.
-- [ ] Keep OpenAI, Supabase, login, and payment out until the planned integration step.
+- [ ] Verify Day 5 routes locally.
+- [ ] Commit and push Day 5 changes.
+- [ ] Confirm Day 5 Vercel production deployment.
+- [ ] Keep OpenAI, Supabase, login, payment, and real notification features out until the planned integration step.
 - [ ] Use local state or mock data for the next frontend workflow.
 
 ## Workspace
@@ -97,6 +98,9 @@ This is the live checklist shown and maintained by Codex.
 - [x] Commit and push Day 4 provider and FAQ changes.
 - [x] Confirm Day 4 Vercel deployment generated `/faq`.
 - [x] Confirm Day 4 production routes return HTTP 200.
+- [ ] Commit and push Day 5 calendar UX changes.
+- [ ] Confirm Day 5 Vercel deployment generated monthly `/calendar`.
+- [ ] Confirm Day 5 production routes return HTTP 200.
 
 ## Day 3 Implementation
 
@@ -134,6 +138,23 @@ This is the live checklist shown and maintained by Codex.
 - [x] Verify `/`, `/dashboard`, `/setup`, `/generate/inquiry`, `/generate/review`, `/generate/promo`, `/calendar`, and `/faq`.
 - [x] Create `docs/DAY4_REPORT.md`.
 - [x] Update `docs/PROGRESS.md`.
+
+## Day 5 Implementation
+
+- [x] User approved Day 5 calendar UI improvement start.
+- [x] Read required Day 5 planning and progress documents.
+- [x] Read relevant installed Next.js docs.
+- [x] Rebuild `/calendar` as a monthly calendar UI.
+- [x] Add year and month controls.
+- [x] Add date selection and event dots.
+- [x] Add selected day schedule list.
+- [x] Add local state schedule creation flow.
+- [x] Improve dashboard calendar preview.
+- [x] Shorten key app copy.
+- [x] Create `docs/DAY5_REPORT.md`.
+- [x] Run `npm run lint`.
+- [x] Run `npm run build`.
+- [x] Verify `/`, `/dashboard`, `/calendar`, `/setup`, `/generate/inquiry`, `/generate/review`, `/generate/promo`, and `/faq`.
 
 ## Completion Rules
 

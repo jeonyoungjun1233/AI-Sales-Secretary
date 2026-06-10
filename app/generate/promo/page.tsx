@@ -18,9 +18,9 @@ import {
 } from "@/lib/ai/types";
 
 const sideNoteItems = [
-  "하나의 글에는 하나의 소식만 담으면 더 잘 읽힙니다.",
-  "가격이나 혜택은 실제로 제공 가능한 내용만 적는 것이 안전합니다.",
-  "채널마다 문장 길이와 안내 방식이 조금씩 달라야 합니다.",
+  "소식은 하나만 담아보세요.",
+  "제공 가능한 내용만 적으세요.",
+  "채널에 맞게 짧게 씁니다.",
 ];
 
 export default function PromoGenerationPage() {
@@ -69,15 +69,15 @@ export default function PromoGenerationPage() {
   return (
     <GenerationPageLayout
       eyebrow="오늘의 홍보글"
-      title="오늘 올릴 홍보글을 바로 준비합니다."
-      description="업종, 목적, 올릴 채널만 고르면 손님이 이해하기 쉬운 홍보 문안이 만들어집니다."
-      sideNoteTitle="홍보글 작성 팁"
+      title="오늘 소식을 적어보세요."
+      description="홍보글로 바로 바꿔드립니다."
+      sideNoteTitle="홍보글 팁"
       sideNoteItems={sideNoteItems}
     >
       <div className="grid gap-6">
         <InputCard
           title="홍보글 조건"
-          description="오늘 손님에게 알리고 싶은 목적과 업종, 올릴 채널을 골라주세요."
+          description="목적과 채널을 골라주세요."
         >
           <fieldset className="grid gap-3">
             <legend className="text-sm font-bold text-slate-800">

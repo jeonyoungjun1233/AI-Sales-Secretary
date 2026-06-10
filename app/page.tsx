@@ -5,49 +5,46 @@ import { SectionTitle } from "@/components/SectionTitle";
 const problems = [
   {
     icon: "⏰",
-    title: "답장 늦으면 예약을 놓칠 수 있습니다.",
-    description:
-      "영업 중 놓친 문의가 그대로 빈 시간과 빈 자리로 이어질 수 있습니다.",
+    title: "답장이 늦으면 예약을 놓칩니다.",
+    description: "바쁜 시간에도 문의를 챙겨보세요.",
   },
   {
     icon: "★",
-    title: "리뷰 답글이 밀리면 가게 이미지가 약해집니다.",
-    description:
-      "좋은 리뷰도, 아쉬운 리뷰도 꾸준히 답해야 다음 손님에게 신뢰를 줍니다.",
+    title: "리뷰 답글은 신뢰를 만듭니다.",
+    description: "짧고 정중하게 관리하세요.",
   },
   {
     icon: "↗",
-    title: "홍보글을 못 올리면 오늘의 손님 유입을 놓칠 수 있습니다.",
-    description:
-      "신메뉴, 이벤트, 빈 예약 시간을 알리지 못하면 매출 기회를 놓치기 쉽습니다.",
+    title: "홍보글은 매출 기회입니다.",
+    description: "오늘 소식을 바로 알려보세요.",
   },
 ];
 
 const features = [
   {
     title: "손님 문의 답장 만들기",
-    description: "예약, 가격, 주차, 메뉴 문의에 맞는 답장 초안을 만듭니다.",
+    description: "자주 오는 질문에 바로 답합니다.",
     iconText: "💬",
     buttonText: "답장 만들기",
     href: "/generate/inquiry",
   },
   {
     title: "리뷰 답글 만들기",
-    description: "감사, 사과, 개선 문구를 사장님 말투로 정리합니다.",
+    description: "감사와 사과를 짧게 정리합니다.",
     iconText: "★",
     buttonText: "리뷰 답글 보기",
     href: "/generate/review",
   },
   {
     title: "오늘의 홍보글 만들기",
-    description: "업종과 채널에 맞는 오늘 올릴 문구를 준비합니다.",
+    description: "오늘 올릴 글을 바로 준비합니다.",
     iconText: "↗",
     buttonText: "홍보글 보기",
     href: "/generate/promo",
   },
   {
     title: "오늘 일정 보기",
-    description: "예약 문의, 리뷰 답글, 홍보글 일정을 한 화면에서 챙깁니다.",
+    description: "오늘 할 일을 한눈에 봅니다.",
     iconText: "□",
     buttonText: "일정 보기",
     href: "/calendar",
@@ -58,22 +55,22 @@ const steps = [
   {
     step: "1",
     title: "가게 정보 입력",
-    description: "업종, 영업시간, 대표 메뉴, 말투를 간단히 적습니다.",
+    description: "기본 정보만 적습니다.",
   },
   {
     step: "2",
     title: "손님 글 붙여넣기",
-    description: "문의나 리뷰 내용을 그대로 넣고 유형을 고릅니다.",
+    description: "문의나 리뷰를 넣습니다.",
   },
   {
     step: "3",
     title: "문구 만들기",
-    description: "사장님 말투에 맞는 답장과 홍보글을 확인합니다.",
+    description: "쓸 문구를 확인합니다.",
   },
   {
     step: "4",
     title: "복사해서 사용",
-    description: "마음에 들면 바로 복사해서 실제 채널에 붙여넣습니다.",
+    description: "복사해서 붙여넣습니다.",
   },
 ];
 
@@ -90,12 +87,10 @@ export default function Home() {
               사장님, 손님 답장 놓치지 마세요.
             </h1>
             <p className="mt-5 max-w-2xl text-lg font-semibold leading-8 text-slate-700 sm:text-xl">
-              AI 알바생이 문의 답장, 리뷰 답글, 홍보글을 10초 만에
-              만들어드립니다.
+              문의 답장, 리뷰 답글, 홍보글을 10초 만에 준비합니다.
             </p>
             <p className="mt-4 max-w-2xl text-base font-semibold leading-7 text-slate-600">
-              복잡한 자동화 없이 사장님이 직접 확인하고 복사해서 쓰는 안전한
-              방식입니다.
+              확인하고 복사해서 바로 쓰세요.
             </p>
             <div className="mt-8 flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
               <PrimaryButton className="w-full sm:w-auto" href="/dashboard">
@@ -211,7 +206,7 @@ export default function Home() {
             align="center"
             eyebrow="주요 기능"
             title="사장님이 매일 쓰는 기능만 먼저 담았습니다."
-            description="답장 만들기, 리뷰 관리, 홍보글 작성, 오늘 일정 확인까지 한 흐름으로 이어집니다."
+            description="매일 쓰는 일만 담았습니다."
           />
           <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
             {features.map((feature) => (
@@ -226,7 +221,7 @@ export default function Home() {
           <SectionTitle
             eyebrow="사용 방법"
             title="처음 쓰는 사장님도 휴대폰에서 바로 시작할 수 있습니다."
-            description="자동으로 보내지 않고, 사장님이 눈으로 확인한 뒤 복사해서 쓰는 방식이라 부담이 적습니다."
+            description="확인하고 복사해서 쓰는 방식입니다."
           />
           <div className="mt-8 grid gap-4 md:grid-cols-4">
             {steps.map((item) => (
@@ -259,10 +254,9 @@ export default function Home() {
               <h2 className="mt-3 text-3xl font-black leading-tight sm:text-4xl">
                 오늘부터 답장 시간을 줄여보세요.
               </h2>
-              <p className="mt-4 max-w-2xl text-base font-semibold leading-7 text-slate-300">
-                앱 데모에서 오늘의 홈, 답장 만들기, 일정 화면을 바로 확인할
-                수 있습니다.
-              </p>
+            <p className="mt-4 max-w-2xl text-base font-semibold leading-7 text-slate-300">
+              홈, 답장 만들기, 일정을 바로 확인하세요.
+            </p>
             </div>
             <PrimaryButton href="/dashboard">앱 데모 보기</PrimaryButton>
           </div>

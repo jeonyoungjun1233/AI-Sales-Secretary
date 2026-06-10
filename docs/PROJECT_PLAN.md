@@ -6,7 +6,7 @@ Build an AI work assistant SaaS for Korean and global small business owners. The
 
 ## Current Phase
 
-Day 4 AI provider structure work is in progress. Day 3 mobile app UX, calendar screen, GitHub push, and Vercel production deployment are complete.
+Day 5 calendar UX work is in progress. Day 4 AI provider structure, FAQ UI, GitHub push, and Vercel production deployment are complete.
 
 ## Priorities
 
@@ -14,6 +14,8 @@ Day 4 AI provider structure work is in progress. Day 3 mobile app UX, calendar s
 - Keep the first experience simple enough for non-technical owners to use in minutes.
 - Make the core app routes look and behave like a mobile app, not a blog or desktop dashboard.
 - Add a calendar-style daily work view so owners have a reason to return every day.
+- Improve the calendar into a real monthly mobile view with date selection and local schedule creation.
+- Keep app copy short, direct, and focused on the next action.
 - Prepare a provider-based generation architecture before connecting paid external generation services.
 - Keep user-facing screens focused on business outcomes instead of technical provider details.
 - Defer platform integrations, automation, payments, and advanced analytics until after MVP validation.
@@ -42,4 +44,4 @@ Day 4 AI provider structure work is in progress. Day 3 mobile app UX, calendar s
 
 ## Next Milestone
 
-Complete Day 4 AI provider structure, generation screen UX states, FAQ management UI, generation history type design, and architecture documentation without connecting OpenAI, Supabase, login, or payment integrations.
+Complete the Day 5 monthly calendar UI, dashboard schedule preview, concise copy pass, local verification, GitHub push, and Vercel production deployment without connecting OpenAI, Supabase, login, payment, or real notification features.

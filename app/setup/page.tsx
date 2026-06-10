@@ -19,9 +19,9 @@ const businessTypes = [
 ];
 
 const tips = [
-  "영업시간을 넣으면 반복 문의 답장이 빨라집니다.",
-  "대표 메뉴를 넣으면 홍보글이 더 자연스러워집니다.",
-  "말투를 고르면 리뷰 답글의 분위기가 일정해집니다.",
+  "영업시간을 넣으면 답장이 빨라집니다.",
+  "대표 메뉴를 넣으면 홍보글이 쉬워집니다.",
+  "말투를 고르면 답글이 일정해집니다.",
 ];
 
 export default function SetupPage() {
@@ -31,8 +31,8 @@ export default function SetupPage() {
     <MobileAppShell
       actionHref="/generate/inquiry"
       actionLabel="답장"
-      title="가게 정보를 넣으면 답장이 더 사장님답게 나와요."
-      subtitle="처음에는 기본 정보만 적어도 충분합니다. 나중에 언제든 다시 고칠 수 있어요."
+      title="가게 정보를 넣어주세요."
+      subtitle="답장이 더 자연스러워집니다."
     >
       <section className="rounded-[1.75rem] bg-slate-950 p-5 text-white shadow-2xl shadow-slate-300">
         <p className="text-sm font-bold text-emerald-300">가게 정보 완성도</p>
@@ -40,7 +40,7 @@ export default function SetupPage() {
           <div>
             <p className="text-4xl font-black">68%</p>
             <p className="mt-2 text-sm font-semibold leading-6 text-slate-300">
-              대표 메뉴와 말투까지 채우면 답장 품질이 더 좋아져요.
+              대표 메뉴와 말투를 채워보세요.
             </p>
           </div>
           <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-black text-emerald-200">

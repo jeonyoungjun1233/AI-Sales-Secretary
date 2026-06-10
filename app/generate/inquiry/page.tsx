@@ -16,9 +16,9 @@ import {
 } from "@/lib/ai/types";
 
 const sideNoteItems = [
-  "영업 중이라 긴 답장을 쓰기 어려울 때",
-  "예약 가능 여부를 정중하게 안내해야 할 때",
-  "반복되는 질문에 매번 새로 답하기 부담될 때",
+  "바쁜 시간에 답장이 필요할 때",
+  "예약 가능 여부를 알려야 할 때",
+  "반복 질문이 많을 때",
 ];
 
 export default function InquiryGenerationPage() {
@@ -67,15 +67,15 @@ export default function InquiryGenerationPage() {
   return (
     <GenerationPageLayout
       eyebrow="손님 문의 답장"
-      title="손님 질문을 붙여넣으면 바로 보낼 답장을 준비합니다."
-      description="예약, 가격, 위치 문의처럼 자주 오는 질문을 사장님 말투에 맞춰 정리해보세요."
-      sideNoteTitle="이럴 때 쓰기 좋습니다"
+      title="손님 질문을 붙여넣으세요."
+      description="보낼 답장을 바로 준비합니다."
+      sideNoteTitle="이럴 때 좋아요"
       sideNoteItems={sideNoteItems}
     >
       <div className="grid gap-6">
         <InputCard
           title="손님 문의 내용"
-          description="손님이 보낸 질문을 그대로 붙여넣고, 어떤 문의인지 골라주세요."
+          description="질문을 넣고 유형을 고르세요."
         >
           <label className="grid gap-2">
             <span className="text-sm font-bold text-slate-800">

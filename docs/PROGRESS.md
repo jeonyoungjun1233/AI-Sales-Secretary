@@ -2,7 +2,7 @@
 
 ## Current Status
 
-Day 4 implementation is complete and deployed to production. The app now has a provider-based AI generation structure, improved generation screen states, a basic FAQ management UI, generation history type definitions, and AI agent architecture documentation. Real external AI calls, Supabase, login, and payment remain intentionally unimplemented.
+Day 5 implementation is complete locally and ready for GitHub/Vercel deployment. `/calendar` is now a real monthly mobile calendar, the dashboard schedule preview is shorter and clearer, and key app copy has been simplified. Real external AI calls, Supabase, login, payment, and real notification features remain intentionally unimplemented.
 
 ## Completed
 
@@ -67,6 +67,12 @@ Day 4 implementation is complete and deployed to production. The app now has a p
 - Committed Day 4 provider and FAQ changes as `3f98aff`.
 - Pushed Day 4 changes to GitHub `main`.
 - Deployed Day 4 to Vercel production.
+- Rebuilt `/calendar` as a monthly calendar UI with year/month controls.
+- Added date selection, today highlighting, selected day highlighting, and event dots.
+- Added selected day schedule display and local state schedule creation.
+- Improved `/dashboard` with a short "today's tasks" preview and route to `/calendar`.
+- Shortened key copy across landing, dashboard, setup, generation, and FAQ screens.
+- Created `docs/DAY5_REPORT.md`.
 
 ## Verification
 
@@ -125,6 +131,13 @@ Day 4 implementation is complete and deployed to production. The app now has a p
 - `https://ai-sales-secretary.vercel.app/generate/promo` returned HTTP 200.
 - `https://ai-sales-secretary.vercel.app/calendar` returned HTTP 200.
 - `https://ai-sales-secretary.vercel.app/faq` returned HTTP 200.
+- Day 5 `npm run lint` passed.
+- Day 5 `npm run build` passed.
+- Local dev server returned HTTP 200 for `/`, `/dashboard`, `/calendar`, `/setup`, `/generate/inquiry`, `/generate/review`, `/generate/promo`, and `/faq`.
+- Browser check confirmed `/calendar` shows year, month, weekdays, date grid, selected day schedule, and schedule add form.
+- Browser check confirmed month navigation, year/month selection, date selection, and local schedule addition.
+- Browser check confirmed `/dashboard` shows the shortened schedule preview.
+- Browser console reported no errors during Day 5 calendar and dashboard checks.
 
 ## Blockers
 
@@ -137,7 +150,9 @@ Day 4 implementation is complete and deployed to production. The app now has a p
 - FAQ management now has a local UI, but real persistence remains intentionally unimplemented.
 - Generation history has type definitions only; real persistence remains intentionally unimplemented.
 - Vercel CLI is not globally installed; `npx vercel whoami` currently fails with a Vercel CLI header-value error on this Windows environment.
+- Day 5 schedule additions are local state only and do not persist after refresh.
+- Real notification delivery remains intentionally unimplemented.
 
 ## Next Action
 
-Review the Day 4 production deployment. After user approval, Day 5 should decide whether to prepare the server-side real provider connection, generation history persistence, or FAQ persistence first.
+Push Day 5 changes to GitHub, confirm the Vercel production deployment, then review the live `/calendar` and `/dashboard` screens.

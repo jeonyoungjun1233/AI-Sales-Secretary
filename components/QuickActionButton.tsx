@@ -23,17 +23,17 @@ export function QuickActionButton({
 }: QuickActionButtonProps) {
   return (
     <Link
-      className="group rounded-3xl border border-slate-200 bg-white p-4 shadow-lg shadow-slate-950/5 transition active:scale-[0.99]"
+      className="group rounded-3xl bg-white p-4 shadow-lg shadow-slate-950/5 transition active:scale-[0.99]"
       href={href}
     >
       <div
-        className={`flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br text-xl text-white shadow-lg ${accentClasses[accent]}`}
+        className={`flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br text-lg text-white shadow-lg ${accentClasses[accent]}`}
         aria-hidden
       >
         {icon}
       </div>
       <h3 className="mt-3 text-base font-black text-slate-950">{title}</h3>
-      <p className="mt-1 text-xs font-semibold leading-5 text-slate-500">
+      <p className="mt-1 text-xs font-bold leading-5 text-slate-500">
         {description}
       </p>
     </Link>
