@@ -91,6 +91,10 @@
 - 일정 추가 후 즉시 반영 확인
 - `/dashboard` 오늘 일정 미리보기 확인
 - 브라우저 콘솔 에러 없음
+- GitHub `main` 푸쉬 완료
+- Vercel production 배포 완료
+- Vercel 배포 ID: `dpl_2prPvS5Rf2yfBBCjuhQ6h5XTgKn2`
+- 프로덕션 `/calendar`에서 월간 달력 UI 렌더링 확인
 
 ## 8. 수익화 관점에서의 판단
 

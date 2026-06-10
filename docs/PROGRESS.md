@@ -2,7 +2,7 @@
 
 ## Current Status
 
-Day 5 implementation is complete locally and ready for GitHub/Vercel deployment. `/calendar` is now a real monthly mobile calendar, the dashboard schedule preview is shorter and clearer, and key app copy has been simplified. Real external AI calls, Supabase, login, payment, and real notification features remain intentionally unimplemented.
+Day 5 implementation is complete and deployed to production. `/calendar` is now a real monthly mobile calendar, the dashboard schedule preview is shorter and clearer, and key app copy has been simplified. Real external AI calls, Supabase, login, payment, and real notification features remain intentionally unimplemented.
 
 ## Completed
 
@@ -73,6 +73,9 @@ Day 5 implementation is complete locally and ready for GitHub/Vercel deployment.
 - Improved `/dashboard` with a short "today's tasks" preview and route to `/calendar`.
 - Shortened key copy across landing, dashboard, setup, generation, and FAQ screens.
 - Created `docs/DAY5_REPORT.md`.
+- Committed Day 5 calendar UX changes as `09bc310`.
+- Pushed Day 5 changes to GitHub `main`.
+- Deployed Day 5 to Vercel production.
 
 ## Verification
 
@@ -138,6 +141,15 @@ Day 5 implementation is complete locally and ready for GitHub/Vercel deployment.
 - Browser check confirmed month navigation, year/month selection, date selection, and local schedule addition.
 - Browser check confirmed `/dashboard` shows the shortened schedule preview.
 - Browser console reported no errors during Day 5 calendar and dashboard checks.
+- Vercel production deployment `dpl_2prPvS5Rf2yfBBCjuhQ6h5XTgKn2` is `READY`.
+- `https://ai-sales-secretary.vercel.app/` returned HTTP 200.
+- `https://ai-sales-secretary.vercel.app/dashboard` returned HTTP 200.
+- `https://ai-sales-secretary.vercel.app/calendar` returned HTTP 200 and rendered the monthly calendar UI.
+- `https://ai-sales-secretary.vercel.app/setup` returned HTTP 200.
+- `https://ai-sales-secretary.vercel.app/generate/inquiry` returned HTTP 200.
+- `https://ai-sales-secretary.vercel.app/generate/review` returned HTTP 200.
+- `https://ai-sales-secretary.vercel.app/generate/promo` returned HTTP 200.
+- `https://ai-sales-secretary.vercel.app/faq` returned HTTP 200.
 
 ## Blockers
 
@@ -155,4 +167,4 @@ Day 5 implementation is complete locally and ready for GitHub/Vercel deployment.
 
 ## Next Action
 
-Push Day 5 changes to GitHub, confirm the Vercel production deployment, then review the live `/calendar` and `/dashboard` screens.
+Review the Day 5 production `/calendar` and `/dashboard` screens. After approval, Day 6 should choose persistence for schedules or generation history.
