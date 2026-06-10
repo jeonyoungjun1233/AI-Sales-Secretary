@@ -2,7 +2,7 @@
 
 ## Current Status
 
-Day 4 implementation is complete locally. The app now has a provider-based AI generation structure, improved generation screen states, a basic FAQ management UI, generation history type definitions, and AI agent architecture documentation. Real external AI calls, Supabase, login, and payment remain intentionally unimplemented.
+Day 4 implementation is complete and deployed to production. The app now has a provider-based AI generation structure, improved generation screen states, a basic FAQ management UI, generation history type definitions, and AI agent architecture documentation. Real external AI calls, Supabase, login, and payment remain intentionally unimplemented.
 
 ## Completed
 
@@ -64,6 +64,9 @@ Day 4 implementation is complete locally. The app now has a provider-based AI ge
 - Added generation history type definitions.
 - Created `docs/AI_AGENT_ARCHITECTURE.md`.
 - Created `docs/DAY4_REPORT.md`.
+- Committed Day 4 provider and FAQ changes as `3f98aff`.
+- Pushed Day 4 changes to GitHub `main`.
+- Deployed Day 4 to Vercel production.
 
 ## Verification
 
@@ -111,6 +114,17 @@ Day 4 implementation is complete locally. The app now has a provider-based AI ge
 - Local dev server returned HTTP 200 for `/`, `/dashboard`, `/setup`, `/generate/inquiry`, `/generate/review`, `/generate/promo`, `/calendar`, and `/faq`.
 - Checked user-facing app and component code for developer-facing words. Only internal import paths contain `mock`; user-visible text does not expose those terms.
 - Checked that no environment variable access, real external generation call, Supabase connection, login, or payment code was added.
+- Day 4 deployment pre-check `npm run lint` passed.
+- Day 4 deployment pre-check `npm run build` passed.
+- Vercel production deployment `dpl_7tuz6okGZ8WYRiALdKusTT9Bh3D8` is `READY`.
+- `https://ai-sales-secretary.vercel.app/` returned HTTP 200.
+- `https://ai-sales-secretary.vercel.app/dashboard` returned HTTP 200.
+- `https://ai-sales-secretary.vercel.app/setup` returned HTTP 200.
+- `https://ai-sales-secretary.vercel.app/generate/inquiry` returned HTTP 200.
+- `https://ai-sales-secretary.vercel.app/generate/review` returned HTTP 200.
+- `https://ai-sales-secretary.vercel.app/generate/promo` returned HTTP 200.
+- `https://ai-sales-secretary.vercel.app/calendar` returned HTTP 200.
+- `https://ai-sales-secretary.vercel.app/faq` returned HTTP 200.
 
 ## Blockers
 
@@ -126,4 +140,4 @@ Day 4 implementation is complete locally. The app now has a provider-based AI ge
 
 ## Next Action
 
-Review the Day 4 local UI changes. After user approval, Day 5 should decide whether to prepare the server-side real provider connection, generation history persistence, or FAQ persistence first.
+Review the Day 4 production deployment. After user approval, Day 5 should decide whether to prepare the server-side real provider connection, generation history persistence, or FAQ persistence first.

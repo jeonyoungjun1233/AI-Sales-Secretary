@@ -4,7 +4,7 @@ This is the live checklist shown and maintained by Codex.
 
 ## In Progress
 
-- [ ] Push Day 4 changes and verify Vercel production deployment.
+- [ ] Review Day 4 production deployment output with the user.
 
 ## Up Next
 
@@ -94,9 +94,9 @@ This is the live checklist shown and maintained by Codex.
 - [x] Commit and push Day 3 mobile app changes.
 - [x] Confirm Day 3 Vercel deployment generated `/calendar`.
 - [x] Confirm Day 3 production routes return HTTP 200.
-- [ ] Commit and push Day 4 provider and FAQ changes.
-- [ ] Confirm Day 4 Vercel deployment generated `/faq`.
-- [ ] Confirm Day 4 production routes return HTTP 200.
+- [x] Commit and push Day 4 provider and FAQ changes.
+- [x] Confirm Day 4 Vercel deployment generated `/faq`.
+- [x] Confirm Day 4 production routes return HTTP 200.
 
 ## Day 3 Implementation
 
