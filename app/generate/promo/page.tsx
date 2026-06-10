@@ -6,38 +6,16 @@ import { GeneratedResultBox } from "@/components/GeneratedResultBox";
 import { GenerationPageLayout } from "@/components/GenerationPageLayout";
 import { InputCard } from "@/components/InputCard";
 import { OptionChip } from "@/components/OptionChip";
+import { generateWithAgent } from "@/lib/ai/agentRouter";
 import {
-  businessTypes,
-  generateMockPromoPost,
-  promoChannels,
-  promoPurposes,
+  businessTypeOptions,
+  promoChannelOptions,
+  promoPurposeOptions,
   type BusinessType,
+  type GenerateResponse,
   type PromoChannel,
   type PromoPurpose,
-} from "@/lib/mockGeneration";
-
-const purposeDescriptions: Record<PromoPurpose, string> = {
-  "예약 유도": "비어 있는 시간 알리기",
-  "이벤트 홍보": "혜택과 소식 전하기",
-  "신메뉴 홍보": "새 메뉴나 서비스 소개",
-  "비 오는 날 홍보": "날씨에 맞는 방문 유도",
-  "마감 임박 홍보": "오늘 남은 시간 안내",
-};
-
-const businessDescriptions: Record<BusinessType, string> = {
-  카페: "음료와 디저트",
-  음식점: "식사와 메뉴",
-  네일샵: "손끝 관리",
-  미용실: "헤어 관리",
-  학원: "상담과 수업",
-  PT샵: "운동과 상담",
-};
-
-const channelDescriptions: Record<PromoChannel, string> = {
-  인스타그램: "짧은 소개와 해시태그",
-  "네이버 플레이스": "방문 전 안내 중심",
-  "카카오톡 채널": "문의 유도 중심",
-};
+} from "@/lib/ai/types";
 
 const sideNoteItems = [
   "하나의 글에는 하나의 소식만 담으면 더 잘 읽힙니다.",
@@ -46,22 +24,47 @@ const sideNoteItems = [
 ];
 
 export default function PromoGenerationPage() {
-  const [purpose, setPurpose] = useState<PromoPurpose>("예약 유도");
-  const [businessType, setBusinessType] = useState<BusinessType>("카페");
-  const [channel, setChannel] = useState<PromoChannel>("인스타그램");
+  const [purpose, setPurpose] = useState<PromoPurpose>("reservation");
+  const [businessType, setBusinessType] = useState<BusinessType>("cafe");
+  const [channel, setChannel] = useState<PromoChannel>("instagram");
   const [extraNote, setExtraNote] = useState("");
-  const [result, setResult] = useState("");
+  const [response, setResponse] = useState<GenerateResponse | null>(null);
+  const [isGenerating, setIsGenerating] = useState(false);
+  const [notice, setNotice] = useState("");
 
-  function handleGenerate() {
-    setResult(
-      generateMockPromoPost({
-        purpose,
-        businessType,
-        channel,
-        extraNote,
-      }),
-    );
+  async function handleGenerate() {
+    if (!extraNote.trim()) {
+      setResponse(null);
+      setNotice("홍보하고 싶은 내용을 간단히 적어주세요.");
+      return;
+    }
+
+    setNotice("");
+    setIsGenerating(true);
+
+    await new Promise((resolve) => setTimeout(resolve, 450));
+
+    const nextResponse = await generateWithAgent({
+      type: "promo",
+      input: extraNote,
+      category: purpose,
+      businessType,
+      channel,
+    });
+
+    setResponse(nextResponse);
+    setIsGenerating(false);
   }
+
+  function handleExtraNoteChange(value: string) {
+    setExtraNote(value);
+
+    if (notice) {
+      setNotice("");
+    }
+  }
+
+  const resultText = response?.text ?? "";
 
   return (
     <GenerationPageLayout
@@ -81,13 +84,13 @@ export default function PromoGenerationPage() {
               홍보 목적
             </legend>
             <div className="grid gap-2">
-              {promoPurposes.map((item) => (
+              {promoPurposeOptions.map((item) => (
                 <OptionChip
-                  description={purposeDescriptions[item]}
-                  key={item}
-                  label={item}
-                  onClick={() => setPurpose(item)}
-                  selected={purpose === item}
+                  description={item.description}
+                  key={item.value}
+                  label={item.label}
+                  onClick={() => setPurpose(item.value)}
+                  selected={purpose === item.value}
                 />
               ))}
             </div>
@@ -96,13 +99,13 @@ export default function PromoGenerationPage() {
           <fieldset className="grid gap-3">
             <legend className="text-sm font-bold text-slate-800">업종</legend>
             <div className="grid gap-2 sm:grid-cols-2">
-              {businessTypes.map((item) => (
+              {businessTypeOptions.map((item) => (
                 <OptionChip
-                  description={businessDescriptions[item]}
-                  key={item}
-                  label={item}
-                  onClick={() => setBusinessType(item)}
-                  selected={businessType === item}
+                  description={item.description}
+                  key={item.value}
+                  label={item.label}
+                  onClick={() => setBusinessType(item.value)}
+                  selected={businessType === item.value}
                 />
               ))}
             </div>
@@ -113,13 +116,13 @@ export default function PromoGenerationPage() {
               홍보 채널
             </legend>
             <div className="grid gap-2">
-              {promoChannels.map((item) => (
+              {promoChannelOptions.map((item) => (
                 <OptionChip
-                  description={channelDescriptions[item]}
-                  key={item}
-                  label={item}
-                  onClick={() => setChannel(item)}
-                  selected={channel === item}
+                  description={item.description}
+                  key={item.value}
+                  label={item.label}
+                  onClick={() => setChannel(item.value)}
+                  selected={channel === item.value}
                 />
               ))}
             </div>
@@ -131,27 +134,33 @@ export default function PromoGenerationPage() {
             </span>
             <textarea
               className="min-h-28 resize-none rounded-xl border border-slate-200 bg-white px-4 py-3 text-base leading-7 outline-none transition placeholder:text-slate-400 focus:border-emerald-500 focus:ring-4 focus:ring-emerald-100"
-              onChange={(event) => setExtraNote(event.target.value)}
+              onChange={(event) => handleExtraNoteChange(event.target.value)}
               placeholder="예: 이번 주 금요일까지 딸기 라떼를 준비해두었습니다."
               value={extraNote}
             />
           </label>
 
           <button
-            className="min-h-14 rounded-2xl bg-emerald-500 px-5 py-3 text-base font-black text-white shadow-lg shadow-emerald-200/80 transition hover:bg-emerald-600 active:scale-[0.99]"
+            className="min-h-14 rounded-2xl bg-emerald-500 px-5 py-3 text-base font-black text-white shadow-lg shadow-emerald-200/80 transition hover:bg-emerald-600 active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-60"
+            disabled={isGenerating}
             onClick={handleGenerate}
             type="button"
           >
-            홍보글 만들기
+            {isGenerating ? "홍보글 정리 중" : "홍보글 만들기"}
           </button>
         </InputCard>
 
         <GeneratedResultBox
-          emptyDescription="홍보 목적, 업종, 채널을 고른 뒤 홍보글 만들기 버튼을 눌러보세요."
+          emptyDescription="오늘 알리고 싶은 소식을 적으면 홍보글로 바꿔드릴게요."
           emptyTitle="아직 만든 홍보글이 없습니다."
-          result={result}
+          loading={isGenerating}
+          loadingDescription="채널에 맞게 문장 길이와 말투를 다듬고 있어요."
+          loadingTitle="오늘 올릴 글을 보기 좋게 정리하고 있어요."
+          noticeMessage={notice}
+          result={resultText}
           successMessage="오늘 올릴 홍보글을 바로 준비했어요."
           title="오늘 올릴 홍보글"
+          warnings={response?.warnings}
         />
       </div>
     </GenerationPageLayout>

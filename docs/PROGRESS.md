@@ -2,7 +2,7 @@
 
 ## Current Status
 
-Day 3 implementation has been committed, pushed to GitHub `main`, and deployed to Vercel production. The app now serves the mobile app shell, bottom tab navigation, mobile-first dashboard home, calendar screen, and improved mock generation copy at `https://ai-sales-secretary.vercel.app/`.
+Day 4 implementation is complete locally. The app now has a provider-based AI generation structure, improved generation screen states, a basic FAQ management UI, generation history type definitions, and AI agent architecture documentation. Real external AI calls, Supabase, login, and payment remain intentionally unimplemented.
 
 ## Completed
 
@@ -54,6 +54,16 @@ Day 3 implementation has been committed, pushed to GitHub `main`, and deployed t
 - Committed Day 3 mobile app UX changes as `592b62a`.
 - Pushed Day 3 changes to GitHub `main`.
 - Deployed Day 3 to Vercel production.
+- Added `lib/ai` provider structure with shared request and response types.
+- Added `mockProvider` as the current generation provider.
+- Added `openaiProvider` as a future placeholder without real calls.
+- Routed inquiry, review, and promotional generation screens through `agentRouter`.
+- Improved empty, guidance, loading, and completed result states on generation screens.
+- Added `/faq` with local state FAQ list and add form.
+- Connected the dashboard to `/faq`.
+- Added generation history type definitions.
+- Created `docs/AI_AGENT_ARCHITECTURE.md`.
+- Created `docs/DAY4_REPORT.md`.
 
 ## Verification
 
@@ -96,6 +106,11 @@ Day 3 implementation has been committed, pushed to GitHub `main`, and deployed t
 - `https://ai-sales-secretary.vercel.app/generate/review` returned HTTP 200 and rendered the review generator page.
 - `https://ai-sales-secretary.vercel.app/generate/promo` returned HTTP 200 and rendered the promotional post generator page.
 - `https://ai-sales-secretary.vercel.app/calendar` returned HTTP 200 and rendered the calendar page.
+- Day 4 `npm run lint` passed.
+- Day 4 `npm run build` passed.
+- Local dev server returned HTTP 200 for `/`, `/dashboard`, `/setup`, `/generate/inquiry`, `/generate/review`, `/generate/promo`, `/calendar`, and `/faq`.
+- Checked user-facing app and component code for developer-facing words. Only internal import paths contain `mock`; user-visible text does not expose those terms.
+- Checked that no environment variable access, real external generation call, Supabase connection, login, or payment code was added.
 
 ## Blockers
 
@@ -105,9 +120,10 @@ Day 3 implementation has been committed, pushed to GitHub `main`, and deployed t
 - Canva-generated copy needs manual cleanup before public posting because it included some awkward Korean wording and a dummy phone number.
 - Direct browser screenshot verification was not performed on Day 2 because a browser control tool was not directly exposed in the current tool list. HTTP and HTML checks passed.
 - Direct browser screenshot verification was not performed on Day 3 because Playwright is not installed and no package was added.
-- FAQ management and generation history remain intentionally unimplemented.
+- FAQ management now has a local UI, but real persistence remains intentionally unimplemented.
+- Generation history has type definitions only; real persistence remains intentionally unimplemented.
 - Vercel CLI is not globally installed; `npx vercel whoami` currently fails with a Vercel CLI header-value error on this Windows environment.
 
 ## Next Action
 
-Review the Day 3 production UI on Vercel. After user approval, the next implementation should prepare the Day 4 AI provider structure without connecting real API keys.
+Review the Day 4 local UI changes. After user approval, Day 5 should decide whether to prepare the server-side real provider connection, generation history persistence, or FAQ persistence first.

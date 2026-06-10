@@ -4,12 +4,12 @@ This is the live checklist shown and maintained by Codex.
 
 ## In Progress
 
-- [ ] Wait for user approval before Day 4 AI provider structure work.
+- [ ] Push Day 4 changes and verify Vercel production deployment.
 
 ## Up Next
 
-- [ ] Review the Day 3 production UI on Vercel.
-- [ ] Prepare Day 4 AI provider structure only after user approval.
+- [ ] Decide Day 5 scope: real provider preparation, FAQ persistence, or generation history persistence.
+- [ ] Confirm whether real external generation connection is approved for Day 5.
 - [ ] Keep OpenAI, Supabase, login, and payment out until the planned integration step.
 - [ ] Use local state or mock data for the next frontend workflow.
 
@@ -94,6 +94,9 @@ This is the live checklist shown and maintained by Codex.
 - [x] Commit and push Day 3 mobile app changes.
 - [x] Confirm Day 3 Vercel deployment generated `/calendar`.
 - [x] Confirm Day 3 production routes return HTTP 200.
+- [ ] Commit and push Day 4 provider and FAQ changes.
+- [ ] Confirm Day 4 Vercel deployment generated `/faq`.
+- [ ] Confirm Day 4 production routes return HTTP 200.
 
 ## Day 3 Implementation
 
@@ -111,6 +114,25 @@ This is the live checklist shown and maintained by Codex.
 - [x] Run `npm run build`.
 - [x] Verify `/`, `/dashboard`, `/setup`, `/generate/inquiry`, `/generate/review`, `/generate/promo`, and `/calendar`.
 - [x] Create `docs/DAY3_REPORT.md`.
+- [x] Update `docs/PROGRESS.md`.
+
+## Day 4 Implementation
+
+- [x] User approved Day 4 implementation start.
+- [x] Read required Day 4 planning documents.
+- [x] Read relevant installed Next.js docs.
+- [x] Add AI provider types and router.
+- [x] Add mock provider and future provider placeholder.
+- [x] Add prompt template files.
+- [x] Route inquiry, review, and promo generation through `agentRouter`.
+- [x] Improve loading, empty, and guidance states on generation screens.
+- [x] Add basic FAQ management UI.
+- [x] Add generation history type definitions.
+- [x] Create `docs/AI_AGENT_ARCHITECTURE.md`.
+- [x] Run `npm run lint`.
+- [x] Run `npm run build`.
+- [x] Verify `/`, `/dashboard`, `/setup`, `/generate/inquiry`, `/generate/review`, `/generate/promo`, `/calendar`, and `/faq`.
+- [x] Create `docs/DAY4_REPORT.md`.
 - [x] Update `docs/PROGRESS.md`.
 
 ## Completion Rules

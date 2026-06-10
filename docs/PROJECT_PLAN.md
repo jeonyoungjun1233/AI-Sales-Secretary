@@ -6,7 +6,7 @@ Build an AI work assistant SaaS for Korean and global small business owners. The
 
 ## Current Phase
 
-Day 3 mobile app UX improvement is in progress. Day 2 mock generation screens are complete, and the next priority is making the core app routes feel like a 9:16 mobile work assistant that owners can use every day.
+Day 4 AI provider structure work is in progress. Day 3 mobile app UX, calendar screen, GitHub push, and Vercel production deployment are complete.
 
 ## Priorities
 
@@ -14,29 +14,32 @@ Day 3 mobile app UX improvement is in progress. Day 2 mock generation screens ar
 - Keep the first experience simple enough for non-technical owners to use in minutes.
 - Make the core app routes look and behave like a mobile app, not a blog or desktop dashboard.
 - Add a calendar-style daily work view so owners have a reason to return every day.
+- Prepare a provider-based generation architecture before connecting paid external generation services.
+- Keep user-facing screens focused on business outcomes instead of technical provider details.
 - Defer platform integrations, automation, payments, and advanced analytics until after MVP validation.
 
 ## Working Decisions
 
 - Framework: Next.js 16 App Router
 - UI: React 19 and Tailwind CSS 4
-- AI: OpenAI API planned later, not implemented on Day 1.
-- Data/Auth: Supabase planned later, not implemented on Day 1.
+- AI: provider architecture is being prepared on Day 4; real external calls are still not implemented.
+- Data/Auth: Supabase planned later, not implemented yet.
 - Deployment: Vercel
 - Visual design support: Canva connector is available for editable marketing assets, social posts, pitch visuals, and brand-style design drafts.
 - First user: small business owners who directly manage customer inquiries, reviews, and promotions.
 - MVP scope: customer inquiry replies, review replies, promotional posts, FAQ management, and store information management.
-- Day 1 implementation uses mock data and local UI only.
+- Current implementation uses local state and mock/provider-based generation only.
 - Codex is used for planning, implementation, and progress reporting.
 - VS Code is used to inspect and manually edit the project files.
 
 ## Open Questions
 
 - Which auth method should be used first: email OTP, password, or social login?
-- Which OpenAI model should be the MVP default?
-- Should FAQ management or generation history come immediately after the Day 3 mobile app/calendar improvements?
+- Which external generation provider should be connected first after Day 4?
+- Should FAQ management or generation history become the first persistent database feature?
 - Which daily workflow creates the strongest reason to subscribe: calendar, generation history, or FAQ quality improvement?
+- What usage limit and plan boundary should be shown before paid conversion?
 
 ## Next Milestone
 
-Complete Day 3 mobile app shell, bottom navigation, mobile dashboard, calendar mock screen, and improved mock generation copy without OpenAI, Supabase, login, or payment integrations.
+Complete Day 4 AI provider structure, generation screen UX states, FAQ management UI, generation history type design, and architecture documentation without connecting OpenAI, Supabase, login, or payment integrations.

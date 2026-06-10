@@ -6,31 +6,14 @@ import { GeneratedResultBox } from "@/components/GeneratedResultBox";
 import { GenerationPageLayout } from "@/components/GenerationPageLayout";
 import { InputCard } from "@/components/InputCard";
 import { OptionChip } from "@/components/OptionChip";
+import { generateWithAgent } from "@/lib/ai/agentRouter";
 import {
-  generateMockInquiryReply,
-  inquiryTypes,
-  replyTones,
-  type InquiryType,
-  type ReplyTone,
-} from "@/lib/mockGeneration";
-
-const inquiryTypeDescriptions: Record<InquiryType, string> = {
-  "예약 문의": "날짜, 시간, 인원 안내",
-  "영업시간 문의": "오늘 방문 가능 여부",
-  "가격 문의": "가격과 이용 방법 안내",
-  "주차 문의": "주차 위치와 이동 안내",
-  "메뉴 문의": "대표 메뉴와 준비 여부",
-  "위치 문의": "주소와 찾아오는 길",
-  "불만 문의": "사과와 개선 약속",
-  "기타 문의": "상황에 맞는 기본 답장",
-};
-
-const toneDescriptions: Record<ReplyTone, string> = {
-  "친절한 말투": "부드럽고 자세하게",
-  "짧고 깔끔한 말투": "핵심만 빠르게",
-  "밝고 귀여운 말투": "가볍고 친근하게",
-  "고급스러운 말투": "정중하고 차분하게",
-};
+  inquiryCategoryOptions,
+  toneOptions,
+  type GenerateResponse,
+  type GenerateTone,
+  type InquiryCategory,
+} from "@/lib/ai/types";
 
 const sideNoteItems = [
   "영업 중이라 긴 답장을 쓰기 어려울 때",
@@ -40,19 +23,46 @@ const sideNoteItems = [
 
 export default function InquiryGenerationPage() {
   const [question, setQuestion] = useState("");
-  const [inquiryType, setInquiryType] = useState<InquiryType>("예약 문의");
-  const [tone, setTone] = useState<ReplyTone>("친절한 말투");
-  const [result, setResult] = useState("");
+  const [inquiryType, setInquiryType] =
+    useState<InquiryCategory>("reservation");
+  const [tone, setTone] = useState<GenerateTone>("friendly");
+  const [response, setResponse] = useState<GenerateResponse | null>(null);
+  const [isGenerating, setIsGenerating] = useState(false);
+  const [notice, setNotice] = useState("");
 
-  function handleGenerate() {
-    setResult(
-      generateMockInquiryReply({
-        question,
-        inquiryType,
-        tone,
-      }),
-    );
+  async function handleGenerate() {
+    if (!question.trim()) {
+      setResponse(null);
+      setNotice("먼저 손님 질문을 입력해주세요.");
+      return;
+    }
+
+    setNotice("");
+    setIsGenerating(true);
+
+    await new Promise((resolve) => setTimeout(resolve, 450));
+
+    const nextResponse = await generateWithAgent({
+      type: "inquiry",
+      input: question,
+      category: inquiryType,
+      tone,
+    });
+
+    setResponse(nextResponse);
+    setIsGenerating(false);
   }
+
+  function handleQuestionChange(value: string) {
+    setQuestion(value);
+
+    if (notice) {
+      setNotice("");
+    }
+  }
+
+  const resultText = response?.text ?? "";
+  const savedMinutes = response?.savedMinutes ?? 5;
 
   return (
     <GenerationPageLayout
@@ -73,7 +83,7 @@ export default function InquiryGenerationPage() {
             </span>
             <textarea
               className="min-h-36 resize-none rounded-xl border border-slate-200 bg-white px-4 py-3 text-base leading-7 outline-none transition placeholder:text-slate-400 focus:border-emerald-500 focus:ring-4 focus:ring-emerald-100"
-              onChange={(event) => setQuestion(event.target.value)}
+              onChange={(event) => handleQuestionChange(event.target.value)}
               placeholder="예: 오늘 저녁 7시에 4명 예약 가능한가요?"
               value={question}
             />
@@ -84,13 +94,13 @@ export default function InquiryGenerationPage() {
               문의 유형
             </legend>
             <div className="grid gap-2">
-              {inquiryTypes.map((type) => (
+              {inquiryCategoryOptions.map((type) => (
                 <OptionChip
-                  description={inquiryTypeDescriptions[type]}
-                  key={type}
-                  label={type}
-                  onClick={() => setInquiryType(type)}
-                  selected={inquiryType === type}
+                  description={type.description}
+                  key={type.value}
+                  label={type.label}
+                  onClick={() => setInquiryType(type.value)}
+                  selected={inquiryType === type.value}
                 />
               ))}
             </div>
@@ -101,33 +111,39 @@ export default function InquiryGenerationPage() {
               답장 말투
             </legend>
             <div className="grid gap-2 sm:grid-cols-2">
-              {replyTones.map((item) => (
+              {toneOptions.map((item) => (
                 <OptionChip
-                  description={toneDescriptions[item]}
-                  key={item}
-                  label={item}
-                  onClick={() => setTone(item)}
-                  selected={tone === item}
+                  description={item.description}
+                  key={item.value}
+                  label={item.label}
+                  onClick={() => setTone(item.value)}
+                  selected={tone === item.value}
                 />
               ))}
             </div>
           </fieldset>
 
           <button
-            className="min-h-14 rounded-2xl bg-emerald-500 px-5 py-3 text-base font-black text-white shadow-lg shadow-emerald-200/80 transition hover:bg-emerald-600 active:scale-[0.99]"
+            className="min-h-14 rounded-2xl bg-emerald-500 px-5 py-3 text-base font-black text-white shadow-lg shadow-emerald-200/80 transition hover:bg-emerald-600 active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-60"
+            disabled={isGenerating}
             onClick={handleGenerate}
             type="button"
           >
-            답장 만들기
+            {isGenerating ? "답장 정리 중" : "답장 만들기"}
           </button>
         </InputCard>
 
         <GeneratedResultBox
-          emptyDescription="손님 질문과 문의 유형을 고른 뒤 답장 만들기 버튼을 눌러보세요."
+          emptyDescription="손님 질문을 붙여넣으면 바로 답장 초안을 만들어드릴게요."
           emptyTitle="아직 만든 답장이 없습니다."
-          result={result}
-          successMessage="약 5분 걸릴 답장을 10초 만에 만들었어요."
+          loading={isGenerating}
+          loadingDescription="복사해서 쓸 수 있게 다듬고 있어요."
+          loadingTitle="사장님 말투에 맞춰 문장을 정리하고 있어요."
+          noticeMessage={notice}
+          result={resultText}
+          successMessage={`약 ${savedMinutes}분 걸릴 답장을 10초 만에 만들었어요.`}
           title="손님에게 보낼 답장"
+          warnings={response?.warnings}
         />
       </div>
     </GenerationPageLayout>

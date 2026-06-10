@@ -124,6 +124,29 @@ export default function DashboardPage() {
         </div>
       </section>
 
+      <section className="mt-6 rounded-[1.75rem] border border-emerald-100 bg-white p-4 shadow-lg shadow-emerald-950/5">
+        <div className="flex items-start justify-between gap-4">
+          <div>
+            <p className="text-sm font-black text-emerald-700">가게 답변</p>
+            <h2 className="mt-1 text-xl font-black leading-7 text-slate-950">
+              자주 묻는 질문을 미리 정리해두세요.
+            </h2>
+            <p className="mt-2 text-sm font-semibold leading-6 text-slate-600">
+              영업시간, 주차, 예약 문의를 정리해두면 답장을 더 빠르게 만들 수 있어요.
+            </p>
+          </div>
+          <span className="rounded-full bg-emerald-50 px-3 py-1 text-xs font-black text-emerald-700">
+            추천
+          </span>
+        </div>
+        <Link
+          className="mt-5 flex min-h-14 items-center justify-center rounded-2xl border border-emerald-100 bg-emerald-50 px-5 py-3 text-base font-black text-emerald-800 transition active:scale-[0.99]"
+          href="/faq"
+        >
+          질문 관리하기
+        </Link>
+      </section>
+
       <section className="mt-6">
         <h2 className="text-xl font-black text-slate-950">최근 만든 문구</h2>
         <div className="mt-3 grid gap-3">
