@@ -6,7 +6,7 @@ Build an AI work assistant SaaS for Korean and global small business owners. The
 
 ## Current Phase
 
-Day 6 browser-based work memory layer is in progress. Day 5 monthly calendar UX, dashboard schedule preview, GitHub push, and Vercel production deployment are complete.
+Day 6 browser-based work memory layer is complete and deployed. The product now keeps generated text, schedules, FAQs, and store information available on the same device before the Supabase step.
 
 ## Priorities
 
@@ -49,4 +49,4 @@ Day 6 browser-based work memory layer is in progress. Day 5 monthly calendar UX,
 
 ## Next Milestone
 
-Complete the Day 6 browser memory layer, `/history` screen, dashboard value summary, monetization/benchmark documents, local verification, GitHub push, and Vercel production deployment without connecting OpenAI, Supabase, login, payment, or real notification features.
+Plan Day 7 around the real AI connection readiness step: environment variable policy, cost controls, usage limits, safe failure states, and provider switching, without adding Supabase, login, payment, or real notification features yet.

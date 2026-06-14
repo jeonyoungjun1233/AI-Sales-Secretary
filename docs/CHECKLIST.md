@@ -4,14 +4,14 @@ This is the live checklist shown and maintained by Codex.
 
 ## In Progress
 
-- [ ] Deploy Day 6 browser-based work memory layer to production.
+- [ ] Review Day 6 production deployment output with the user.
 
 ## Up Next
 
 - [x] Run Day 6 lint and build checks.
 - [x] Verify Day 6 routes locally.
-- [ ] Commit and push Day 6 changes.
-- [ ] Confirm Day 6 Vercel production deployment.
+- [x] Commit and push Day 6 changes.
+- [x] Confirm Day 6 Vercel production deployment.
 - [ ] Keep OpenAI, Supabase, login, payment, and real notification features out until the planned integration step.
 - [ ] Prepare Day 7 command for the next persistence or real AI integration step.
 
@@ -179,8 +179,8 @@ This is the live checklist shown and maintained by Codex.
 - [x] Run `npm run lint`.
 - [x] Run `npm run build`.
 - [x] Verify `/`, `/dashboard`, `/calendar`, `/setup`, `/generate/inquiry`, `/generate/review`, `/generate/promo`, `/faq`, and `/history`.
-- [ ] Commit and push Day 6 changes.
-- [ ] Confirm Day 6 Vercel production deployment.
+- [x] Commit and push Day 6 changes.
+- [x] Confirm Day 6 Vercel production deployment.
 
 ## Completion Rules
 
