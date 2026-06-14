@@ -16,6 +16,7 @@ import {
   type InquiryCategory,
 } from "@/lib/ai/types";
 import { addGenerationHistory } from "@/lib/storage/generationHistoryStore";
+import { saveRemoteGeneration } from "@/lib/storage/remoteStore";
 
 const sideNoteItems = [
   "바쁜 시간에 답장이 필요할 때",
@@ -53,7 +54,7 @@ export default function InquiryGenerationPage() {
         context: getGenerationContext(),
       });
 
-      addGenerationHistory({
+      const savedGeneration = addGenerationHistory({
         type: "inquiry",
         title: nextResponse.title || "문의 답장",
         input: question,
@@ -62,6 +63,7 @@ export default function InquiryGenerationPage() {
         category: inquiryType,
         savedMinutes: nextResponse.savedMinutes,
       });
+      void saveRemoteGeneration(savedGeneration);
       setResponse(nextResponse);
     } catch {
       setResponse(null);

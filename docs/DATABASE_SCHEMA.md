@@ -117,3 +117,22 @@ MVP에서는 사용자 1명당 가게 1개를 기본으로 한다.
 - `integrations`: 외부 플랫폼 연동
 - `review_sources`: 외부 리뷰 수집 소스
 - `campaigns`: 홍보 캠페인
+
+## Day 8 MVP 임시 저장 테이블
+
+로그인 전 MVP 검증을 위해 아래 JSON 기반 저장 테이블을 추가로 사용한다.
+
+- `app_business_profiles`
+- `app_faqs`
+- `app_calendar_events`
+- `app_generations`
+
+각 테이블은 `id`, `payload`, `created_at`, `updated_at` 컬럼을 가진다.
+
+SQL 파일:
+
+```text
+supabase/app_storage_schema.sql
+```
+
+이 구조는 로그인 도입 전 임시 구조다. Supabase Auth를 연결한 뒤에는 위의 정식 `profiles`, `stores`, `faqs`, `generations`, `usage_events` 구조로 이전한다.

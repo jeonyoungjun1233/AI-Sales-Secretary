@@ -17,6 +17,11 @@ import {
   getGenerationHistory,
   getSavedWorkSummary,
 } from "@/lib/storage/generationHistoryStore";
+import {
+  getRemoteCalendarEvents,
+  getRemoteGenerationHistory,
+  mergeById,
+} from "@/lib/storage/remoteStore";
 import type {
   StoredCalendarEvent,
   StoredGeneration,
@@ -64,9 +69,18 @@ export default function DashboardPage() {
 
   useEffect(() => {
     const timeoutId = window.setTimeout(() => {
-      setCalendarEvents(getCalendarEvents(initialStoredCalendarEvents));
-      setGenerations(getGenerationHistory());
+      void loadDashboardData();
     }, 0);
+
+    async function loadDashboardData() {
+      const localEvents = getCalendarEvents(initialStoredCalendarEvents);
+      const remoteEvents = await getRemoteCalendarEvents();
+      const localGenerations = getGenerationHistory();
+      const remoteGenerations = await getRemoteGenerationHistory();
+
+      setCalendarEvents(mergeById(remoteEvents, localEvents));
+      setGenerations(sortGenerations(mergeById(remoteGenerations, localGenerations)));
+    }
 
     return () => window.clearTimeout(timeoutId);
   }, []);
@@ -258,5 +272,12 @@ export default function DashboardPage() {
         </Link>
       </section>
     </MobileAppShell>
+  );
+}
+
+function sortGenerations(generations: StoredGeneration[]) {
+  return [...generations].sort(
+    (a, b) =>
+      new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
   );
 }

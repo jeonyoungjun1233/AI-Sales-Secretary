@@ -8,13 +8,25 @@ const REQUIRED_ENV_KEYS = [
   "AI_PROVIDER",
   "OPENAI_MODEL",
   "NEXT_PUBLIC_SUPABASE_URL",
+];
+const SUPABASE_PUBLIC_KEY_ALIASES = [
   "NEXT_PUBLIC_SUPABASE_ANON_KEY",
+  "NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY",
+];
+const SUPABASE_SERVER_KEY_ALIASES = [
   "SUPABASE_SERVICE_ROLE_KEY",
+  "SUPABASE_SECRET_KEY",
 ];
 
-const VERCEL_ENVIRONMENTS = ["production", "preview", "development"];
+const VERCEL_TARGETS = [
+  { environment: "production" },
+  { environment: "development" },
+  ...(process.env.VERCEL_PREVIEW_BRANCH
+    ? [{ environment: "preview", branch: process.env.VERCEL_PREVIEW_BRANCH }]
+    : []),
+];
 const envPath = path.join(process.cwd(), ".env.local");
-const npxCommand = process.platform === "win32" ? "npx.cmd" : "npx";
+const npxCommand = process.platform === "win32" ? "cmd.exe" : "npx";
 const nodeOptions = getNodeOptionsWithHostnamePatch();
 
 function parseEnvFile(filePath) {
@@ -57,7 +69,12 @@ function redact(text, values) {
 }
 
 function runVercel(args, options = {}) {
-  return spawnSync(npxCommand, ["vercel", ...args], {
+  const commandArgs =
+    process.platform === "win32"
+      ? ["/d", "/s", "/c", "npx", "vercel", ...args]
+      : ["vercel", ...args];
+
+  return spawnSync(npxCommand, commandArgs, {
     cwd: process.cwd(),
     encoding: "utf8",
     env: {
@@ -115,7 +132,14 @@ if (!existsSync(envPath)) {
 }
 
 const envValues = parseEnvFile(envPath);
+const hasSupabasePublicKey = SUPABASE_PUBLIC_KEY_ALIASES.some((key) =>
+  Boolean(envValues.get(key)),
+);
 const missingKeys = REQUIRED_ENV_KEYS.filter((key) => !envValues.get(key));
+
+if (!hasSupabasePublicKey) {
+  missingKeys.push("SUPABASE_PUBLIC_KEY");
+}
 
 if (missingKeys.length > 0) {
   console.error("필수 환경변수가 누락되었습니다.");
@@ -125,7 +149,12 @@ if (missingKeys.length > 0) {
   process.exit(1);
 }
 
-const secretValues = REQUIRED_ENV_KEYS.map((key) => envValues.get(key));
+const envKeysToSync = [
+  ...REQUIRED_ENV_KEYS,
+  ...SUPABASE_PUBLIC_KEY_ALIASES.filter((key) => envValues.get(key)),
+  ...SUPABASE_SERVER_KEY_ALIASES.filter((key) => envValues.get(key)),
+];
+const secretValues = envKeysToSync.map((key) => envValues.get(key));
 const whoami = runVercel(["whoami"]);
 
 if (whoami.status !== 0) {
@@ -142,22 +171,29 @@ if (envList.status !== 0) {
 
 console.log("Vercel CLI 로그인과 프로젝트 연결을 확인했습니다.");
 
-for (const key of REQUIRED_ENV_KEYS) {
-  for (const environment of VERCEL_ENVIRONMENTS) {
+for (const key of envKeysToSync) {
+  for (const target of VERCEL_TARGETS) {
     const value = envValues.get(key);
+    const branchArgs = target.branch ? [target.branch] : [];
 
-    runVercel(["env", "rm", key, environment, "--yes"]);
+    runVercel(["env", "rm", key, target.environment, ...branchArgs, "--yes"]);
 
-    const addResult = runVercel(["env", "add", key, environment], {
-      input: `${value}\n`,
-    });
+    const addResult = runVercel(
+      ["env", "add", key, target.environment, ...branchArgs, "--yes"],
+      {
+        input: `${value}\n`,
+      },
+    );
+    const targetLabel = target.branch
+      ? `${target.environment}/${target.branch}`
+      : target.environment;
 
     if (addResult.status !== 0) {
-      printFailure(`${key} ${environment}: FAILED`, addResult, secretValues);
+      printFailure(`${key} ${targetLabel}: FAILED`, addResult, secretValues);
       process.exit(1);
     }
 
-    console.log(`${key} ${environment}: OK`);
+    console.log(`${key} ${targetLabel}: OK`);
   }
 }
 

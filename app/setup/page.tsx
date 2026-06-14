@@ -10,6 +10,10 @@ import {
   getBusinessProfile,
   saveBusinessProfile,
 } from "@/lib/storage/businessProfileStore";
+import {
+  getRemoteBusinessProfile,
+  saveRemoteBusinessProfile,
+} from "@/lib/storage/remoteStore";
 import type { StoredBusinessProfile } from "@/lib/storage/types";
 
 const businessTypes = [
@@ -58,13 +62,19 @@ export default function SetupPage() {
 
   useEffect(() => {
     const timeoutId = window.setTimeout(() => {
-      const storedProfile = getBusinessProfile();
+      void loadProfile();
+    }, 0);
 
-      if (storedProfile) {
-        setProfile(storedProfile);
+    async function loadProfile() {
+      const storedProfile = getBusinessProfile();
+      const remoteProfile = await getRemoteBusinessProfile();
+      const nextProfile = remoteProfile ?? storedProfile;
+
+      if (nextProfile) {
+        setProfile(nextProfile);
         setSaved(true);
       }
-    }, 0);
+    }
 
     return () => window.clearTimeout(timeoutId);
   }, []);
@@ -82,6 +92,7 @@ export default function SetupPage() {
 
     setProfile(nextProfile);
     setSaved(true);
+    void saveRemoteBusinessProfile(nextProfile);
   }
 
   return (

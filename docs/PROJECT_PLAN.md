@@ -6,7 +6,7 @@ Build an AI work assistant SaaS for Korean and global small business owners. The
 
 ## Current Phase
 
-Day 7 production AI environment work is partly deployed. The app now has a server `/api/generate` route and a real OpenAI provider path, while keeping fallback behavior for missing or failed credentials. The Day 7 code is live on Vercel production, but real OpenAI production verification is still waiting for `.env.local` restoration and Vercel environment variable sync.
+Day 8 runtime connection work is in progress. The app now reads `.env.local` from the project root, calls OpenAI through the server `/api/generate` route, and has a Supabase REST storage layer for business profile, FAQs, calendar events, and generation history. Supabase configuration is detected, but the required storage tables still need to be created in Supabase.
 
 ## Priorities
 
@@ -29,7 +29,7 @@ Day 7 production AI environment work is partly deployed. The app now has a serve
 - Framework: Next.js 16 App Router
 - UI: React 19 and Tailwind CSS 4
 - AI: server route and OpenAI provider path are implemented; real calls require environment variables.
-- Data/Auth: Supabase environment variables are planned for deployment registration, but DB/Auth are not connected yet.
+- Data/Auth: Supabase REST storage routes are implemented for MVP data, but Auth is not connected yet.
 - Deployment: Vercel
 - Visual design support: Canva connector is available for editable marketing assets, social posts, pitch visuals, and brand-style design drafts.
 - First user: small business owners who directly manage customer inquiries, reviews, and promotions.
@@ -50,4 +50,4 @@ Day 7 production AI environment work is partly deployed. The app now has a serve
 
 ## Next Milestone
 
-Restore `.env.local` in the project root, sync Vercel environment variables, then verify production AI generation. Keep Supabase DB/Auth, login, payment, and real notification features out of scope until the next planned integration step.
+Run `supabase/app_storage_schema.sql` in the Supabase SQL editor, re-run `npm run supabase:check`, then verify Supabase-backed storage in the app. Keep login, payment, and real notification features out of scope until the next planned integration step.

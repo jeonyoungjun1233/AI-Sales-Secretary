@@ -20,6 +20,11 @@ import {
   getCalendarEvents,
   saveCalendarEvents,
 } from "@/lib/storage/calendarStore";
+import {
+  getRemoteCalendarEvents,
+  mergeById,
+  saveRemoteCalendarEvent,
+} from "@/lib/storage/remoteStore";
 import type { StoredCalendarEvent } from "@/lib/storage/types";
 
 const baseDate = getDateParts(TODAY_DATE_KEY);
@@ -47,8 +52,15 @@ export default function CalendarPage() {
 
   useEffect(() => {
     const timeoutId = window.setTimeout(() => {
-      setEvents(getCalendarEvents(initialStoredCalendarEvents));
+      void loadEvents();
     }, 0);
+
+    async function loadEvents() {
+      const localEvents = getCalendarEvents(initialStoredCalendarEvents);
+      const remoteEvents = await getRemoteCalendarEvents();
+
+      setEvents(mergeById(remoteEvents, localEvents));
+    }
 
     return () => window.clearTimeout(timeoutId);
   }, []);
@@ -90,6 +102,7 @@ export default function CalendarPage() {
 
     setEvents(nextEvents);
     selectDate(event.date);
+    void saveRemoteCalendarEvent(nextEvent);
   }
 
   return (

@@ -3,6 +3,11 @@
 import { useEffect, useState } from "react";
 
 import { MobileAppShell } from "@/components/MobileAppShell";
+import {
+  getRemoteFaqs,
+  mergeById,
+  saveRemoteFaq,
+} from "@/lib/storage/remoteStore";
 import { getFaqs, saveFaqs } from "@/lib/storage/faqStore";
 import type { StoredFaq } from "@/lib/storage/types";
 
@@ -47,8 +52,15 @@ export default function FaqPage() {
 
   useEffect(() => {
     const timeoutId = window.setTimeout(() => {
-      setFaqs(getFaqs(initialFaqs));
+      void loadFaqs();
     }, 0);
+
+    async function loadFaqs() {
+      const localFaqs = getFaqs(initialFaqs);
+      const remoteFaqs = await getRemoteFaqs();
+
+      setFaqs(mergeById(remoteFaqs, localFaqs));
+    }
 
     return () => window.clearTimeout(timeoutId);
   }, []);
@@ -74,6 +86,7 @@ export default function FaqPage() {
     setQuestion("");
     setAnswer("");
     setMessage("질문을 저장했어요.");
+    void saveRemoteFaq(nextFaq);
   }
 
   function handleQuestionChange(value: string) {

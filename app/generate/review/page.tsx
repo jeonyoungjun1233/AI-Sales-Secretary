@@ -16,6 +16,7 @@ import {
   type ReviewCategory,
 } from "@/lib/ai/types";
 import { addGenerationHistory } from "@/lib/storage/generationHistoryStore";
+import { saveRemoteGeneration } from "@/lib/storage/remoteStore";
 
 const sideNoteItems = [
   "꾸준한 답글이 신뢰를 만듭니다.",
@@ -52,7 +53,7 @@ export default function ReviewGenerationPage() {
         context: getGenerationContext(),
       });
 
-      addGenerationHistory({
+      const savedGeneration = addGenerationHistory({
         type: "review",
         title: nextResponse.title || "리뷰 답글",
         input: review,
@@ -61,6 +62,7 @@ export default function ReviewGenerationPage() {
         category: reviewType,
         savedMinutes: nextResponse.savedMinutes,
       });
+      void saveRemoteGeneration(savedGeneration);
       setResponse(nextResponse);
     } catch {
       setResponse(null);

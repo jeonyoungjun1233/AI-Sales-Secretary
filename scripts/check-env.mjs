@@ -6,8 +6,14 @@ const REQUIRED_ENV_KEYS = [
   "AI_PROVIDER",
   "OPENAI_MODEL",
   "NEXT_PUBLIC_SUPABASE_URL",
+];
+const SUPABASE_PUBLIC_KEY_ALIASES = [
   "NEXT_PUBLIC_SUPABASE_ANON_KEY",
+  "NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY",
+];
+const SUPABASE_SERVER_KEY_ALIASES = [
   "SUPABASE_SERVICE_ROLE_KEY",
+  "SUPABASE_SECRET_KEY",
 ];
 
 const envPath = path.join(process.cwd(), ".env.local");
@@ -57,6 +63,24 @@ if (!existsSync(envPath)) {
     if (!value) {
       hasMissingValue = true;
     }
+  }
+
+  const hasSupabasePublicKey = SUPABASE_PUBLIC_KEY_ALIASES.some((key) =>
+    Boolean(envValues.get(key)),
+  );
+  const hasSupabaseServerKey = SUPABASE_SERVER_KEY_ALIASES.some((key) =>
+    Boolean(envValues.get(key)),
+  );
+
+  console.log(
+    `SUPABASE_PUBLIC_KEY: ${hasSupabasePublicKey ? "OK" : "MISSING"}`,
+  );
+  console.log(
+    `SUPABASE_SERVER_KEY: ${hasSupabaseServerKey ? "OK" : "OPTIONAL_MISSING"}`,
+  );
+
+  if (!hasSupabasePublicKey) {
+    hasMissingValue = true;
   }
 
   if (hasMissingValue) {

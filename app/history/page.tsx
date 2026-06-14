@@ -17,6 +17,12 @@ import {
   increaseCopiedCount,
   removeGenerationHistory,
 } from "@/lib/storage/generationHistoryStore";
+import {
+  deleteRemoteGeneration,
+  getRemoteGenerationHistory,
+  mergeById,
+  saveRemoteGeneration,
+} from "@/lib/storage/remoteStore";
 import type { StoredGeneration } from "@/lib/storage/types";
 
 const generationTypeLabels: Record<GenerateType, string> = {
@@ -42,18 +48,33 @@ export default function HistoryPage() {
 
   useEffect(() => {
     const timeoutId = window.setTimeout(() => {
-      setHistory(getGenerationHistory());
+      void loadHistory();
     }, 0);
+
+    async function loadHistory() {
+      const localHistory = getGenerationHistory();
+      const remoteHistory = await getRemoteGenerationHistory();
+
+      setHistory(sortHistory(mergeById(remoteHistory, localHistory)));
+    }
 
     return () => window.clearTimeout(timeoutId);
   }, []);
 
   function handleDelete(id: string) {
     setHistory(removeGenerationHistory(id));
+    void deleteRemoteGeneration(id);
   }
 
   function handleCopy(id: string) {
-    setHistory(increaseCopiedCount(id));
+    const nextHistory = increaseCopiedCount(id);
+    const nextItem = nextHistory.find((item) => item.id === id);
+
+    setHistory(nextHistory);
+
+    if (nextItem) {
+      void saveRemoteGeneration(nextItem);
+    }
   }
 
   return (
@@ -123,4 +144,11 @@ function isWithinLastDays(value: string, days: number) {
   const diff = now - date;
 
   return diff >= 0 && diff <= days * 24 * 60 * 60 * 1000;
+}
+
+function sortHistory(history: StoredGeneration[]) {
+  return [...history].sort(
+    (a, b) =>
+      new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
+  );
 }

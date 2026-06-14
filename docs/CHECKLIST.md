@@ -4,15 +4,19 @@ This is the live checklist shown and maintained by Codex.
 
 ## In Progress
 
-- [ ] Complete Day 7 environment sync and real OpenAI production verification.
+- [ ] Finish Supabase table setup and production verification.
 
 ## Up Next
 
-- [ ] Restore `.env.local` in the project root before Vercel env sync.
-- [ ] Re-run `npm run env:check` after `.env.local` is restored.
-- [ ] Re-run `npm run env:vercel` after `.env.local` is restored.
-- [ ] Verify production AI generation after env sync.
-- [ ] Keep Supabase DB/Auth, login, payment, and real notification features out until the planned integration step.
+- [x] Move or restore `.env.local` to the project root without exposing values.
+- [x] Re-run `npm run env:check`.
+- [x] Re-run `npm run env:vercel`.
+- [x] Verify real OpenAI generation locally.
+- [x] Add Supabase server storage routes without exposing keys.
+- [ ] Run Supabase SQL schema in the Supabase dashboard.
+- [ ] Re-run `npm run supabase:check` after schema creation.
+- [ ] Verify real OpenAI generation in production after deployment.
+- [ ] Keep login, payment, and real notification features out until the planned integration step.
 
 ## Workspace
 
@@ -212,6 +216,25 @@ This is the live checklist shown and maintained by Codex.
 - [x] Confirm production runtime error/fatal log scan is clean.
 - [ ] Sync Vercel environment variables after `.env.local` is restored.
 - [ ] Verify production uses real OpenAI generation after env sync.
+
+## Day 8 Runtime Connection
+
+- [x] User confirmed environment values were added in VS Code.
+- [x] Confirm `.env.local` is currently under `app/` instead of the project root.
+- [x] Normalize environment variable loading without printing values.
+- [x] Verify OpenAI real generation path.
+- [x] Add Supabase REST client and server routes.
+- [x] Connect business profile, FAQ, calendar events, and history to server storage with browser fallback.
+- [x] Add Supabase schema/setup documentation.
+- [x] Add `npm run supabase:check`.
+- [x] Run `npm run env:check`.
+- [x] Run `npm run env:vercel`.
+- [x] Run `npm run lint`.
+- [x] Run `npm run build`.
+- [x] Verify local OpenAI generation UI.
+- [x] Verify Supabase config is detected.
+- [x] Confirm Supabase storage tables are still missing.
+- [ ] Verify core routes after production deployment.
 
 ## Completion Rules
 

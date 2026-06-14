@@ -2,9 +2,7 @@
 
 ## Current Status
 
-Day 7 production AI setup is in progress. The app now has a server `/api/generate` route, a fetch-based OpenAI provider path, and environment-variable scripts. Real Supabase DB/Auth, login, payment, and real notification features remain intentionally unimplemented.
-
-Day 7 code has been committed, pushed, and deployed to Vercel production. Real OpenAI production verification is still blocked because `.env.local` is missing from the project root and Vercel environment variables have not been synced from this workspace yet.
+Day 8 runtime connection work is in progress. The app now has real OpenAI generation working locally through `/api/generate`, Vercel production/development environment variables synced, and a Supabase REST storage layer implemented. Supabase tables still need to be created before remote persistence can succeed.
 
 ## Completed
 
@@ -102,6 +100,15 @@ Day 7 code has been committed, pushed, and deployed to Vercel production. Real O
 - Committed Day 7 production AI environment setup as `a78366a`.
 - Pushed Day 7 changes to GitHub `main`.
 - Deployed Day 7 changes to Vercel production.
+- Copied the misplaced `app/.env.local` values into root `.env.local` without printing secrets.
+- Normalized environment checking to accept Supabase publishable/public keys and optional server keys.
+- Updated the Vercel environment sync script for this Windows/Vercel CLI setup.
+- Synced OpenAI and Supabase public environment variables to Vercel production and development.
+- Added Supabase REST storage routes under `/api/storage/[resource]`.
+- Added a server-only Supabase REST helper without adding external packages.
+- Connected business profile, FAQs, calendar events, and generation history to remote storage with browser storage fallback.
+- Added `supabase/app_storage_schema.sql`.
+- Added `npm run supabase:check`.
 
 ## Verification
 
@@ -159,6 +166,16 @@ Day 7 code has been committed, pushed, and deployed to Vercel production. Real O
 - `https://ai-sales-secretary.vercel.app/history` returned HTTP 200.
 - `https://ai-sales-secretary.vercel.app/api/generate` returned HTTP 200 for a production POST request and returned a result shape with title, text, and saved minutes.
 - Vercel production runtime error/fatal log scan for the last hour returned no matching logs.
+- Day 8 `npm run env:check` passed. Supabase server key is optional and currently missing.
+- Day 8 `npm run env:vercel` synced production/development values successfully.
+- Day 8 local `/api/generate` returned a real generated OpenAI result through the server route.
+- Day 8 local `/api/storage/status` returned configured storage status.
+- Day 8 local `/api/storage/business-profile` write returned storage unavailable because Supabase tables are not created yet.
+- Day 8 `npm run supabase:check` confirmed Supabase config is OK but required tables return `PGRST205`.
+- Day 8 `npm run lint` passed.
+- Day 8 `npm run build` passed and generated `/api/storage/[resource]`.
+- Day 8 browser check confirmed `/generate/inquiry` shows a generated result and no developer-facing terms in the visible UI.
+- Day 8 secret scan did not find committed API keys; only package-lock false positives were found.
 - Vercel production deployment `dpl_JCd9y34h9sizZXMbzJ7ZXTmLUoVC` is `READY`.
 - `https://ai-sales-secretary.vercel.app/` returned HTTP 200 and rendered the Day 3 landing page.
 - `https://ai-sales-secretary.vercel.app/dashboard` returned HTTP 200 and rendered the Day 3 dashboard.
@@ -223,9 +240,10 @@ Day 7 code has been committed, pushed, and deployed to Vercel production. Real O
 - Vercel CLI is not globally installed; `npx vercel whoami` currently fails with a Vercel CLI header-value error on this Windows environment.
 - Day 6 storage is same-device only and can be cleared if the browser data is deleted.
 - Real notification delivery remains intentionally unimplemented.
-- `.env.local` is currently missing from the project root, so actual Vercel env sync and real OpenAI production verification are blocked.
-- The Vercel CLI header issue can be worked around by the Day 7 sync script's temporary ASCII hostname patch.
+- Supabase MVP storage tables are missing in the remote project. Run `supabase/app_storage_schema.sql` in the Supabase SQL editor.
+- Supabase server-only key is not present. Current code can attempt storage with the publishable key, but production should add `SUPABASE_SECRET_KEY` or `SUPABASE_SERVICE_ROLE_KEY`.
+- The Vercel CLI header issue can be worked around by the sync script's temporary ASCII hostname patch.
 
 ## Next Action
 
-Restore `.env.local` in the project root, then re-run `npm run env:check`, `npm run env:vercel`, `npm run lint`, and `npm run build`. After that, commit/push and verify production generation.
+Run `supabase/app_storage_schema.sql` in Supabase, then run `npm run supabase:check`. After tables are ready, commit/push/deploy and verify production OpenAI generation plus Supabase-backed storage.

@@ -18,6 +18,7 @@ import {
   type PromoPurpose,
 } from "@/lib/ai/types";
 import { addGenerationHistory } from "@/lib/storage/generationHistoryStore";
+import { saveRemoteGeneration } from "@/lib/storage/remoteStore";
 
 const sideNoteItems = [
   "소식은 하나만 담아보세요.",
@@ -56,7 +57,7 @@ export default function PromoGenerationPage() {
         context: getGenerationContext(),
       });
 
-      addGenerationHistory({
+      const savedGeneration = addGenerationHistory({
         type: "promo",
         title: nextResponse.title || "홍보글",
         input: extraNote,
@@ -64,6 +65,7 @@ export default function PromoGenerationPage() {
         category: `${purpose}/${businessType}/${channel}`,
         savedMinutes: nextResponse.savedMinutes,
       });
+      void saveRemoteGeneration(savedGeneration);
       setResponse(nextResponse);
     } catch {
       setResponse(null);

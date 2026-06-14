@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint",
     "env:check": "node scripts/check-env.mjs",
-    "env:vercel": "node scripts/sync-vercel-env.mjs"
+    "env:vercel": "node scripts/sync-vercel-env.mjs",
+    "supabase:check": "node scripts/check-supabase-storage.mjs"
   },
   "dependencies": {
     "next": "16.2.7",
