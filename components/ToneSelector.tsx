@@ -21,8 +21,19 @@ const tones = [
   },
 ];
 
-export function ToneSelector() {
-  const [selectedTone, setSelectedTone] = useState(tones[0].label);
+type ToneSelectorProps = {
+  value?: string;
+  onChange?: (tone: string) => void;
+};
+
+export function ToneSelector({ value, onChange }: ToneSelectorProps) {
+  const [internalTone, setInternalTone] = useState(tones[0].label);
+  const selectedTone = value ?? internalTone;
+
+  function handleSelect(tone: string) {
+    setInternalTone(tone);
+    onChange?.(tone);
+  }
 
   return (
     <fieldset className="grid gap-3">
@@ -46,7 +57,7 @@ export function ToneSelector() {
                 checked={selected}
                 className="mt-1 h-4 w-4 accent-emerald-600"
                 name="tone"
-                onChange={() => setSelectedTone(tone.label)}
+                onChange={() => handleSelect(tone.label)}
                 type="radio"
                 value={tone.label}
               />

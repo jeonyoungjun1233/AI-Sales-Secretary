@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { CalendarDaySchedule } from "@/components/CalendarDaySchedule";
 import { CalendarEventForm } from "@/components/CalendarEventForm";
@@ -16,14 +16,25 @@ import {
   TODAY_DATE_KEY,
   type CalendarEvent,
 } from "@/lib/mockCalendar";
+import {
+  getCalendarEvents,
+  saveCalendarEvents,
+} from "@/lib/storage/calendarStore";
+import type { StoredCalendarEvent } from "@/lib/storage/types";
 
 const baseDate = getDateParts(TODAY_DATE_KEY);
 const yearOptions = [2025, 2026, 2027, 2028];
 const monthOptions = Array.from({ length: 12 }, (_, index) => index);
+const initialStoredCalendarEvents: StoredCalendarEvent[] =
+  initialCalendarEvents.map((event) => ({
+    ...event,
+    createdAt: "2026-06-10T00:00:00.000Z",
+  }));
 
 export default function CalendarPage() {
-  const [events, setEvents] =
-    useState<CalendarEvent[]>(initialCalendarEvents);
+  const [events, setEvents] = useState<StoredCalendarEvent[]>(
+    initialStoredCalendarEvents,
+  );
   const [selectedDate, setSelectedDate] = useState(TODAY_DATE_KEY);
   const [viewYear, setViewYear] = useState(baseDate.year);
   const [viewMonth, setViewMonth] = useState(baseDate.monthIndex);
@@ -33,6 +44,14 @@ export default function CalendarPage() {
   const monthEventCount = events.filter((event) =>
     event.date.startsWith(monthPrefix),
   ).length;
+
+  useEffect(() => {
+    const timeoutId = window.setTimeout(() => {
+      setEvents(getCalendarEvents(initialStoredCalendarEvents));
+    }, 0);
+
+    return () => window.clearTimeout(timeoutId);
+  }, []);
 
   function selectDate(dateKey: string) {
     const nextDate = getDateParts(dateKey);
@@ -63,7 +82,13 @@ export default function CalendarPage() {
   }
 
   function handleAddEvent(event: CalendarEvent) {
-    setEvents((current) => [...current, event]);
+    const nextEvent: StoredCalendarEvent = {
+      ...event,
+      createdAt: new Date().toISOString(),
+    };
+    const nextEvents = saveCalendarEvents([...events, nextEvent]);
+
+    setEvents(nextEvents);
     selectDate(event.date);
   }
 

@@ -2,7 +2,7 @@
 
 ## Current Status
 
-Day 5 implementation is complete and deployed to production. `/calendar` is now a real monthly mobile calendar, the dashboard schedule preview is shorter and clearer, and key app copy has been simplified. Real external AI calls, Supabase, login, payment, and real notification features remain intentionally unimplemented.
+Day 6 implementation is locally complete and ready for GitHub/Vercel deployment. The app now has a browser-based work memory layer so generated text, schedules, FAQs, and store information can remain available on the same device before Supabase is introduced. Real external AI calls, Supabase, login, payment, and real notification features remain intentionally unimplemented.
 
 ## Completed
 
@@ -76,6 +76,15 @@ Day 5 implementation is complete and deployed to production. `/calendar` is now 
 - Committed Day 5 calendar UX changes as `09bc310`.
 - Pushed Day 5 changes to GitHub `main`.
 - Deployed Day 5 to Vercel production.
+- Added browser storage types and safe storage helpers under `lib/storage`.
+- Added generation history, calendar, FAQ, and business profile stores.
+- Added `/history` for recently created customer replies, review replies, and promotional text.
+- Connected generation screens to save completed results to history.
+- Connected `/calendar`, `/faq`, and `/setup` to browser-based temporary storage.
+- Updated `/dashboard` to show recent generated text and saved-time value.
+- Created `docs/MONETIZATION_ROADMAP.md`.
+- Created `docs/COMPETITOR_BENCHMARK.md`.
+- Created `docs/DAY6_REPORT.md`.
 
 ## Verification
 
@@ -150,6 +159,17 @@ Day 5 implementation is complete and deployed to production. `/calendar` is now 
 - `https://ai-sales-secretary.vercel.app/generate/review` returned HTTP 200.
 - `https://ai-sales-secretary.vercel.app/generate/promo` returned HTTP 200.
 - `https://ai-sales-secretary.vercel.app/faq` returned HTTP 200.
+- Day 6 `npm run lint` passed.
+- Day 6 `npm run build` passed.
+- Local dev server returned HTTP 200 for `/`, `/dashboard`, `/calendar`, `/setup`, `/generate/inquiry`, `/generate/review`, `/generate/promo`, `/faq`, and `/history`.
+- Browser check confirmed inquiry, review, and promo generation results are saved to `/history`.
+- Browser check confirmed `/history` records remain after refresh.
+- Browser check confirmed `/calendar` schedule creation remains after refresh.
+- Browser check confirmed `/faq` question creation remains after refresh.
+- Browser check confirmed `/setup` store profile values remain after refresh.
+- Browser check confirmed `/dashboard` shows recent records, saved time, today's generation count, and saved schedules.
+- Browser console reported no errors during Day 6 dashboard check.
+- Checked user-facing app and component code for developer-facing words. Only internal import paths contain `mock`; user-visible text does not expose those terms.
 
 ## Blockers
 
@@ -159,12 +179,11 @@ Day 5 implementation is complete and deployed to production. `/calendar` is now 
 - Canva-generated copy needs manual cleanup before public posting because it included some awkward Korean wording and a dummy phone number.
 - Direct browser screenshot verification was not performed on Day 2 because a browser control tool was not directly exposed in the current tool list. HTTP and HTML checks passed.
 - Direct browser screenshot verification was not performed on Day 3 because Playwright is not installed and no package was added.
-- FAQ management now has a local UI, but real persistence remains intentionally unimplemented.
-- Generation history has type definitions only; real persistence remains intentionally unimplemented.
+- Multi-device persistence remains intentionally unimplemented until Supabase is connected.
 - Vercel CLI is not globally installed; `npx vercel whoami` currently fails with a Vercel CLI header-value error on this Windows environment.
-- Day 5 schedule additions are local state only and do not persist after refresh.
+- Day 6 storage is same-device only and can be cleared if the browser data is deleted.
 - Real notification delivery remains intentionally unimplemented.
 
 ## Next Action
 
-Review the Day 5 production `/calendar` and `/dashboard` screens. After approval, Day 6 should choose persistence for schedules or generation history.
+Commit and push Day 6 changes, then confirm the Vercel production deployment and review `/history`, `/dashboard`, `/calendar`, `/faq`, and `/setup`.

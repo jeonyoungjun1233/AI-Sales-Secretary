@@ -16,6 +16,7 @@ import {
   type PromoChannel,
   type PromoPurpose,
 } from "@/lib/ai/types";
+import { addGenerationHistory } from "@/lib/storage/generationHistoryStore";
 
 const sideNoteItems = [
   "소식은 하나만 담아보세요.",
@@ -52,6 +53,14 @@ export default function PromoGenerationPage() {
       channel,
     });
 
+    addGenerationHistory({
+      type: "promo",
+      title: nextResponse.title || "홍보글",
+      input: extraNote,
+      output: nextResponse.text,
+      category: `${purpose}/${businessType}/${channel}`,
+      savedMinutes: nextResponse.savedMinutes,
+    });
     setResponse(nextResponse);
     setIsGenerating(false);
   }
@@ -158,7 +167,7 @@ export default function PromoGenerationPage() {
           loadingTitle="오늘 올릴 글을 보기 좋게 정리하고 있어요."
           noticeMessage={notice}
           result={resultText}
-          successMessage="오늘 올릴 홍보글을 바로 준비했어요."
+          successMessage="오늘 올릴 글을 준비했어요. 기록에 저장했어요."
           title="오늘 올릴 홍보글"
           warnings={response?.warnings}
         />

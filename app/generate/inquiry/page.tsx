@@ -14,6 +14,7 @@ import {
   type GenerateTone,
   type InquiryCategory,
 } from "@/lib/ai/types";
+import { addGenerationHistory } from "@/lib/storage/generationHistoryStore";
 
 const sideNoteItems = [
   "바쁜 시간에 답장이 필요할 때",
@@ -49,6 +50,15 @@ export default function InquiryGenerationPage() {
       tone,
     });
 
+    addGenerationHistory({
+      type: "inquiry",
+      title: nextResponse.title || "문의 답장",
+      input: question,
+      output: nextResponse.text,
+      tone,
+      category: inquiryType,
+      savedMinutes: nextResponse.savedMinutes,
+    });
     setResponse(nextResponse);
     setIsGenerating(false);
   }
@@ -141,7 +151,7 @@ export default function InquiryGenerationPage() {
           loadingTitle="사장님 말투에 맞춰 문장을 정리하고 있어요."
           noticeMessage={notice}
           result={resultText}
-          successMessage={`약 ${savedMinutes}분 걸릴 답장을 10초 만에 만들었어요.`}
+          successMessage={`약 ${savedMinutes}분을 줄였어요. 기록에 저장했어요.`}
           title="손님에게 보낼 답장"
           warnings={response?.warnings}
         />

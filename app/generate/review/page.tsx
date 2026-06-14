@@ -14,6 +14,7 @@ import {
   type GenerateTone,
   type ReviewCategory,
 } from "@/lib/ai/types";
+import { addGenerationHistory } from "@/lib/storage/generationHistoryStore";
 
 const sideNoteItems = [
   "꾸준한 답글이 신뢰를 만듭니다.",
@@ -48,6 +49,15 @@ export default function ReviewGenerationPage() {
       tone,
     });
 
+    addGenerationHistory({
+      type: "review",
+      title: nextResponse.title || "리뷰 답글",
+      input: review,
+      output: nextResponse.text,
+      tone,
+      category: reviewType,
+      savedMinutes: nextResponse.savedMinutes,
+    });
     setResponse(nextResponse);
     setIsGenerating(false);
   }
@@ -140,7 +150,7 @@ export default function ReviewGenerationPage() {
           loadingTitle="리뷰 분위기에 맞춰 답글을 정리하고 있어요."
           noticeMessage={notice}
           result={resultText}
-          successMessage={`리뷰 답글을 10초 만에 정리했어요. 약 ${savedMinutes}분을 줄였어요.`}
+          successMessage={`약 ${savedMinutes}분을 줄였어요. 기록에 저장했어요.`}
           title="손님 리뷰에 남길 답글"
           warnings={response?.warnings}
         />

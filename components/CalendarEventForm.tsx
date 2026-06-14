@@ -52,7 +52,7 @@ export function CalendarEventForm({
     });
     setTitle("");
     setMemo("");
-    setMessage("일정에 추가했어요.");
+    setMessage("일정에 저장했어요.");
   }
 
   function clearMessage() {

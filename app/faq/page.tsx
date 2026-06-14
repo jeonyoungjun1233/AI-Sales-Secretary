@@ -1,48 +1,57 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { MobileAppShell } from "@/components/MobileAppShell";
+import { getFaqs, saveFaqs } from "@/lib/storage/faqStore";
+import type { StoredFaq } from "@/lib/storage/types";
 
-type FaqItem = {
-  id: string;
-  question: string;
-  answer: string;
-};
-
-const initialFaqs: FaqItem[] = [
+const initialFaqs: StoredFaq[] = [
   {
     id: "hours",
     question: "영업시간이 어떻게 되나요?",
     answer: "매일 오전 10시부터 오후 9시까지 운영합니다. 휴무일은 별도로 안내드립니다.",
+    createdAt: "2026-06-10T00:00:00.000Z",
   },
   {
     id: "parking",
     question: "주차 가능한가요?",
     answer: "매장 앞 주차 공간은 제한적이며, 가까운 공영주차장 이용을 추천드립니다.",
+    createdAt: "2026-06-10T00:00:00.000Z",
   },
   {
     id: "reservation",
     question: "예약 가능한가요?",
     answer: "예약 가능합니다. 원하시는 날짜, 시간, 인원을 알려주시면 확인해드릴게요.",
+    createdAt: "2026-06-10T00:00:00.000Z",
   },
   {
     id: "takeout",
     question: "포장 가능한가요?",
     answer: "일부 메뉴는 포장 가능합니다. 방문 전 문의 주시면 준비 가능 여부를 안내드리겠습니다.",
+    createdAt: "2026-06-10T00:00:00.000Z",
   },
   {
     id: "pet",
     question: "반려동물 동반 가능한가요?",
     answer: "매장 상황에 따라 달라질 수 있어 방문 전 문의 부탁드립니다.",
+    createdAt: "2026-06-10T00:00:00.000Z",
   },
 ];
 
 export default function FaqPage() {
-  const [faqs, setFaqs] = useState<FaqItem[]>(initialFaqs);
+  const [faqs, setFaqs] = useState<StoredFaq[]>(initialFaqs);
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
   const [message, setMessage] = useState("");
+
+  useEffect(() => {
+    const timeoutId = window.setTimeout(() => {
+      setFaqs(getFaqs(initialFaqs));
+    }, 0);
+
+    return () => window.clearTimeout(timeoutId);
+  }, []);
 
   function handleAddFaq() {
     const cleanQuestion = question.trim();
@@ -53,17 +62,18 @@ export default function FaqPage() {
       return;
     }
 
-    setFaqs((current) => [
-      {
-        id: `faq-${Date.now()}`,
-        question: cleanQuestion,
-        answer: cleanAnswer,
-      },
-      ...current,
-    ]);
+    const nextFaq: StoredFaq = {
+      id: `faq-${Date.now()}`,
+      question: cleanQuestion,
+      answer: cleanAnswer,
+      createdAt: new Date().toISOString(),
+    };
+    const nextFaqs = saveFaqs([nextFaq, ...faqs]);
+
+    setFaqs(nextFaqs);
     setQuestion("");
     setAnswer("");
-    setMessage("자주 묻는 질문에 추가되었습니다.");
+    setMessage("질문을 저장했어요.");
   }
 
   function handleQuestionChange(value: string) {

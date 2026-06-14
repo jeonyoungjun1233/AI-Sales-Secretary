@@ -4,15 +4,16 @@ This is the live checklist shown and maintained by Codex.
 
 ## In Progress
 
-- [ ] Review Day 5 production deployment output with the user.
+- [ ] Deploy Day 6 browser-based work memory layer to production.
 
 ## Up Next
 
-- [ ] Verify Day 5 routes locally.
-- [ ] Commit and push Day 5 changes.
-- [ ] Confirm Day 5 Vercel production deployment.
+- [x] Run Day 6 lint and build checks.
+- [x] Verify Day 6 routes locally.
+- [ ] Commit and push Day 6 changes.
+- [ ] Confirm Day 6 Vercel production deployment.
 - [ ] Keep OpenAI, Supabase, login, payment, and real notification features out until the planned integration step.
-- [ ] Use local state or mock data for the next frontend workflow.
+- [ ] Prepare Day 7 command for the next persistence or real AI integration step.
 
 ## Workspace
 
@@ -155,6 +156,31 @@ This is the live checklist shown and maintained by Codex.
 - [x] Run `npm run lint`.
 - [x] Run `npm run build`.
 - [x] Verify `/`, `/dashboard`, `/calendar`, `/setup`, `/generate/inquiry`, `/generate/review`, `/generate/promo`, and `/faq`.
+
+## Day 6 Implementation
+
+- [x] User approved Day 6 work memory layer start.
+- [x] Read required Day 6 planning and progress documents.
+- [x] Read relevant installed Next.js docs.
+- [x] Add browser storage types and safe storage helpers.
+- [x] Add generation history store.
+- [x] Add calendar event store.
+- [x] Add FAQ store.
+- [x] Add business profile store.
+- [x] Add `/history` route.
+- [x] Save generated inquiry replies, review replies, and promotional posts.
+- [x] Save calendar events after creation.
+- [x] Save FAQ entries after creation.
+- [x] Save store profile information after clicking save.
+- [x] Show recent history and saved-time value on `/dashboard`.
+- [x] Keep history out of bottom navigation to avoid crowding the mobile shell.
+- [x] Create `docs/DAY6_REPORT.md`.
+- [x] Create monetization and competitor benchmark documents.
+- [x] Run `npm run lint`.
+- [x] Run `npm run build`.
+- [x] Verify `/`, `/dashboard`, `/calendar`, `/setup`, `/generate/inquiry`, `/generate/review`, `/generate/promo`, `/faq`, and `/history`.
+- [ ] Commit and push Day 6 changes.
+- [ ] Confirm Day 6 Vercel production deployment.
 
 ## Completion Rules
 

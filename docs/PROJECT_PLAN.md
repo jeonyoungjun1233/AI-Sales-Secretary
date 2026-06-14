@@ -6,7 +6,7 @@ Build an AI work assistant SaaS for Korean and global small business owners. The
 
 ## Current Phase
 
-Day 5 calendar UX work is in progress. Day 4 AI provider structure, FAQ UI, GitHub push, and Vercel production deployment are complete.
+Day 6 browser-based work memory layer is in progress. Day 5 monthly calendar UX, dashboard schedule preview, GitHub push, and Vercel production deployment are complete.
 
 ## Priorities
 
@@ -15,6 +15,9 @@ Day 5 calendar UX work is in progress. Day 4 AI provider structure, FAQ UI, GitH
 - Make the core app routes look and behave like a mobile app, not a blog or desktop dashboard.
 - Add a calendar-style daily work view so owners have a reason to return every day.
 - Improve the calendar into a real monthly mobile view with date selection and local schedule creation.
+- Add a browser-based memory layer so generation history, schedules, FAQs, and store information feel continuous before the database step.
+- Add a `/history` screen so owners can reuse recently created replies and promotional text.
+- Show saved time and recent work on the dashboard to strengthen subscription value.
 - Keep app copy short, direct, and focused on the next action.
 - Prepare a provider-based generation architecture before connecting paid external generation services.
 - Keep user-facing screens focused on business outcomes instead of technical provider details.
@@ -30,7 +33,9 @@ Day 5 calendar UX work is in progress. Day 4 AI provider structure, FAQ UI, GitH
 - Visual design support: Canva connector is available for editable marketing assets, social posts, pitch visuals, and brand-style design drafts.
 - First user: small business owners who directly manage customer inquiries, reviews, and promotions.
 - MVP scope: customer inquiry replies, review replies, promotional posts, FAQ management, and store information management.
-- Current implementation uses local state and mock/provider-based generation only.
+- Current implementation uses mock/provider-based generation and browser-based temporary storage.
+- Day 6 intentionally keeps browser memory separate from future Supabase persistence.
+- Bottom navigation stays simple; history is reachable from the dashboard and app header instead of adding a fifth tab.
 - Codex is used for planning, implementation, and progress reporting.
 - VS Code is used to inspect and manually edit the project files.
 
@@ -38,10 +43,10 @@ Day 5 calendar UX work is in progress. Day 4 AI provider structure, FAQ UI, GitH
 
 - Which auth method should be used first: email OTP, password, or social login?
 - Which external generation provider should be connected first after Day 4?
-- Should FAQ management or generation history become the first persistent database feature?
+- Should generation history or business profile become the first Supabase-backed data feature?
 - Which daily workflow creates the strongest reason to subscribe: calendar, generation history, or FAQ quality improvement?
 - What usage limit and plan boundary should be shown before paid conversion?
 
 ## Next Milestone
 
-Complete the Day 5 monthly calendar UI, dashboard schedule preview, concise copy pass, local verification, GitHub push, and Vercel production deployment without connecting OpenAI, Supabase, login, payment, or real notification features.
+Complete the Day 6 browser memory layer, `/history` screen, dashboard value summary, monetization/benchmark documents, local verification, GitHub push, and Vercel production deployment without connecting OpenAI, Supabase, login, payment, or real notification features.
