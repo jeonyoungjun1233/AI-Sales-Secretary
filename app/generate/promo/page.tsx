@@ -6,7 +6,8 @@ import { GeneratedResultBox } from "@/components/GeneratedResultBox";
 import { GenerationPageLayout } from "@/components/GenerationPageLayout";
 import { InputCard } from "@/components/InputCard";
 import { OptionChip } from "@/components/OptionChip";
-import { generateWithAgent } from "@/lib/ai/agentRouter";
+import { getGenerationContext } from "@/lib/ai/generationContext";
+import { requestGeneration } from "@/lib/ai/requestGeneration";
 import {
   businessTypeOptions,
   promoChannelOptions,
@@ -43,26 +44,33 @@ export default function PromoGenerationPage() {
     setNotice("");
     setIsGenerating(true);
 
-    await new Promise((resolve) => setTimeout(resolve, 450));
+    try {
+      await new Promise((resolve) => setTimeout(resolve, 450));
 
-    const nextResponse = await generateWithAgent({
-      type: "promo",
-      input: extraNote,
-      category: purpose,
-      businessType,
-      channel,
-    });
+      const nextResponse = await requestGeneration({
+        type: "promo",
+        input: extraNote,
+        category: purpose,
+        businessType,
+        channel,
+        context: getGenerationContext(),
+      });
 
-    addGenerationHistory({
-      type: "promo",
-      title: nextResponse.title || "홍보글",
-      input: extraNote,
-      output: nextResponse.text,
-      category: `${purpose}/${businessType}/${channel}`,
-      savedMinutes: nextResponse.savedMinutes,
-    });
-    setResponse(nextResponse);
-    setIsGenerating(false);
+      addGenerationHistory({
+        type: "promo",
+        title: nextResponse.title || "홍보글",
+        input: extraNote,
+        output: nextResponse.text,
+        category: `${purpose}/${businessType}/${channel}`,
+        savedMinutes: nextResponse.savedMinutes,
+      });
+      setResponse(nextResponse);
+    } catch {
+      setResponse(null);
+      setNotice("문구를 준비하지 못했어요. 잠시 후 다시 시도해주세요.");
+    } finally {
+      setIsGenerating(false);
+    }
   }
 
   function handleExtraNoteChange(value: string) {

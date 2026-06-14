@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "env:check": "node scripts/check-env.mjs",
+    "env:vercel": "node scripts/sync-vercel-env.mjs"
   },
   "dependencies": {
     "next": "16.2.7",

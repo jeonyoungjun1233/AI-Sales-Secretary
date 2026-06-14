@@ -6,7 +6,7 @@ Build an AI work assistant SaaS for Korean and global small business owners. The
 
 ## Current Phase
 
-Day 6 browser-based work memory layer is complete and deployed. The product now keeps generated text, schedules, FAQs, and store information available on the same device before the Supabase step.
+Day 7 production AI environment work is in progress. The app now has a server `/api/generate` route and a real OpenAI provider path, while keeping fallback behavior for missing or failed credentials.
 
 ## Priorities
 
@@ -19,21 +19,22 @@ Day 6 browser-based work memory layer is complete and deployed. The product now 
 - Add a `/history` screen so owners can reuse recently created replies and promotional text.
 - Show saved time and recent work on the dashboard to strengthen subscription value.
 - Keep app copy short, direct, and focused on the next action.
-- Prepare a provider-based generation architecture before connecting paid external generation services.
+- Connect paid external generation services through server-only routes and fallback behavior.
 - Keep user-facing screens focused on business outcomes instead of technical provider details.
+- Keep API keys out of Git, browser code, logs, and documentation.
 - Defer platform integrations, automation, payments, and advanced analytics until after MVP validation.
 
 ## Working Decisions
 
 - Framework: Next.js 16 App Router
 - UI: React 19 and Tailwind CSS 4
-- AI: provider architecture is being prepared on Day 4; real external calls are still not implemented.
-- Data/Auth: Supabase planned later, not implemented yet.
+- AI: server route and OpenAI provider path are implemented; real calls require environment variables.
+- Data/Auth: Supabase environment variables are planned for deployment registration, but DB/Auth are not connected yet.
 - Deployment: Vercel
 - Visual design support: Canva connector is available for editable marketing assets, social posts, pitch visuals, and brand-style design drafts.
 - First user: small business owners who directly manage customer inquiries, reviews, and promotions.
 - MVP scope: customer inquiry replies, review replies, promotional posts, FAQ management, and store information management.
-- Current implementation uses mock/provider-based generation and browser-based temporary storage.
+- Current implementation uses server-routed generation with fallback and browser-based temporary storage.
 - Day 6 intentionally keeps browser memory separate from future Supabase persistence.
 - Bottom navigation stays simple; history is reachable from the dashboard and app header instead of adding a fifth tab.
 - Codex is used for planning, implementation, and progress reporting.
@@ -42,11 +43,11 @@ Day 6 browser-based work memory layer is complete and deployed. The product now 
 ## Open Questions
 
 - Which auth method should be used first: email OTP, password, or social login?
-- Which external generation provider should be connected first after Day 4?
+- When should production OpenAI generation be verified after `.env.local` is restored?
 - Should generation history or business profile become the first Supabase-backed data feature?
 - Which daily workflow creates the strongest reason to subscribe: calendar, generation history, or FAQ quality improvement?
 - What usage limit and plan boundary should be shown before paid conversion?
 
 ## Next Milestone
 
-Plan Day 7 around the real AI connection readiness step: environment variable policy, cost controls, usage limits, safe failure states, and provider switching, without adding Supabase, login, payment, or real notification features yet.
+Complete Day 7 by restoring `.env.local` in the project root, syncing Vercel environment variables, verifying production AI generation, and keeping Supabase DB/Auth, login, payment, and real notification features out of scope.

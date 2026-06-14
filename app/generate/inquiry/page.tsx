@@ -6,7 +6,8 @@ import { GeneratedResultBox } from "@/components/GeneratedResultBox";
 import { GenerationPageLayout } from "@/components/GenerationPageLayout";
 import { InputCard } from "@/components/InputCard";
 import { OptionChip } from "@/components/OptionChip";
-import { generateWithAgent } from "@/lib/ai/agentRouter";
+import { getGenerationContext } from "@/lib/ai/generationContext";
+import { requestGeneration } from "@/lib/ai/requestGeneration";
 import {
   inquiryCategoryOptions,
   toneOptions,
@@ -41,26 +42,33 @@ export default function InquiryGenerationPage() {
     setNotice("");
     setIsGenerating(true);
 
-    await new Promise((resolve) => setTimeout(resolve, 450));
+    try {
+      await new Promise((resolve) => setTimeout(resolve, 450));
 
-    const nextResponse = await generateWithAgent({
-      type: "inquiry",
-      input: question,
-      category: inquiryType,
-      tone,
-    });
+      const nextResponse = await requestGeneration({
+        type: "inquiry",
+        input: question,
+        category: inquiryType,
+        tone,
+        context: getGenerationContext(),
+      });
 
-    addGenerationHistory({
-      type: "inquiry",
-      title: nextResponse.title || "문의 답장",
-      input: question,
-      output: nextResponse.text,
-      tone,
-      category: inquiryType,
-      savedMinutes: nextResponse.savedMinutes,
-    });
-    setResponse(nextResponse);
-    setIsGenerating(false);
+      addGenerationHistory({
+        type: "inquiry",
+        title: nextResponse.title || "문의 답장",
+        input: question,
+        output: nextResponse.text,
+        tone,
+        category: inquiryType,
+        savedMinutes: nextResponse.savedMinutes,
+      });
+      setResponse(nextResponse);
+    } catch {
+      setResponse(null);
+      setNotice("문구를 준비하지 못했어요. 잠시 후 다시 시도해주세요.");
+    } finally {
+      setIsGenerating(false);
+    }
   }
 
   function handleQuestionChange(value: string) {

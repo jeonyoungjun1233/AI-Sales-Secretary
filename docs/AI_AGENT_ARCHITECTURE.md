@@ -2,33 +2,43 @@
 
 ## 1. 현재 구조
 
-현재 앱은 실제 외부 생성 서비스에 연결하지 않고 `mockProvider`만 사용한다.
+현재 앱은 `/api/generate` 서버 Route를 통해 생성 요청을 처리한다.
 
-생성 화면은 직접 생성 함수를 호출하지 않고 `lib/ai/agentRouter.ts`를 통해 결과를 받는다.
+생성 화면은 직접 외부 생성 서비스를 호출하지 않는다. 클라이언트는 `/api/generate`에 요청하고, 서버 Route가 `lib/ai/agentRouter.ts`를 통해 provider를 선택한다.
 
 현재 흐름:
 
 1. 사용자가 문의, 리뷰, 홍보 내용을 입력한다.
-2. 화면에서 `GenerateRequest` 형태로 요청을 만든다.
-3. `agentRouter`가 기본 provider인 `mockProvider`로 전달한다.
-4. `mockProvider`가 `GenerateResponse`를 반환한다.
-5. 화면은 결과 문구, 절약 시간, 확인 안내를 보여준다.
+2. 화면에서 `GenerateRequest`와 저장된 가게 정보, FAQ, 일정, 최근 기록을 함께 보낸다.
+3. `/api/generate`가 서버에서 요청을 받는다.
+4. `AI_PROVIDER=openai`이고 서버에 `OPENAI_API_KEY`가 있으면 `openaiProvider`를 사용한다.
+5. 키가 없거나 호출이 실패하면 `mockProvider`로 fallback한다.
+6. 화면은 결과 문구, 절약 시간, 확인 안내를 보여준다.
 
 ## 2. 파일 구조
 
 - `lib/ai/types.ts`: 생성 요청, 응답, 말투, 업종, 채널 타입
 - `lib/ai/agentRouter.ts`: provider 선택 진입점
 - `lib/ai/providers/mockProvider.ts`: 현재 화면에서 사용하는 로컬 생성 provider
-- `lib/ai/providers/openaiProvider.ts`: 향후 실제 연결을 위한 자리
+- `lib/ai/providers/openaiProvider.ts`: 실제 생성 provider
+- `app/api/generate/route.ts`: 서버 전용 생성 Route
+- `lib/ai/requestGeneration.ts`: 클라이언트에서 서버 Route를 호출하는 helper
+- `lib/ai/generationContext.ts`: 브라우저에 저장된 업무 맥락을 생성 요청에 포함하는 helper
 - `lib/ai/prompts/customerReply.ts`: 문의 답장 작성 지침
 - `lib/ai/prompts/reviewReply.ts`: 리뷰 답글 작성 지침
 - `lib/ai/prompts/promoPost.ts`: 홍보글 작성 지침
 - `lib/ai/prompts/faqAnswer.ts`: 자주 묻는 질문 답변 작성 지침
 - `lib/historyTypes.ts`: 향후 생성 기록 저장 타입
 
-## 3. Day 5 이후 연결 예정
+## 3. Day 7 연결 상태
 
-Day 5 이후 사용자 승인 후 실제 생성 provider를 연결할 수 있다.
+Day 7에서 실제 provider 연결 코드는 구현했다.
+
+연결 완료 조건:
+
+- `.env.local`에 필수 환경변수가 있어야 한다.
+- Vercel 환경변수 등록이 완료되어야 한다.
+- Production 재배포 후 실제 생성 결과를 확인해야 한다.
 
 연결 전 확인할 것:
 

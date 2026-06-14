@@ -38,6 +38,34 @@ export type GenerateRequest = {
   businessType?: BusinessType;
   channel?: PromoChannel;
   category?: InquiryCategory | ReviewCategory | PromoPurpose | string;
+  context?: GenerateContext;
+};
+
+export type GenerateContext = {
+  businessProfile?: {
+    businessName?: string;
+    businessType?: string;
+    openingHours?: string;
+    address?: string;
+    phone?: string;
+    mainMenu?: string;
+    tone?: string;
+  } | null;
+  faqs?: {
+    question: string;
+    answer: string;
+  }[];
+  todayEvents?: {
+    title: string;
+    time: string;
+    type: string;
+    memo?: string;
+  }[];
+  recentGenerations?: {
+    type: GenerateType;
+    title: string;
+    output: string;
+  }[];
 };
 
 export type GenerateResponse = {

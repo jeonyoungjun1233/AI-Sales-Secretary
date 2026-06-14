@@ -4,16 +4,15 @@ This is the live checklist shown and maintained by Codex.
 
 ## In Progress
 
-- [ ] Review Day 6 production deployment output with the user.
+- [ ] Complete Day 7 production AI environment setup.
 
 ## Up Next
 
-- [x] Run Day 6 lint and build checks.
-- [x] Verify Day 6 routes locally.
-- [x] Commit and push Day 6 changes.
-- [x] Confirm Day 6 Vercel production deployment.
-- [ ] Keep OpenAI, Supabase, login, payment, and real notification features out until the planned integration step.
-- [ ] Prepare Day 7 command for the next persistence or real AI integration step.
+- [ ] Restore `.env.local` in the project root before Vercel env sync.
+- [ ] Re-run `npm run env:check` after `.env.local` is restored.
+- [ ] Re-run `npm run env:vercel` after `.env.local` is restored.
+- [ ] Verify production AI generation after env sync.
+- [ ] Keep Supabase DB/Auth, login, payment, and real notification features out until the planned integration step.
 
 ## Workspace
 
@@ -181,6 +180,33 @@ This is the live checklist shown and maintained by Codex.
 - [x] Verify `/`, `/dashboard`, `/calendar`, `/setup`, `/generate/inquiry`, `/generate/review`, `/generate/promo`, `/faq`, and `/history`.
 - [x] Commit and push Day 6 changes.
 - [x] Confirm Day 6 Vercel production deployment.
+
+## Day 7 Production AI Setup
+
+- [x] User approved Day 7 production AI setup start.
+- [x] Read required Day 7 planning and progress documents.
+- [x] Read relevant installed Next.js docs.
+- [x] Check `.gitignore` and environment file Git tracking.
+- [x] Confirm `.env.local` is not tracked by Git.
+- [x] Add explicit environment file ignore rules.
+- [x] Add `scripts/check-env.mjs`.
+- [x] Add `scripts/sync-vercel-env.mjs`.
+- [x] Add `env:check` and `env:vercel` scripts.
+- [x] Add `/api/generate` server Route.
+- [x] Implement `openaiProvider` with fetch-based server calls.
+- [x] Keep fallback to `mockProvider`.
+- [x] Route inquiry, review, and promo screens through `/api/generate`.
+- [x] Include business profile, FAQ, today's events, and recent history in generation requests.
+- [x] Create `docs/ENVIRONMENT_DEPLOYMENT.md`.
+- [x] Create `docs/DAY7_REPORT.md`.
+- [x] Run `npx vercel whoami`.
+- [x] Run `npm run env:check` and confirm `.env.local` is missing.
+- [x] Run `npm run env:vercel` and confirm `.env.local` is required.
+- [x] Run `npm run lint`.
+- [x] Run `npm run build`.
+- [x] Verify local routes and generation fallback.
+- [ ] Commit and push Day 7 changes.
+- [ ] Confirm Vercel production deployment.
 
 ## Completion Rules
 

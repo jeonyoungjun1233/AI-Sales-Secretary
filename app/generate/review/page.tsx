@@ -6,7 +6,8 @@ import { GeneratedResultBox } from "@/components/GeneratedResultBox";
 import { GenerationPageLayout } from "@/components/GenerationPageLayout";
 import { InputCard } from "@/components/InputCard";
 import { OptionChip } from "@/components/OptionChip";
-import { generateWithAgent } from "@/lib/ai/agentRouter";
+import { getGenerationContext } from "@/lib/ai/generationContext";
+import { requestGeneration } from "@/lib/ai/requestGeneration";
 import {
   reviewCategoryOptions,
   toneOptions,
@@ -40,26 +41,33 @@ export default function ReviewGenerationPage() {
     setNotice("");
     setIsGenerating(true);
 
-    await new Promise((resolve) => setTimeout(resolve, 450));
+    try {
+      await new Promise((resolve) => setTimeout(resolve, 450));
 
-    const nextResponse = await generateWithAgent({
-      type: "review",
-      input: review,
-      category: reviewType,
-      tone,
-    });
+      const nextResponse = await requestGeneration({
+        type: "review",
+        input: review,
+        category: reviewType,
+        tone,
+        context: getGenerationContext(),
+      });
 
-    addGenerationHistory({
-      type: "review",
-      title: nextResponse.title || "리뷰 답글",
-      input: review,
-      output: nextResponse.text,
-      tone,
-      category: reviewType,
-      savedMinutes: nextResponse.savedMinutes,
-    });
-    setResponse(nextResponse);
-    setIsGenerating(false);
+      addGenerationHistory({
+        type: "review",
+        title: nextResponse.title || "리뷰 답글",
+        input: review,
+        output: nextResponse.text,
+        tone,
+        category: reviewType,
+        savedMinutes: nextResponse.savedMinutes,
+      });
+      setResponse(nextResponse);
+    } catch {
+      setResponse(null);
+      setNotice("문구를 준비하지 못했어요. 잠시 후 다시 시도해주세요.");
+    } finally {
+      setIsGenerating(false);
+    }
   }
 
   function handleReviewChange(value: string) {

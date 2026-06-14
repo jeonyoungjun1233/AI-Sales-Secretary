@@ -2,7 +2,7 @@
 
 ## Current Status
 
-Day 6 implementation is complete and deployed to production. The app now has a browser-based work memory layer so generated text, schedules, FAQs, and store information can remain available on the same device before Supabase is introduced. Real external AI calls, Supabase, login, payment, and real notification features remain intentionally unimplemented.
+Day 7 production AI setup is in progress. The app now has a server `/api/generate` route, a fetch-based OpenAI provider path, and environment-variable scripts. Real Supabase DB/Auth, login, payment, and real notification features remain intentionally unimplemented.
 
 ## Completed
 
@@ -88,6 +88,15 @@ Day 6 implementation is complete and deployed to production. The app now has a b
 - Committed Day 6 work memory changes as `c78bb66`.
 - Pushed Day 6 changes to GitHub `main`.
 - Deployed Day 6 to Vercel production.
+- Added explicit environment file ignore rules.
+- Added `scripts/check-env.mjs` for safe environment variable presence checks.
+- Added `scripts/sync-vercel-env.mjs` for Vercel environment variable registration without printing values.
+- Added `/api/generate` as the server-only generation route.
+- Implemented `openaiProvider` with fetch-based Responses API calls and safe parsing.
+- Updated inquiry, review, and promo screens to request generation through `/api/generate`.
+- Added generation context so store information, FAQ, today's events, and recent history can inform generation.
+- Created `docs/ENVIRONMENT_DEPLOYMENT.md`.
+- Created `docs/DAY7_REPORT.md`.
 
 ## Verification
 
@@ -121,6 +130,16 @@ Day 6 implementation is complete and deployed to production. The app now has a b
 - Day 3 `npm run lint` passed.
 - Day 3 `npm run build` passed.
 - Local dev server returned HTTP 200 for `/`, `/dashboard`, `/setup`, `/generate/inquiry`, `/generate/review`, `/generate/promo`, and `/calendar`.
+- Checked user-facing app and component code for developer-facing words. Only internal import paths contain `mock`; user-visible text does not expose those terms.
+- Day 7 `npx vercel whoami` failed with the default Windows device-name header issue.
+- Day 7 `npx vercel whoami` succeeded after applying a temporary ASCII hostname workaround.
+- Day 7 `npm run env:check` failed because `.env.local` is missing from the project root.
+- Day 7 `npm run env:vercel` failed because `.env.local` is missing from the project root.
+- Day 7 `npm run lint` passed.
+- Day 7 `npm run build` passed and generated `/api/generate`.
+- Local dev server returned HTTP 200 for `/`, `/dashboard`, `/calendar`, `/setup`, `/generate/inquiry`, `/generate/review`, `/generate/promo`, `/faq`, `/history`, and `/api/generate`.
+- Browser check confirmed inquiry, review, and promo generation flows work through `/api/generate` fallback.
+- Browser check confirmed inquiry generation is saved to `/history`.
 - Checked user-facing app and component code for developer-facing words. Only internal import paths contain `mock`; user-visible text does not expose those terms.
 - Vercel production deployment is `READY`.
 - `https://ai-sales-secretary.vercel.app/` returned HTTP 200.
@@ -196,7 +215,9 @@ Day 6 implementation is complete and deployed to production. The app now has a b
 - Vercel CLI is not globally installed; `npx vercel whoami` currently fails with a Vercel CLI header-value error on this Windows environment.
 - Day 6 storage is same-device only and can be cleared if the browser data is deleted.
 - Real notification delivery remains intentionally unimplemented.
+- `.env.local` is currently missing from the project root, so actual Vercel env sync and real OpenAI production verification are blocked.
+- The Vercel CLI header issue can be worked around by the Day 7 sync script's temporary ASCII hostname patch.
 
 ## Next Action
 
-Review the Day 6 production `/history`, `/dashboard`, `/calendar`, `/faq`, and `/setup` screens. After approval, Day 7 should prepare safe real AI connection rules before any API key is added.
+Restore `.env.local` in the project root, then re-run `npm run env:check`, `npm run env:vercel`, `npm run lint`, and `npm run build`. After that, commit/push and verify production generation.
