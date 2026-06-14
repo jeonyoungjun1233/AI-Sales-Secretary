@@ -2,7 +2,7 @@
 
 ## Current Status
 
-Day 8 runtime connection work is in progress. The app now has real OpenAI generation working locally through `/api/generate`, Vercel production/development environment variables synced, and a Supabase REST storage layer implemented. Supabase tables still need to be created before remote persistence can succeed.
+Day 8 runtime connection work is implemented and deployed. Real OpenAI generation works through `/api/generate` in local and production, Vercel production/development environment variables are synced, and a Supabase REST storage layer is implemented. Supabase tables still need to be created before remote persistence can succeed.
 
 ## Completed
 
@@ -177,6 +177,11 @@ Day 8 runtime connection work is in progress. The app now has real OpenAI genera
 - Day 8 browser check confirmed `/generate/inquiry` shows a generated result and no developer-facing terms in the visible UI.
 - Day 8 secret scan did not find committed API keys; only package-lock false positives were found.
 - Vercel production deployment `dpl_JCd9y34h9sizZXMbzJ7ZXTmLUoVC` is `READY`.
+- Vercel production deployment `dpl_GJxdEa11H6oUQrPe7c2pwTo7qK1Y` is `READY` for commit `237f7c2`.
+- Production `/api/generate` returned HTTP 200 with a generated result.
+- Production `/api/storage/status` returned configured storage status.
+- Production `/api/storage/business-profile` write returned storage unavailable because Supabase tables are not created yet.
+- Vercel production logs for the latest check showed HTTP 200 route/API requests and no fatal runtime errors.
 - `https://ai-sales-secretary.vercel.app/` returned HTTP 200 and rendered the Day 3 landing page.
 - `https://ai-sales-secretary.vercel.app/dashboard` returned HTTP 200 and rendered the Day 3 dashboard.
 - `https://ai-sales-secretary.vercel.app/setup` returned HTTP 200 and rendered the setup page.

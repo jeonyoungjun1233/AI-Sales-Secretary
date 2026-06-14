@@ -3,7 +3,7 @@
 ## 1. 오늘 구현한 내용
 
 - 루트 `.env.local`에서 OpenAI와 Supabase 환경변수를 읽도록 정리했다.
-- OpenAI 실제 생성 경로를 로컬에서 확인했다.
+- OpenAI 실제 생성 경로를 로컬과 프로덕션에서 확인했다.
 - Supabase REST 기반 서버 저장 레이어를 추가했다.
 - 가게 정보, FAQ, 일정, 생성 기록을 서버 저장 Route와 연결했다.
 - 기존 브라우저 저장 fallback은 유지했다.
@@ -13,7 +13,7 @@
 
 `/api/generate` 서버 Route가 `OPENAI_API_KEY`를 읽고 OpenAI Responses API를 호출한다.
 
-로컬 생성 화면에서 실제 생성 결과가 표시되는 것을 확인했다.
+로컬 생성 화면과 프로덕션 `/api/generate`에서 실제 생성 결과가 표시되는 것을 확인했다.
 
 ## 3. Supabase 작동 상태
 
@@ -73,22 +73,25 @@ Supabase URL과 공개 키는 인식됐다.
 - `npm run lint`: 통과
 - `npm run build`: 통과
 - 로컬 `/api/generate`: 실제 생성 결과 확인
+- 프로덕션 `/api/generate`: 실제 생성 결과 확인
 - 로컬 `/api/storage/status`: Supabase 설정 인식 확인
+- 프로덕션 `/api/storage/status`: Supabase 설정 인식 확인
 - `npm run supabase:check`: 설정은 OK, 테이블은 아직 없음
 - 사용자 화면 금지 용어 검사: 내부 import 경로 외 노출 없음
 - 비밀값 검사: 코드/문서에 API 키 없음
+- Vercel production 배포: `READY`
 
 ## 7. 남은 문제
 
 - Supabase 테이블이 아직 생성되지 않았다.
 - 서버 전용 Supabase 키가 아직 없다.
-- 프로덕션에서 실제 생성과 서버 저장을 최종 확인해야 한다.
+- 프로덕션 서버 저장은 Supabase 테이블 생성 후 다시 확인해야 한다.
 
 ## 8. 바로 해야 할 일
 
 1. Supabase SQL Editor에서 `supabase/app_storage_schema.sql` 실행
 2. `npm run supabase:check` 재실행
-3. 커밋/푸쉬 후 Vercel 배포 확인
+3. `/setup`, `/faq`, `/calendar`, `/generate/inquiry`, `/history` 저장 유지 확인
 
 ## 9. 다음 Codex 작업 명령어
 

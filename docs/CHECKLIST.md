@@ -4,7 +4,7 @@ This is the live checklist shown and maintained by Codex.
 
 ## In Progress
 
-- [ ] Finish Supabase table setup and production verification.
+- [ ] Run the Supabase table schema in the Supabase dashboard, then re-check remote storage.
 
 ## Up Next
 
@@ -15,7 +15,8 @@ This is the live checklist shown and maintained by Codex.
 - [x] Add Supabase server storage routes without exposing keys.
 - [ ] Run Supabase SQL schema in the Supabase dashboard.
 - [ ] Re-run `npm run supabase:check` after schema creation.
-- [ ] Verify real OpenAI generation in production after deployment.
+- [x] Verify real OpenAI generation in production after deployment.
+- [x] Confirm latest Vercel production deployment is `READY`.
 - [ ] Keep login, payment, and real notification features out until the planned integration step.
 
 ## Workspace
