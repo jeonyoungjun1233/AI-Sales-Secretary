@@ -4,7 +4,7 @@ This is the live checklist shown and maintained by Codex.
 
 ## In Progress
 
-- [ ] Complete Day 7 production AI environment setup.
+- [ ] Complete Day 7 environment sync and real OpenAI production verification.
 
 ## Up Next
 
@@ -205,8 +205,13 @@ This is the live checklist shown and maintained by Codex.
 - [x] Run `npm run lint`.
 - [x] Run `npm run build`.
 - [x] Verify local routes and generation fallback.
-- [ ] Commit and push Day 7 changes.
-- [ ] Confirm Vercel production deployment.
+- [x] Commit and push Day 7 changes.
+- [x] Confirm Vercel production deployment.
+- [x] Confirm production core routes return HTTP 200.
+- [x] Confirm production `/api/generate` fallback response.
+- [x] Confirm production runtime error/fatal log scan is clean.
+- [ ] Sync Vercel environment variables after `.env.local` is restored.
+- [ ] Verify production uses real OpenAI generation after env sync.
 
 ## Completion Rules
 

@@ -6,7 +6,7 @@ Build an AI work assistant SaaS for Korean and global small business owners. The
 
 ## Current Phase
 
-Day 7 production AI environment work is in progress. The app now has a server `/api/generate` route and a real OpenAI provider path, while keeping fallback behavior for missing or failed credentials.
+Day 7 production AI environment work is partly deployed. The app now has a server `/api/generate` route and a real OpenAI provider path, while keeping fallback behavior for missing or failed credentials. The Day 7 code is live on Vercel production, but real OpenAI production verification is still waiting for `.env.local` restoration and Vercel environment variable sync.
 
 ## Priorities
 
@@ -50,4 +50,4 @@ Day 7 production AI environment work is in progress. The app now has a server `/
 
 ## Next Milestone
 
-Complete Day 7 by restoring `.env.local` in the project root, syncing Vercel environment variables, verifying production AI generation, and keeping Supabase DB/Auth, login, payment, and real notification features out of scope.
+Restore `.env.local` in the project root, sync Vercel environment variables, then verify production AI generation. Keep Supabase DB/Auth, login, payment, and real notification features out of scope until the next planned integration step.

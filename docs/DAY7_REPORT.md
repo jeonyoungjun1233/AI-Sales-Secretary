@@ -95,7 +95,13 @@ Supabase DB 연결은 Day 7 범위에서 제외했고, Day 8 이후 진행한다
 
 ## 10. 배포 결과
 
-진행 예정
+- GitHub `main`에 Day 7 변경사항을 커밋하고 푸쉬했다.
+- Vercel production 배포가 최신 Day 7 커밋 기준으로 `READY` 상태가 되었다.
+- 프로덕션 URL: `https://ai-sales-secretary.vercel.app/`
+- 프로덕션 HTTP 200 확인 경로: `/`, `/dashboard`, `/calendar`, `/setup`, `/generate/inquiry`, `/generate/review`, `/generate/promo`, `/faq`, `/history`
+- 프로덕션 `/api/generate` POST 요청도 HTTP 200으로 응답했고, 결과 제목/본문/절약 시간 형태를 반환했다.
+- 최근 1시간 production runtime error/fatal 로그는 발견되지 않았다.
+- 단, `.env.local` 부재로 Vercel 환경변수 동기화와 실제 OpenAI 호출 검증은 아직 완료되지 않았다. 현재 프로덕션 생성은 fallback 동작까지 확인했다.
 
 ## 11. 수익화 관점에서의 판단
 
@@ -106,6 +112,7 @@ Supabase DB 연결은 Day 7 범위에서 제외했고, Day 8 이후 진행한다
 - 현재 프로젝트 루트에 `.env.local`이 없다.
 - Vercel CLI가 Windows 한글 장치명 때문에 기본 실행에서 실패했다.
 - Supabase 키는 스크립트 등록 준비만 되었고, 실제 등록은 `.env.local` 준비 후 가능하다.
+- 실제 OpenAI 생성 검증은 Vercel 환경변수 등록 후 다시 확인해야 한다.
 
 ## 13. Day 8에 해야 할 작업
 
