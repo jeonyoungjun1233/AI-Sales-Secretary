@@ -4,10 +4,16 @@ This is the live checklist shown and maintained by Codex.
 
 ## In Progress
 
-- [ ] Run the Supabase table schema in the Supabase dashboard, then re-check remote storage.
+- [ ] Day 9 Supabase storage separation and beta demo flow.
 
 ## Up Next
 
+- [x] Add browser-specific temporary storage separation.
+- [x] Harden `/api/storage/[resource]` with per-browser filtering.
+- [x] Update Supabase schema and apply guide.
+- [x] Add beta demo data and beta notice UI.
+- [x] Re-run `npm run env:check`, `npm run supabase:check`, `npm run lint`, and `npm run build`.
+- [ ] Commit, push, and verify Vercel production deployment.
 - [x] Move or restore `.env.local` to the project root without exposing values.
 - [x] Re-run `npm run env:check`.
 - [x] Re-run `npm run env:vercel`.

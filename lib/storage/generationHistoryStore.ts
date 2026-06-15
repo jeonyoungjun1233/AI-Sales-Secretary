@@ -1,10 +1,12 @@
-import { getItem, setItem } from "./localStore";
+import { getOwnerItem, setOwnerItem } from "./localStore";
 import type { SavedWorkSummary, StoredGeneration } from "./types";
 
 const GENERATION_HISTORY_KEY = "generation-history";
 
 export function getGenerationHistory() {
-  return sortGenerations(getItem<StoredGeneration[]>(GENERATION_HISTORY_KEY, []));
+  return sortGenerations(
+    getOwnerItem<StoredGeneration[]>(GENERATION_HISTORY_KEY, []),
+  );
 }
 
 export function addGenerationHistory(
@@ -19,7 +21,7 @@ export function addGenerationHistory(
   };
   const nextHistory = [nextGeneration, ...getGenerationHistory()].slice(0, 80);
 
-  setItem(GENERATION_HISTORY_KEY, nextHistory);
+  setOwnerItem(GENERATION_HISTORY_KEY, nextHistory);
 
   return nextGeneration;
 }
@@ -27,13 +29,21 @@ export function addGenerationHistory(
 export function removeGenerationHistory(id: string) {
   const nextHistory = getGenerationHistory().filter((item) => item.id !== id);
 
-  setItem(GENERATION_HISTORY_KEY, nextHistory);
+  setOwnerItem(GENERATION_HISTORY_KEY, nextHistory);
+
+  return nextHistory;
+}
+
+export function saveGenerationHistory(generations: StoredGeneration[]) {
+  const nextHistory = sortGenerations(generations).slice(0, 80);
+
+  setOwnerItem(GENERATION_HISTORY_KEY, nextHistory);
 
   return nextHistory;
 }
 
 export function clearGenerationHistory() {
-  setItem<StoredGeneration[]>(GENERATION_HISTORY_KEY, []);
+  setOwnerItem<StoredGeneration[]>(GENERATION_HISTORY_KEY, []);
 }
 
 export function getRecentGenerations(limit = 3) {
@@ -70,7 +80,7 @@ export function increaseCopiedCount(id: string) {
     item.id === id ? { ...item, copiedCount: item.copiedCount + 1 } : item,
   );
 
-  setItem(GENERATION_HISTORY_KEY, nextHistory);
+  setOwnerItem(GENERATION_HISTORY_KEY, nextHistory);
 
   return nextHistory;
 }

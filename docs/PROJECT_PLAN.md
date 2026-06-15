@@ -6,7 +6,7 @@ Build an AI work assistant SaaS for Korean and global small business owners. The
 
 ## Current Phase
 
-Day 8 runtime connection work is in progress. The app now reads `.env.local` from the project root, calls OpenAI through the server `/api/generate` route, and has a Supabase REST storage layer for business profile, FAQs, calendar events, and generation history. Supabase configuration is detected, but the required storage tables still need to be created in Supabase.
+Day 9 beta demo stabilization is implemented locally and ready for deployment. The app reads `.env.local` from the project root, calls OpenAI through the server `/api/generate` route, and has a Supabase REST storage layer for business profile, FAQs, calendar events, and generation history. Day 9 adds browser-specific temporary data separation before login, a Supabase apply guide, beta demo data, and a beta testing plan.
 
 ## Priorities
 
@@ -18,6 +18,8 @@ Day 8 runtime connection work is in progress. The app now reads `.env.local` fro
 - Add a browser-based memory layer so generation history, schedules, FAQs, and store information feel continuous before the database step.
 - Add a `/history` screen so owners can reuse recently created replies and promotional text.
 - Show saved time and recent work on the dashboard to strengthen subscription value.
+- Prevent beta users from seeing each other's saved data before login is added.
+- Make the Wednesday demo reliable with sample data and clear beta messaging.
 - Keep app copy short, direct, and focused on the next action.
 - Connect paid external generation services through server-only routes and fallback behavior.
 - Keep user-facing screens focused on business outcomes instead of technical provider details.
@@ -36,6 +38,8 @@ Day 8 runtime connection work is in progress. The app now reads `.env.local` fro
 - MVP scope: customer inquiry replies, review replies, promotional posts, FAQ management, and store information management.
 - Current implementation uses server-routed generation with fallback and browser-based temporary storage.
 - Day 6 intentionally keeps browser memory separate from future Supabase persistence.
+- Day 9 uses browser-specific temporary separation for saved business profile, FAQ, calendar, and generation data until Auth is added.
+- Supabase SQL still needs to be executed manually in the Supabase Dashboard before remote persistence can be fully verified.
 - Bottom navigation stays simple; history is reachable from the dashboard and app header instead of adding a fifth tab.
 - Codex is used for planning, implementation, and progress reporting.
 - VS Code is used to inspect and manually edit the project files.
@@ -50,4 +54,4 @@ Day 8 runtime connection work is in progress. The app now reads `.env.local` fro
 
 ## Next Milestone
 
-Run `supabase/app_storage_schema.sql` in the Supabase SQL editor, re-run `npm run supabase:check`, then verify Supabase-backed storage in the app. Keep login, payment, and real notification features out of scope until the next planned integration step.
+Run `supabase/app_storage_schema.sql` in the Supabase SQL editor, re-run `npm run supabase:check`, then verify Supabase-backed storage in `/setup`, `/faq`, `/calendar`, `/generate/inquiry`, and `/history`. Keep login, payment, and real notification features out of scope until the next planned integration step.

@@ -50,10 +50,11 @@ export function isStorageResource(value: string): value is StorageResource {
 
 export async function listStorageItems<TResource extends StorageResource>(
   resource: TResource,
+  ownerKey: string,
 ) {
   const rows = await supabaseRequest<SupabaseStorageRow<unknown>[]>(
     resource,
-    "",
+    `?owner_key=eq.${encodeURIComponent(ownerKey)}&select=id,owner_key,payload,created_at,updated_at&order=created_at.desc`,
     {
       method: "GET",
     },
@@ -64,19 +65,16 @@ export async function listStorageItems<TResource extends StorageResource>(
 
 export async function upsertStorageItem<TResource extends StorageResource>(
   resource: TResource,
+  ownerKey: string,
   id: string,
   payload: unknown,
 ) {
   const rows = await supabaseRequest<SupabaseStorageRow<unknown>[]>(
     resource,
-    "?on_conflict=id",
+    "?on_conflict=owner_key,id",
     {
       method: "POST",
-      body: JSON.stringify({
-        id,
-        payload,
-        updated_at: new Date().toISOString(),
-      }),
+      body: JSON.stringify(getUpsertBody(resource, ownerKey, id, payload)),
       headers: {
         Prefer: "resolution=merge-duplicates,return=representation",
       },
@@ -88,14 +86,19 @@ export async function upsertStorageItem<TResource extends StorageResource>(
 
 export async function deleteStorageItem(
   resource: StorageResource,
+  ownerKey: string,
   id: string,
 ) {
-  await supabaseRequest(resource, `?id=eq.${encodeURIComponent(id)}`, {
-    method: "DELETE",
-    headers: {
-      Prefer: "return=minimal",
+  await supabaseRequest(
+    resource,
+    `?owner_key=eq.${encodeURIComponent(ownerKey)}&id=eq.${encodeURIComponent(id)}`,
+    {
+      method: "DELETE",
+      headers: {
+        Prefer: "return=minimal",
+      },
     },
-  });
+  );
 }
 
 async function supabaseRequest<TResponse = unknown>(
@@ -186,6 +189,39 @@ function getSupabaseErrorCode(value: unknown) {
   }
 
   return undefined;
+}
+
+function getUpsertBody(
+  resource: StorageResource,
+  ownerKey: string,
+  id: string,
+  payload: unknown,
+) {
+  const body: Record<string, unknown> = {
+    id,
+    owner_key: ownerKey,
+    payload,
+    updated_at: new Date().toISOString(),
+  };
+  const calendarDate = getCalendarDate(resource, payload);
+
+  if (calendarDate) {
+    body.date = calendarDate;
+  }
+
+  return body;
+}
+
+function getCalendarDate(resource: StorageResource, payload: unknown) {
+  if (
+    resource === "calendar-events" &&
+    isRecord(payload) &&
+    typeof payload.date === "string"
+  ) {
+    return payload.date;
+  }
+
+  return null;
 }
 
 function isRecord(value: unknown): value is Record<string, unknown> {

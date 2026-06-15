@@ -4,6 +4,7 @@ import type {
   StoredFaq,
   StoredGeneration,
 } from "@/lib/storage/types";
+import { ensureOwnerKey } from "@/lib/storage/ownerKey";
 
 type ListResponse<TItem> = {
   storage?: string;
@@ -16,8 +17,14 @@ type ItemResponse<TItem> = {
 };
 
 export async function getRemoteBusinessProfile() {
+  const ownerKey = ensureOwnerKey();
+
+  if (!ownerKey) {
+    return null;
+  }
+
   const data = await requestRemote<ItemResponse<StoredBusinessProfile>>(
-    "/api/storage/business-profile",
+    withOwnerKey("/api/storage/business-profile", ownerKey),
   );
 
   return data?.item ?? null;
@@ -26,11 +33,17 @@ export async function getRemoteBusinessProfile() {
 export async function saveRemoteBusinessProfile(
   profile: StoredBusinessProfile,
 ) {
+  const ownerKey = ensureOwnerKey();
+
+  if (!ownerKey) {
+    return null;
+  }
+
   const data = await requestRemote<ItemResponse<StoredBusinessProfile>>(
     "/api/storage/business-profile",
     {
       method: "POST",
-      body: JSON.stringify({ item: profile }),
+      body: JSON.stringify({ ownerKey, item: profile }),
     },
   );
 
@@ -38,34 +51,60 @@ export async function saveRemoteBusinessProfile(
 }
 
 export async function getRemoteFaqs() {
-  const data = await requestRemote<ListResponse<StoredFaq>>("/api/storage/faqs");
+  const ownerKey = ensureOwnerKey();
+
+  if (!ownerKey) {
+    return [];
+  }
+
+  const data = await requestRemote<ListResponse<StoredFaq>>(
+    withOwnerKey("/api/storage/faqs", ownerKey),
+  );
 
   return data?.items ?? [];
 }
 
 export async function saveRemoteFaq(faq: StoredFaq) {
+  const ownerKey = ensureOwnerKey();
+
+  if (!ownerKey) {
+    return null;
+  }
+
   const data = await requestRemote<ItemResponse<StoredFaq>>("/api/storage/faqs", {
     method: "POST",
-    body: JSON.stringify({ item: faq }),
+    body: JSON.stringify({ ownerKey, item: faq }),
   });
 
   return data?.item ?? null;
 }
 
 export async function getRemoteCalendarEvents() {
+  const ownerKey = ensureOwnerKey();
+
+  if (!ownerKey) {
+    return [];
+  }
+
   const data = await requestRemote<ListResponse<StoredCalendarEvent>>(
-    "/api/storage/calendar-events",
+    withOwnerKey("/api/storage/calendar-events", ownerKey),
   );
 
   return data?.items ?? [];
 }
 
 export async function saveRemoteCalendarEvent(event: StoredCalendarEvent) {
+  const ownerKey = ensureOwnerKey();
+
+  if (!ownerKey) {
+    return null;
+  }
+
   const data = await requestRemote<ItemResponse<StoredCalendarEvent>>(
     "/api/storage/calendar-events",
     {
       method: "POST",
-      body: JSON.stringify({ item: event }),
+      body: JSON.stringify({ ownerKey, item: event }),
     },
   );
 
@@ -73,19 +112,31 @@ export async function saveRemoteCalendarEvent(event: StoredCalendarEvent) {
 }
 
 export async function getRemoteGenerationHistory() {
+  const ownerKey = ensureOwnerKey();
+
+  if (!ownerKey) {
+    return [];
+  }
+
   const data = await requestRemote<ListResponse<StoredGeneration>>(
-    "/api/storage/generations",
+    withOwnerKey("/api/storage/generations", ownerKey),
   );
 
   return data?.items ?? [];
 }
 
 export async function saveRemoteGeneration(generation: StoredGeneration) {
+  const ownerKey = ensureOwnerKey();
+
+  if (!ownerKey) {
+    return null;
+  }
+
   const data = await requestRemote<ItemResponse<StoredGeneration>>(
     "/api/storage/generations",
     {
       method: "POST",
-      body: JSON.stringify({ item: generation }),
+      body: JSON.stringify({ ownerKey, item: generation }),
     },
   );
 
@@ -93,9 +144,18 @@ export async function saveRemoteGeneration(generation: StoredGeneration) {
 }
 
 export async function deleteRemoteGeneration(id: string) {
-  await requestRemote(`/api/storage/generations?id=${encodeURIComponent(id)}`, {
-    method: "DELETE",
-  });
+  const ownerKey = ensureOwnerKey();
+
+  if (!ownerKey) {
+    return;
+  }
+
+  await requestRemote(
+    `/api/storage/generations?id=${encodeURIComponent(id)}&ownerKey=${encodeURIComponent(ownerKey)}`,
+    {
+      method: "DELETE",
+    },
+  );
 }
 
 export function mergeById<TItem extends { id: string }>(
@@ -134,3 +194,8 @@ async function requestRemote<TResponse>(
   }
 }
 
+function withOwnerKey(url: string, ownerKey: string) {
+  const separator = url.includes("?") ? "&" : "?";
+
+  return `${url}${separator}ownerKey=${encodeURIComponent(ownerKey)}`;
+}

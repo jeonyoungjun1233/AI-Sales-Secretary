@@ -2,7 +2,7 @@
 
 ## Current Status
 
-Day 8 runtime connection work is implemented and deployed. Real OpenAI generation works through `/api/generate` in local and production, Vercel production/development environment variables are synced, and a Supabase REST storage layer is implemented. Supabase tables still need to be created before remote persistence can succeed.
+Day 9 beta demo stabilization is implemented locally and ready for deployment. Real OpenAI generation works through `/api/generate` in local and production, Vercel production/development environment variables are synced, and the Supabase REST storage layer now includes browser-specific temporary data separation. Supabase tables still need to be created in the dashboard before remote persistence can fully succeed.
 
 ## Completed
 
@@ -109,6 +109,19 @@ Day 8 runtime connection work is implemented and deployed. Real OpenAI generatio
 - Connected business profile, FAQs, calendar events, and generation history to remote storage with browser storage fallback.
 - Added `supabase/app_storage_schema.sql`.
 - Added `npm run supabase:check`.
+- Added Day 9 browser-specific temporary storage separation before login.
+- Updated Supabase storage routes to require per-browser filtering for list, save, and delete.
+- Updated `supabase/app_storage_schema.sql` with `owner_key`, composite keys, and required indexes.
+- Added a Supabase SQL apply guide.
+- Added a beta testing plan.
+- Added dashboard beta notice and demo data loading.
+- Day 9 `npm run env:check` passed.
+- Day 9 `npm run supabase:check` confirmed config is OK and remote tables still need to be created.
+- Day 9 `npm run lint` passed.
+- Day 9 `npm run build` passed.
+- Day 9 local route checks returned HTTP 200 for `/`, `/dashboard`, `/calendar`, `/setup`, `/generate/inquiry`, `/generate/review`, `/generate/promo`, `/faq`, and `/history`.
+- Day 9 local `/api/generate` returned a generated result.
+- Day 9 local storage Route returned safe fallback while tables are missing.
 
 ## Verification
 
@@ -245,10 +258,10 @@ Day 8 runtime connection work is implemented and deployed. Real OpenAI generatio
 - Vercel CLI is not globally installed; `npx vercel whoami` currently fails with a Vercel CLI header-value error on this Windows environment.
 - Day 6 storage is same-device only and can be cleared if the browser data is deleted.
 - Real notification delivery remains intentionally unimplemented.
-- Supabase MVP storage tables are missing in the remote project. Run `supabase/app_storage_schema.sql` in the Supabase SQL editor.
+- Supabase MVP storage tables are missing in the remote project. Run the latest `supabase/app_storage_schema.sql` in the Supabase SQL editor.
 - Supabase server-only key is not present. Current code can attempt storage with the publishable key, but production should add `SUPABASE_SECRET_KEY` or `SUPABASE_SERVICE_ROLE_KEY`.
 - The Vercel CLI header issue can be worked around by the sync script's temporary ASCII hostname patch.
 
 ## Next Action
 
-Run `supabase/app_storage_schema.sql` in Supabase, then run `npm run supabase:check`. After tables are ready, commit/push/deploy and verify production OpenAI generation plus Supabase-backed storage.
+Run the latest `supabase/app_storage_schema.sql` in Supabase, then run `npm run supabase:check`. After tables are ready, verify `/setup`, `/faq`, `/calendar`, `/generate/inquiry`, and `/history` with Supabase-backed storage.

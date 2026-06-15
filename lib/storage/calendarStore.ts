@@ -1,10 +1,12 @@
-import { getItem, setItem } from "./localStore";
+import { getOwnerItem, setOwnerItem } from "./localStore";
 import type { StoredCalendarEvent } from "./types";
 
 const CALENDAR_EVENTS_KEY = "calendar-events";
 
 export function getCalendarEvents(fallback: StoredCalendarEvent[] = []) {
-  return sortEvents(getItem<StoredCalendarEvent[]>(CALENDAR_EVENTS_KEY, fallback));
+  return sortEvents(
+    getOwnerItem<StoredCalendarEvent[]>(CALENDAR_EVENTS_KEY, fallback),
+  );
 }
 
 export function addCalendarEvent(
@@ -17,7 +19,7 @@ export function addCalendarEvent(
   };
   const nextEvents = sortEvents([...getCalendarEvents(), nextEvent]);
 
-  setItem(CALENDAR_EVENTS_KEY, nextEvents);
+  setOwnerItem(CALENDAR_EVENTS_KEY, nextEvents);
 
   return nextEvent;
 }
@@ -25,7 +27,7 @@ export function addCalendarEvent(
 export function saveCalendarEvents(events: StoredCalendarEvent[]) {
   const nextEvents = sortEvents(events);
 
-  setItem(CALENDAR_EVENTS_KEY, nextEvents);
+  setOwnerItem(CALENDAR_EVENTS_KEY, nextEvents);
 
   return nextEvents;
 }
@@ -33,7 +35,7 @@ export function saveCalendarEvents(events: StoredCalendarEvent[]) {
 export function removeCalendarEvent(id: string) {
   const nextEvents = getCalendarEvents().filter((event) => event.id !== id);
 
-  setItem(CALENDAR_EVENTS_KEY, nextEvents);
+  setOwnerItem(CALENDAR_EVENTS_KEY, nextEvents);
 
   return nextEvents;
 }

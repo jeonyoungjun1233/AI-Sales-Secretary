@@ -1,10 +1,10 @@
-import { getItem, removeItem, setItem } from "./localStore";
+import { getOwnerItem, removeOwnerItem, setOwnerItem } from "./localStore";
 import type { StoredBusinessProfile } from "./types";
 
 const BUSINESS_PROFILE_KEY = "business-profile";
 
 export function getBusinessProfile() {
-  return getItem<StoredBusinessProfile | null>(BUSINESS_PROFILE_KEY, null);
+  return getOwnerItem<StoredBusinessProfile | null>(BUSINESS_PROFILE_KEY, null);
 }
 
 export function saveBusinessProfile(
@@ -16,11 +16,11 @@ export function saveBusinessProfile(
     updatedAt: profile.updatedAt || new Date().toISOString(),
   };
 
-  setItem(BUSINESS_PROFILE_KEY, nextProfile);
+  setOwnerItem(BUSINESS_PROFILE_KEY, nextProfile);
 
   return nextProfile;
 }
 
 export function clearBusinessProfile() {
-  removeItem(BUSINESS_PROFILE_KEY);
+  removeOwnerItem(BUSINESS_PROFILE_KEY);
 }

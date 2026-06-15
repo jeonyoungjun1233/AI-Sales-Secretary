@@ -1,3 +1,5 @@
+import { ensureOwnerKey } from "./ownerKey";
+
 const STORAGE_PREFIX = "ai-boss-sales-agent";
 
 export function isBrowser() {
@@ -40,6 +42,40 @@ export function removeItem(key: string) {
   window.localStorage.removeItem(getStorageKey(key));
 }
 
+export function getOwnerItem<T>(key: string, fallback: T): T {
+  const ownerKey = ensureOwnerKey();
+
+  if (!ownerKey) {
+    return fallback;
+  }
+
+  return getItem<T>(getOwnerScopedKey(ownerKey, key), fallback);
+}
+
+export function setOwnerItem<T>(key: string, value: T) {
+  const ownerKey = ensureOwnerKey();
+
+  if (!ownerKey) {
+    return;
+  }
+
+  setItem(getOwnerScopedKey(ownerKey, key), value);
+}
+
+export function removeOwnerItem(key: string) {
+  const ownerKey = ensureOwnerKey();
+
+  if (!ownerKey) {
+    return;
+  }
+
+  removeItem(getOwnerScopedKey(ownerKey, key));
+}
+
 function getStorageKey(key: string) {
   return `${STORAGE_PREFIX}:${key}`;
+}
+
+function getOwnerScopedKey(ownerKey: string, key: string) {
+  return `${ownerKey}:${key}`;
 }

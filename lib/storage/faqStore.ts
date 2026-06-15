@@ -1,10 +1,10 @@
-import { getItem, setItem } from "./localStore";
+import { getOwnerItem, setOwnerItem } from "./localStore";
 import type { StoredFaq } from "./types";
 
 const FAQS_KEY = "faqs";
 
 export function getFaqs(fallback: StoredFaq[] = []) {
-  return sortFaqs(getItem<StoredFaq[]>(FAQS_KEY, fallback));
+  return sortFaqs(getOwnerItem<StoredFaq[]>(FAQS_KEY, fallback));
 }
 
 export function addFaq(
@@ -18,7 +18,7 @@ export function addFaq(
   };
   const nextFaqs = [nextFaq, ...getFaqs()];
 
-  setItem(FAQS_KEY, nextFaqs);
+  setOwnerItem(FAQS_KEY, nextFaqs);
 
   return nextFaq;
 }
@@ -26,7 +26,7 @@ export function addFaq(
 export function saveFaqs(faqs: StoredFaq[]) {
   const nextFaqs = sortFaqs(faqs);
 
-  setItem(FAQS_KEY, nextFaqs);
+  setOwnerItem(FAQS_KEY, nextFaqs);
 
   return nextFaqs;
 }
@@ -34,7 +34,7 @@ export function saveFaqs(faqs: StoredFaq[]) {
 export function removeFaq(id: string) {
   const nextFaqs = getFaqs().filter((faq) => faq.id !== id);
 
-  setItem(FAQS_KEY, nextFaqs);
+  setOwnerItem(FAQS_KEY, nextFaqs);
 
   return nextFaqs;
 }

@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
+import { BetaNoticeCard } from "@/components/BetaNoticeCard";
+import { DemoDataButton } from "@/components/DemoDataButton";
 import { MobileAppShell } from "@/components/MobileAppShell";
 import { QuickActionButton } from "@/components/QuickActionButton";
 import {
@@ -82,7 +84,16 @@ export default function DashboardPage() {
       setGenerations(sortGenerations(mergeById(remoteGenerations, localGenerations)));
     }
 
-    return () => window.clearTimeout(timeoutId);
+    function handleDemoDataLoaded() {
+      void loadDashboardData();
+    }
+
+    window.addEventListener("demo-data-loaded", handleDemoDataLoaded);
+
+    return () => {
+      window.clearTimeout(timeoutId);
+      window.removeEventListener("demo-data-loaded", handleDemoDataLoaded);
+    };
   }, []);
 
   return (
@@ -271,6 +282,15 @@ export default function DashboardPage() {
           질문 관리
         </Link>
       </section>
+
+      <div className="mt-6 grid gap-3">
+        <BetaNoticeCard />
+        <DemoDataButton
+          onLoaded={() => {
+            window.dispatchEvent(new CustomEvent("demo-data-loaded"));
+          }}
+        />
+      </div>
     </MobileAppShell>
   );
 }

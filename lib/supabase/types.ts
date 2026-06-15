@@ -23,8 +23,9 @@ export type StoragePayload<TResource extends StorageResource> =
 
 export type SupabaseStorageRow<TPayload> = {
   id: string;
+  owner_key: string;
   payload: TPayload;
   created_at?: string;
   updated_at?: string;
+  date?: string;
 };
-

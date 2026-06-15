@@ -2,10 +2,22 @@ import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
 
 const TABLES = [
-  "app_business_profiles",
-  "app_faqs",
-  "app_calendar_events",
-  "app_generations",
+  {
+    name: "app_business_profiles",
+    select: "id,owner_key",
+  },
+  {
+    name: "app_faqs",
+    select: "id,owner_key",
+  },
+  {
+    name: "app_calendar_events",
+    select: "id,owner_key,date",
+  },
+  {
+    name: "app_generations",
+    select: "id,owner_key,created_at",
+  },
 ];
 const envPath = path.join(process.cwd(), ".env.local");
 
@@ -65,20 +77,24 @@ let hasMissingTable = false;
 console.log("SUPABASE_CONFIG: OK");
 
 for (const table of TABLES) {
-  const response = await fetch(`${restUrl}/${table}?select=id&limit=1`, {
-    headers: {
-      apikey: key,
-      Authorization: `Bearer ${key}`,
+  const response = await fetch(
+    `${restUrl}/${table.name}?owner_key=eq.day9-check&select=${encodeURIComponent(table.select)}&limit=1`,
+    {
+      headers: {
+        apikey: key,
+        Authorization: `Bearer ${key}`,
+      },
     },
-  });
+  );
 
   if (response.ok) {
-    console.log(`${table}: OK`);
+    console.log(`${table.name}: OK_OWNER_FILTER`);
     continue;
   }
 
   hasMissingTable = true;
   let code = "UNKNOWN";
+  let message = "table or owner filter is not ready";
 
   try {
     const data = await response.json();
@@ -86,14 +102,36 @@ for (const table of TABLES) {
     if (typeof data.code === "string") {
       code = data.code;
     }
+
+    if (typeof data.message === "string") {
+      message = toSafeMessage(data.message);
+    }
   } catch {
     // Ignore body parsing errors. We only need readiness status here.
   }
 
-  console.log(`${table}: MISSING_OR_BLOCKED (${code})`);
+  console.log(`${table.name}: NOT_READY (${code}) ${message}`);
 }
 
 if (hasMissingTable) {
+  console.log(
+    "NEXT_STEP: Run supabase/app_storage_schema.sql in the Supabase SQL Editor, then re-run this check.",
+  );
   process.exitCode = 1;
 }
 
+function toSafeMessage(value) {
+  if (value.includes("owner_key")) {
+    return "owner separation column is missing";
+  }
+
+  if (value.includes("date")) {
+    return "calendar date column is missing";
+  }
+
+  if (value.includes("schema cache")) {
+    return "table is missing from the API schema cache";
+  }
+
+  return "storage table is not ready";
+}

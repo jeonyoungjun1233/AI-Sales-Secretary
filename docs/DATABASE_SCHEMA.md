@@ -127,7 +127,18 @@ MVP에서는 사용자 1명당 가게 1개를 기본으로 한다.
 - `app_calendar_events`
 - `app_generations`
 
-각 테이블은 `id`, `payload`, `created_at`, `updated_at` 컬럼을 가진다.
+각 테이블은 `owner_key`, `id`, `payload`, `created_at`, `updated_at` 컬럼을 가진다.
+
+`app_calendar_events`는 달력 조회를 위해 `date` 컬럼도 가진다.
+
+Day 9 기준 MVP 임시 저장 테이블은 로그인 전 베타 데모에서 브라우저별로 데이터가 섞이지 않도록 `owner_key`를 사용한다.
+
+필수 인덱스:
+
+- `app_business_profiles(owner_key)`
+- `app_faqs(owner_key)`
+- `app_calendar_events(owner_key, date)`
+- `app_generations(owner_key, created_at)`
 
 SQL 파일:
 
@@ -135,4 +146,4 @@ SQL 파일:
 supabase/app_storage_schema.sql
 ```
 
-이 구조는 로그인 도입 전 임시 구조다. Supabase Auth를 연결한 뒤에는 위의 정식 `profiles`, `stores`, `faqs`, `generations`, `usage_events` 구조로 이전한다.
+이 구조는 로그인 도입 전 임시 구조다. Supabase Auth를 연결한 뒤에는 위의 정식 `profiles`, `stores`, `faqs`, `generations`, `usage_events` 구조로 이전하고 RLS를 강화한다.
