@@ -22,8 +22,11 @@
 - `lib/ai/providers/mockProvider.ts`: 현재 화면에서 사용하는 로컬 생성 provider
 - `lib/ai/providers/openaiProvider.ts`: 실제 생성 provider
 - `app/api/generate/route.ts`: 서버 전용 생성 Route
+- `app/api/agent/daily-action/route.ts`: 오늘 매출 액션 생성 Route
 - `lib/ai/requestGeneration.ts`: 클라이언트에서 서버 Route를 호출하는 helper
 - `lib/ai/generationContext.ts`: 브라우저에 저장된 업무 맥락을 생성 요청에 포함하는 helper
+- `lib/agent/dailyAction.ts`: 가게 정보, FAQ, 일정, 기록을 바탕으로 원클릭 액션 생성
+- `lib/agent/types.ts`: 오늘 매출 액션 타입
 - `lib/ai/prompts/customerReply.ts`: 문의 답장 작성 지침
 - `lib/ai/prompts/reviewReply.ts`: 리뷰 답글 작성 지침
 - `lib/ai/prompts/promoPost.ts`: 홍보글 작성 지침
@@ -84,3 +87,17 @@ Day 7에서 실제 provider 연결 코드는 구현했다.
 - 오늘 올릴 홍보글 준비
 - 자주 묻는 질문 정리
 - 가게 말투 유지
+
+## 8. Day 10 원클릭 액션 구조
+
+Day 10부터 `/agent`가 기본 생성 진입점이 된다.
+
+흐름:
+
+1. 사용자가 “오늘 액션 만들기”를 누른다.
+2. 앱이 가게 정보, FAQ, 오늘 일정, 최근 기록을 묶어 서버 Route로 보낸다.
+3. 서버가 문의 답장, 리뷰 답글, 홍보글, 일정 제안을 생성한다.
+4. 실패해도 안전한 기본 액션을 반환한다.
+5. 사용자는 복사, 기록 저장, 일정 추가를 한 화면에서 처리한다.
+
+이 구조는 장기적으로 여러 provider를 작업별로 조합하는 AI 에이전트 플랫폼으로 확장할 수 있다.

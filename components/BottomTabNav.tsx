@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 
 const tabs = [
   { label: "홈", href: "/dashboard", icon: "⌂", match: "/dashboard" },
-  { label: "만들기", href: "/generate/inquiry", icon: "+", match: "/generate" },
+  { label: "만들기", href: "/agent", icon: "+", match: "/agent" },
   { label: "일정", href: "/calendar", icon: "□", match: "/calendar" },
   { label: "가게", href: "/setup", icon: "◇", match: "/setup" },
 ];
@@ -18,7 +18,9 @@ export function BottomTabNav() {
       <div className="grid grid-cols-4 gap-1">
         {tabs.map((tab) => {
           const active =
-            pathname === tab.href || pathname.startsWith(`${tab.match}/`);
+            pathname === tab.href ||
+            pathname.startsWith(`${tab.match}/`) ||
+            (tab.href === "/agent" && pathname.startsWith("/generate/"));
 
           return (
             <Link

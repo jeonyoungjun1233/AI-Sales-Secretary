@@ -6,7 +6,7 @@ Build an AI work assistant SaaS for Korean and global small business owners. The
 
 ## Current Phase
 
-Day 9 beta demo stabilization is implemented locally and ready for deployment. The app reads `.env.local` from the project root, calls OpenAI through the server `/api/generate` route, and has a Supabase REST storage layer for business profile, FAQs, calendar events, and generation history. Day 9 adds browser-specific temporary data separation before login, a Supabase apply guide, beta demo data, and a beta testing plan.
+Day 10 one-click AI sales action center is in progress. The app reads `.env.local` from the project root, calls OpenAI through server routes, and has a Supabase REST storage layer for business profile, FAQs, calendar events, and generation history. Day 10 adds `/agent`, where owners can prepare customer replies, review responses, promotional posts, and schedule suggestions from one button.
 
 ## Priorities
 
@@ -20,6 +20,7 @@ Day 9 beta demo stabilization is implemented locally and ready for deployment. T
 - Show saved time and recent work on the dashboard to strengthen subscription value.
 - Prevent beta users from seeing each other's saved data before login is added.
 - Make the Wednesday demo reliable with sample data and clear beta messaging.
+- Add a one-click daily sales action workflow so owners do not need to choose between separate tools.
 - Keep app copy short, direct, and focused on the next action.
 - Connect paid external generation services through server-only routes and fallback behavior.
 - Keep user-facing screens focused on business outcomes instead of technical provider details.
@@ -39,6 +40,7 @@ Day 9 beta demo stabilization is implemented locally and ready for deployment. T
 - Current implementation uses server-routed generation with fallback and browser-based temporary storage.
 - Day 6 intentionally keeps browser memory separate from future Supabase persistence.
 - Day 9 uses browser-specific temporary separation for saved business profile, FAQ, calendar, and generation data until Auth is added.
+- Day 10 makes `/agent` the primary creation experience and keeps individual generation pages as deeper tools.
 - Supabase SQL still needs to be executed manually in the Supabase Dashboard before remote persistence can be fully verified.
 - Bottom navigation stays simple; history is reachable from the dashboard and app header instead of adding a fifth tab.
 - Codex is used for planning, implementation, and progress reporting.
@@ -54,4 +56,4 @@ Day 9 beta demo stabilization is implemented locally and ready for deployment. T
 
 ## Next Milestone
 
-Run `supabase/app_storage_schema.sql` in the Supabase SQL editor, re-run `npm run supabase:check`, then verify Supabase-backed storage in `/setup`, `/faq`, `/calendar`, `/generate/inquiry`, and `/history`. Keep login, payment, and real notification features out of scope until the next planned integration step.
+Verify `/agent` end to end, then run `supabase/app_storage_schema.sql` in the Supabase SQL editor when ready and re-run `npm run supabase:check`. Keep login, payment, and real notification features out of scope until the next planned integration step.

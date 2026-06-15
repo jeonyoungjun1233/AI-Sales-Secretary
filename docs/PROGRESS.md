@@ -2,7 +2,7 @@
 
 ## Current Status
 
-Day 9 beta demo stabilization is implemented locally and ready for deployment. Real OpenAI generation works through `/api/generate` in local and production, Vercel production/development environment variables are synced, and the Supabase REST storage layer now includes browser-specific temporary data separation. Supabase tables still need to be created in the dashboard before remote persistence can fully succeed.
+Day 10 one-click AI sales action center is implemented and locally verified. Real OpenAI generation works through server routes, Vercel production/development environment variables are synced, and `/agent` now prepares inquiry replies, review responses, promotional text, and calendar suggestions from one button. Supabase tables still need to be created in the dashboard before remote persistence can fully succeed. Next action is GitHub push and Vercel production verification.
 
 ## Completed
 
@@ -126,6 +126,23 @@ Day 9 beta demo stabilization is implemented locally and ready for deployment. R
 - Day 9 Vercel production deployment is `READY`.
 - Day 9 production route checks returned HTTP 200 for `/`, `/dashboard`, `/calendar`, `/setup`, `/generate/inquiry`, `/generate/review`, `/generate/promo`, `/faq`, and `/history`.
 - Day 9 production `/api/generate` returned a generated result.
+- Added `/agent` as the one-click AI sales action center.
+- Added `/api/agent/daily-action` for daily action generation with fallback behavior.
+- Added `lib/agent` daily action types and logic.
+- Added agent action UI components for summary, empty state, run button, action bundle, and action cards.
+- Connected agent actions to copy, history save, calendar save, and completion state.
+- Added the dashboard “오늘 매출 액션” card.
+- Changed the bottom “만들기” tab to open `/agent`.
+- Created `docs/DEMO_SCENARIO.md`.
+- Created `docs/DAY10_REPORT.md`.
+- Fixed Day 10 fallback generation so incomplete store profiles do not break daily action generation.
+- Day 10 `npm run env:check` passed.
+- Day 10 `npm run supabase:check` confirmed Supabase config is OK and remote tables still need to be created.
+- Day 10 `npm run lint` passed.
+- Day 10 `npm run build` passed and generated `/agent` plus `/api/agent/daily-action`.
+- Day 10 local production server returned HTTP 200 for `/`, `/dashboard`, `/agent`, `/calendar`, `/setup`, `/generate/inquiry`, `/generate/review`, `/generate/promo`, `/faq`, and `/history`.
+- Day 10 local `/api/agent/daily-action` returned HTTP 200 with four daily actions.
+- Day 10 secret scan found no committed API keys; only package-lock integrity false positives were found.
 
 ## Verification
 
