@@ -97,6 +97,10 @@
 - 로컬 `/api/storage/business-profile`: 테이블 미생성 상태에서 안전한 fallback 확인
 - 사용자 화면 금지 용어 검사: 사용자 UI 문구 노출 없음
 - 비밀값 검사: 코드/문서에 API 키 없음
+- GitHub `main` 푸시 완료
+- Vercel production 배포 `READY`
+- 프로덕션 주요 경로 9개 HTTP 200 확인
+- 프로덕션 `/api/generate`: 실제 생성 결과 확인
 
 ## 10. 수익화 관점에서의 판단
 
