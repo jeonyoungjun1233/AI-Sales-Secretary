@@ -4,7 +4,7 @@ This is the live checklist shown and maintained by Codex.
 
 ## In Progress
 
-- [ ] Commit, push, and verify Day 10 Vercel production deployment.
+- [ ] Run Supabase SQL schema in the Supabase dashboard.
 
 ## Up Next
 
@@ -14,7 +14,7 @@ This is the live checklist shown and maintained by Codex.
 - [x] Connect action cards to copy, history save, and calendar save.
 - [x] Connect dashboard and bottom tab navigation to `/agent`.
 - [x] Update Day 10 docs and run verification.
-- [ ] Commit, push, and verify Vercel production deployment.
+- [x] Commit, push, and verify Day 10 Vercel production deployment.
 - [x] Add browser-specific temporary storage separation.
 - [x] Harden `/api/storage/[resource]` with per-browser filtering.
 - [x] Update Supabase schema and apply guide.

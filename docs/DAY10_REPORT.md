@@ -107,6 +107,10 @@
 - `/agent`와 `/dashboard`에 “오늘 매출 액션” 문구 렌더링 확인
 - API 키가 Git 추적 파일에 포함되지 않았는지 확인
 - `.env.local`이 Git 추적 대상이 아닌지 확인
+- GitHub `main`에 Day 10 구현 커밋 푸시 완료
+- Vercel Production 배포 `dpl_28art7VYgFSxQuU9c7V84c7Yncnu` READY 확인
+- 프로덕션 `/`, `/dashboard`, `/agent`, `/calendar`, `/setup`, `/generate/inquiry`, `/generate/review`, `/generate/promo`, `/faq`, `/history` HTTP 200 확인
+- 프로덕션 `/api/agent/daily-action` POST 요청 HTTP 200 및 액션 4개 반환 확인
 
 ## 11. 수익화 관점에서의 판단
 
