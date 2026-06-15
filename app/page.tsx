@@ -90,7 +90,7 @@ export default function Home() {
               문의 답장, 리뷰 답글, 홍보글을 10초 만에 준비합니다.
             </p>
             <p className="mt-4 max-w-2xl text-base font-semibold leading-7 text-slate-600">
-              확인하고 복사해서 바로 쓰세요.
+              월 9,900원으로 AI 알바생처럼 반복 업무를 줄여보세요.
             </p>
             <div className="mt-8 flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
               <PrimaryButton className="w-full sm:w-auto" href="/dashboard">
@@ -102,6 +102,13 @@ export default function Home() {
                 variant="outline"
               >
                 답장 먼저 만들기
+              </PrimaryButton>
+              <PrimaryButton
+                className="w-full sm:w-auto"
+                href="/pricing"
+                variant="outline"
+              >
+                요금제 보기
               </PrimaryButton>
             </div>
           </div>
@@ -254,8 +261,8 @@ export default function Home() {
               <h2 className="mt-3 text-3xl font-black leading-tight sm:text-4xl">
                 오늘부터 답장 시간을 줄여보세요.
               </h2>
-            <p className="mt-4 max-w-2xl text-base font-semibold leading-7 text-slate-300">
-              홈, 답장 만들기, 일정을 바로 확인하세요.
+              <p className="mt-4 max-w-2xl text-base font-semibold leading-7 text-slate-300">
+              리뷰 답글, 홍보글, 일정까지 한 번에 준비하세요.
             </p>
             </div>
             <PrimaryButton href="/dashboard">앱 데모 보기</PrimaryButton>

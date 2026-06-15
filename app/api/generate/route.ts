@@ -1,5 +1,13 @@
 import { generateWithAgent } from "@/lib/ai/agentRouter";
 import type { GenerateRequest, GenerateType } from "@/lib/ai/types";
+import {
+  canGenerate,
+  getServerUsageHeaders,
+  getServerUsageSnapshot,
+  getUsageLimitDetail,
+  getUsageLimitMessage,
+  normalizeUsageSnapshot,
+} from "@/lib/billing/usage";
 
 export const runtime = "nodejs";
 
@@ -29,6 +37,23 @@ export async function POST(request: Request) {
     );
   }
 
+  const clientUsage = normalizeUsageSnapshot(body.usage);
+  const serverUsage = getServerUsageSnapshot(request);
+
+  if (
+    (clientUsage && !canGenerate(clientUsage)) ||
+    !canGenerate(serverUsage)
+  ) {
+    return Response.json(
+      {
+        message: getUsageLimitMessage(),
+        detail: getUsageLimitDetail(),
+        upgradeHref: "/pricing",
+      },
+      { status: 402 },
+    );
+  }
+
   const result = await generateWithAgent({
     type: body.type,
     input: body.input,
@@ -39,5 +64,10 @@ export async function POST(request: Request) {
     context: body.context,
   });
 
-  return Response.json({ result });
+  return Response.json(
+    { result },
+    {
+      headers: getServerUsageHeaders(request),
+    },
+  );
 }

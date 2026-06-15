@@ -12,7 +12,9 @@ export async function requestGeneration(
   });
 
   if (!response.ok) {
-    throw new Error("Generation request failed.");
+    const errorBody = await readErrorBody(response);
+
+    throw new Error(errorBody.message || "문구를 준비하지 못했어요.");
   }
 
   const data = (await response.json()) as { result?: GenerateResponse };
@@ -22,6 +24,14 @@ export async function requestGeneration(
   }
 
   return data.result;
+}
+
+async function readErrorBody(response: Response) {
+  try {
+    return (await response.json()) as { message?: string; detail?: string };
+  } catch {
+    return {};
+  }
 }
 
 function isGenerateResponse(value: unknown): value is GenerateResponse {

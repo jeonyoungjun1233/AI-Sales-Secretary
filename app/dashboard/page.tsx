@@ -7,6 +7,8 @@ import { BetaNoticeCard } from "@/components/BetaNoticeCard";
 import { DemoDataButton } from "@/components/DemoDataButton";
 import { MobileAppShell } from "@/components/MobileAppShell";
 import { QuickActionButton } from "@/components/QuickActionButton";
+import { UsageSummaryCard } from "@/components/UsageSummaryCard";
+import { getUsageSummary } from "@/lib/billing/usage";
 import {
   calendarEventTypeLabels,
   getEventsForDate,
@@ -51,6 +53,7 @@ export default function DashboardPage() {
   const upcomingEvents = getUpcomingEvents(calendarEvents, 3);
   const recentGenerations = generations.slice(0, 2);
   const summary = getSavedWorkSummary(generations);
+  const usageSummary = getUsageSummary(generations);
   const stats = [
     {
       label: "절약",
@@ -147,6 +150,10 @@ export default function DashboardPage() {
           바로 만들기
         </Link>
       </section>
+
+      <div className="mt-4">
+        <UsageSummaryCard summary={usageSummary} />
+      </div>
 
       <section className="mt-4 rounded-[1.75rem] bg-[linear-gradient(135deg,#ecfdf5_0%,#ffffff_70%)] p-5 shadow-lg shadow-emerald-950/5">
         <div className="flex items-start justify-between gap-4">

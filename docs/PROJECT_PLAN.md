@@ -6,7 +6,7 @@ Build an AI work assistant SaaS for Korean and global small business owners. The
 
 ## Current Phase
 
-Day 10 one-click AI sales action center is in progress. The app reads `.env.local` from the project root, calls OpenAI through server routes, and has a Supabase REST storage layer for business profile, FAQs, calendar events, and generation history. Day 10 adds `/agent`, where owners can prepare customer replies, review responses, promotional posts, and schedule suggestions from one button.
+Day 11 pricing and usage guard implementation is in progress. The app reads `.env.local` from the project root, calls OpenAI through server routes, and has a Supabase REST storage layer for business profile, FAQs, calendar events, and generation history. Day 11 adds `/pricing`, usage cards, free-plan generation limits, and beta feedback collection before real payment integration.
 
 ## Priorities
 
@@ -21,6 +21,8 @@ Day 10 one-click AI sales action center is in progress. The app reads `.env.loca
 - Prevent beta users from seeing each other's saved data before login is added.
 - Make the Wednesday demo reliable with sample data and clear beta messaging.
 - Add a one-click daily sales action workflow so owners do not need to choose between separate tools.
+- Add a pricing and usage experience so the app feels like a paid SaaS before real payment integration.
+- Protect paid generation calls with a free-plan limit during beta testing.
 - Keep app copy short, direct, and focused on the next action.
 - Connect paid external generation services through server-only routes and fallback behavior.
 - Keep user-facing screens focused on business outcomes instead of technical provider details.
@@ -41,6 +43,8 @@ Day 10 one-click AI sales action center is in progress. The app reads `.env.loca
 - Day 6 intentionally keeps browser memory separate from future Supabase persistence.
 - Day 9 uses browser-specific temporary separation for saved business profile, FAQ, calendar, and generation data until Auth is added.
 - Day 10 makes `/agent` the primary creation experience and keeps individual generation pages as deeper tools.
+- Day 11 keeps the default plan as free until login and payment exist.
+- Day 11 shows pricing and upgrade intent without connecting Toss Payments or Stripe.
 - Supabase SQL still needs to be executed manually in the Supabase Dashboard before remote persistence can be fully verified.
 - Bottom navigation stays simple; history is reachable from the dashboard and app header instead of adding a fifth tab.
 - Codex is used for planning, implementation, and progress reporting.
@@ -52,8 +56,8 @@ Day 10 one-click AI sales action center is in progress. The app reads `.env.loca
 - When should production OpenAI generation be verified after `.env.local` is restored?
 - Should generation history or business profile become the first Supabase-backed data feature?
 - Which daily workflow creates the strongest reason to subscribe: calendar, generation history, or FAQ quality improvement?
-- What usage limit and plan boundary should be shown before paid conversion?
+- Which payment provider should be connected first after the pricing UI is validated?
 
 ## Next Milestone
 
-Verify `/agent` end to end, then run `supabase/app_storage_schema.sql` in the Supabase SQL editor when ready and re-run `npm run supabase:check`. Keep login, payment, and real notification features out of scope until the next planned integration step.
+Verify Day 11 pricing and usage flows end to end, then run `supabase/app_storage_schema.sql` in the Supabase SQL editor when ready and re-run `npm run supabase:check`. Keep login, payment, and real notification features out of scope until the next planned integration step.

@@ -6,6 +6,7 @@ import { PrimaryButton } from "./PrimaryButton";
 
 const navItems = [
   { label: "소개", href: "/" },
+  { label: "요금제", href: "/pricing" },
   { label: "대시보드", href: "/dashboard" },
   { label: "가게 정보", href: "/setup" },
 ];
@@ -16,7 +17,12 @@ export function AppHeader() {
     pathname.startsWith("/dashboard") ||
     pathname.startsWith("/setup") ||
     pathname.startsWith("/generate") ||
-    pathname.startsWith("/calendar");
+    pathname.startsWith("/calendar") ||
+    pathname.startsWith("/agent") ||
+    pathname.startsWith("/faq") ||
+    pathname.startsWith("/history") ||
+    pathname.startsWith("/pricing") ||
+    pathname.startsWith("/feedback");
 
   if (isAppRoute) {
     return null;

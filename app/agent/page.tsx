@@ -7,7 +7,14 @@ import { AgentEmptyState } from "@/components/AgentEmptyState";
 import { AgentRunButton } from "@/components/AgentRunButton";
 import { AgentSummaryCard } from "@/components/AgentSummaryCard";
 import { MobileAppShell } from "@/components/MobileAppShell";
+import { UsageSummaryCard } from "@/components/UsageSummaryCard";
 import type { DailyActionItem, DailyActionResponse } from "@/lib/agent/types";
+import {
+  canGenerate,
+  getUsageSummary,
+  recordGenerationUsage,
+  type UsageSnapshot,
+} from "@/lib/billing/usage";
 import { addCalendarEvent, getCalendarEvents } from "@/lib/storage/calendarStore";
 import { getFaqs } from "@/lib/storage/faqStore";
 import {
@@ -54,6 +61,9 @@ export default function AgentPage() {
   const [notice, setNotice] = useState("");
   const [feedbackById, setFeedbackById] = useState<Record<string, string>>({});
   const [completedIds, setCompletedIds] = useState<string[]>([]);
+  const [usageSummary, setUsageSummary] = useState<UsageSnapshot>(() =>
+    getUsageSummary([]),
+  );
   const eventCounterRef = useRef(0);
   const todayKey = getTodayDateKey();
   const todayEvents = useMemo(
@@ -89,12 +99,20 @@ export default function AgentPage() {
         calendarEvents: mergeById(remoteEvents, localEvents),
         generations: sortGenerations(mergeById(remoteGenerations, localGenerations)),
       });
+      setUsageSummary(
+        getUsageSummary(sortGenerations(mergeById(remoteGenerations, localGenerations))),
+      );
     }
 
     return () => window.clearTimeout(timeoutId);
   }, []);
 
   async function handleRunAgent() {
+    if (!canGenerate(usageSummary)) {
+      setNotice("이번 달 무료 체험 횟수를 모두 사용했어요.");
+      return;
+    }
+
     setIsLoading(true);
     setNotice("");
     setFeedbackById({});
@@ -112,11 +130,16 @@ export default function AgentPage() {
           faqs: contextData.faqs.slice(0, 8),
           todayEvents: todayEvents.slice(0, 6),
           recentGenerations: contextData.generations.slice(0, 8),
+          usage: usageSummary,
         }),
       });
 
       if (!response.ok) {
-        throw new Error("Daily action request failed.");
+        const errorBody = (await response.json().catch(() => ({}))) as {
+          message?: string;
+        };
+
+        throw new Error(errorBody.message || "오늘 할 일을 준비하지 못했어요.");
       }
 
       const data = (await response.json()) as { result?: DailyActionResponse };
@@ -126,9 +149,15 @@ export default function AgentPage() {
       }
 
       setResult(data.result);
+      recordGenerationUsage("daily-action");
+      setUsageSummary(getUsageSummary(contextData.generations));
       setNotice("오늘 할 일을 준비했어요.");
-    } catch {
-      setNotice("오늘 할 일을 준비하지 못했어요. 다시 눌러주세요.");
+    } catch (error) {
+      setNotice(
+        error instanceof Error
+          ? error.message
+          : "오늘 할 일을 준비하지 못했어요. 다시 눌러주세요.",
+      );
     } finally {
       setIsLoading(false);
     }
@@ -226,6 +255,8 @@ export default function AgentPage() {
           todayEventCount={todayEvents.length}
         />
 
+        <UsageSummaryCard compact summary={usageSummary} />
+
         <section className="rounded-[1.5rem] bg-white p-4 shadow-lg shadow-slate-950/5">
           <div className="mb-3 flex items-center justify-between gap-3">
             <div>
@@ -240,7 +271,11 @@ export default function AgentPage() {
                 : "준비"}
             </span>
           </div>
-          <AgentRunButton loading={isLoading} onClick={handleRunAgent} />
+          <AgentRunButton
+            disabled={!canGenerate(usageSummary)}
+            loading={isLoading}
+            onClick={handleRunAgent}
+          />
           <p className="mt-3 min-h-5 text-center text-sm font-black text-emerald-700">
             {notice}
           </p>

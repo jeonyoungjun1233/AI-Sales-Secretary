@@ -1,4 +1,5 @@
 import type { StoredBusinessProfile, StoredCalendarEvent, StoredFaq, StoredGeneration } from "@/lib/storage/types";
+import type { UsageSnapshot } from "@/lib/billing/usage";
 
 export type DailyActionType = "inquiry" | "review" | "promo" | "calendar";
 
@@ -20,6 +21,7 @@ export type DailyActionRequest = {
   faqs?: StoredFaq[];
   todayEvents?: StoredCalendarEvent[];
   recentGenerations?: StoredGeneration[];
+  usage?: UsageSnapshot;
 };
 
 export type DailyActionResponse = {

@@ -1,11 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { GeneratedResultBox } from "@/components/GeneratedResultBox";
 import { GenerationPageLayout } from "@/components/GenerationPageLayout";
 import { InputCard } from "@/components/InputCard";
 import { OptionChip } from "@/components/OptionChip";
+import { UsageSummaryCard } from "@/components/UsageSummaryCard";
 import { getGenerationContext } from "@/lib/ai/generationContext";
 import { requestGeneration } from "@/lib/ai/requestGeneration";
 import {
@@ -17,6 +18,12 @@ import {
   type PromoChannel,
   type PromoPurpose,
 } from "@/lib/ai/types";
+import {
+  canGenerate,
+  getUsageSummary,
+  recordGenerationUsage,
+  type UsageSnapshot,
+} from "@/lib/billing/usage";
 import { addGenerationHistory } from "@/lib/storage/generationHistoryStore";
 import { saveRemoteGeneration } from "@/lib/storage/remoteStore";
 
@@ -34,11 +41,28 @@ export default function PromoGenerationPage() {
   const [response, setResponse] = useState<GenerateResponse | null>(null);
   const [isGenerating, setIsGenerating] = useState(false);
   const [notice, setNotice] = useState("");
+  const [usageSummary, setUsageSummary] = useState<UsageSnapshot>(() =>
+    getUsageSummary([]),
+  );
+
+  useEffect(() => {
+    const timeoutId = window.setTimeout(() => {
+      setUsageSummary(getUsageSummary());
+    }, 0);
+
+    return () => window.clearTimeout(timeoutId);
+  }, []);
 
   async function handleGenerate() {
     if (!extraNote.trim()) {
       setResponse(null);
       setNotice("홍보하고 싶은 내용을 간단히 적어주세요.");
+      return;
+    }
+
+    if (!canGenerate(usageSummary)) {
+      setResponse(null);
+      setNotice("이번 달 무료 체험 횟수를 모두 사용했어요.");
       return;
     }
 
@@ -55,6 +79,7 @@ export default function PromoGenerationPage() {
         businessType,
         channel,
         context: getGenerationContext(),
+        usage: usageSummary,
       });
 
       const savedGeneration = addGenerationHistory({
@@ -66,10 +91,16 @@ export default function PromoGenerationPage() {
         savedMinutes: nextResponse.savedMinutes,
       });
       void saveRemoteGeneration(savedGeneration);
+      recordGenerationUsage("generation");
+      setUsageSummary(getUsageSummary());
       setResponse(nextResponse);
-    } catch {
+    } catch (error) {
       setResponse(null);
-      setNotice("문구를 준비하지 못했어요. 잠시 후 다시 시도해주세요.");
+      setNotice(
+        error instanceof Error
+          ? error.message
+          : "문구를 준비하지 못했어요. 잠시 후 다시 시도해주세요.",
+      );
     } finally {
       setIsGenerating(false);
     }
@@ -94,6 +125,8 @@ export default function PromoGenerationPage() {
       sideNoteItems={sideNoteItems}
     >
       <div className="grid gap-6">
+        <UsageSummaryCard compact summary={usageSummary} />
+
         <InputCard
           title="홍보글 조건"
           description="목적과 채널을 골라주세요."
@@ -161,7 +194,7 @@ export default function PromoGenerationPage() {
 
           <button
             className="min-h-14 rounded-2xl bg-emerald-500 px-5 py-3 text-base font-black text-white shadow-lg shadow-emerald-200/80 transition hover:bg-emerald-600 active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-60"
-            disabled={isGenerating}
+            disabled={isGenerating || !canGenerate(usageSummary)}
             onClick={handleGenerate}
             type="button"
           >

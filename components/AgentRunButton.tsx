@@ -1,13 +1,18 @@
 type AgentRunButtonProps = {
+  disabled?: boolean;
   loading: boolean;
   onClick: () => void;
 };
 
-export function AgentRunButton({ loading, onClick }: AgentRunButtonProps) {
+export function AgentRunButton({
+  disabled = false,
+  loading,
+  onClick,
+}: AgentRunButtonProps) {
   return (
     <button
       className="min-h-16 w-full rounded-[1.4rem] bg-emerald-500 px-5 py-4 text-lg font-black text-white shadow-xl shadow-emerald-200 transition active:scale-[0.99] disabled:opacity-60"
-      disabled={loading}
+      disabled={loading || disabled}
       onClick={onClick}
       type="button"
     >

@@ -39,6 +39,15 @@ export type GenerateRequest = {
   channel?: PromoChannel;
   category?: InquiryCategory | ReviewCategory | PromoPurpose | string;
   context?: GenerateContext;
+  usage?: {
+    planId?: string;
+    monthKey?: string;
+    monthlyGenerationCount?: number;
+    monthlyGenerationLimit?: number;
+    remainingGenerations?: number;
+    canGenerate?: boolean;
+    upgradeMessage?: string;
+  };
 };
 
 export type GenerateContext = {

@@ -2,7 +2,7 @@
 
 ## Current Status
 
-Day 10 one-click AI sales action center is implemented, pushed, and verified in Vercel production. Real OpenAI generation works through server routes, Vercel production/development environment variables are synced, and `/agent` now prepares inquiry replies, review responses, promotional text, and calendar suggestions from one button. Supabase tables still need to be created in the dashboard before remote persistence can fully succeed.
+Day 11 pricing and usage guard implementation is in progress. Real OpenAI generation works through server routes, Vercel production/development environment variables are synced, and `/agent` prepares inquiry replies, review responses, promotional text, and calendar suggestions from one button. Day 11 adds `/pricing`, free-plan usage cards, generation limits, and `/feedback` before real payment integration. Supabase tables still need to be created in the dashboard before remote persistence can fully succeed.
 
 ## Completed
 
@@ -147,6 +147,21 @@ Day 10 one-click AI sales action center is implemented, pushed, and verified in 
 - Day 10 Vercel production deployment `dpl_28art7VYgFSxQuU9c7V84c7Yncnu` is `READY`.
 - Day 10 production route checks returned HTTP 200 for `/`, `/dashboard`, `/agent`, `/calendar`, `/setup`, `/generate/inquiry`, `/generate/review`, `/generate/promo`, `/faq`, and `/history`.
 - Day 10 production `/api/agent/daily-action` returned HTTP 200 with four daily actions.
+- Added Day 11 billing plan definitions for free, basic, pro, and business plans.
+- Added Day 11 usage calculation and free-plan guard utilities.
+- Added `/pricing` for plan comparison before payment integration.
+- Added `/feedback` for beta testing feedback.
+- Added usage cards to `/dashboard`, `/agent`, `/generate/inquiry`, `/generate/review`, and `/generate/promo`.
+- Added usage guard to `/api/generate` and `/api/agent/daily-action`.
+- Updated landing copy with pricing and time-saving value.
+- Created `docs/DAY11_REPORT.md`.
+- Day 11 `npm run env:check` passed.
+- Day 11 `npm run supabase:check` confirmed Supabase config is OK and remote tables still need to be created.
+- Day 11 `npm run lint` passed.
+- Day 11 `npm run build` passed and generated `/pricing` plus `/feedback`.
+- Day 11 local production server returned HTTP 200 for `/`, `/dashboard`, `/agent`, `/pricing`, `/feedback`, `/calendar`, `/setup`, `/generate/inquiry`, `/generate/review`, `/generate/promo`, `/faq`, and `/history`.
+- Day 11 local usage-limit checks returned HTTP 402 before generation for `/api/generate` and `/api/agent/daily-action`.
+- Day 11 secret scan found no committed API keys; only package-lock integrity false positives were found.
 
 ## Verification
 
@@ -289,4 +304,4 @@ Day 10 one-click AI sales action center is implemented, pushed, and verified in 
 
 ## Next Action
 
-Run the latest `supabase/app_storage_schema.sql` in Supabase, then run `npm run supabase:check`. After tables are ready, verify `/setup`, `/faq`, `/calendar`, `/generate/inquiry`, and `/history` with Supabase-backed storage.
+Finish Day 11 verification, commit and push the pricing/usage work, then verify Vercel production. After that, run the latest `supabase/app_storage_schema.sql` in Supabase and re-run `npm run supabase:check` when ready.
