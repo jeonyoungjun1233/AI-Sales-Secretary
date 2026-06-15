@@ -116,6 +116,11 @@
 - 사용자 화면 코드에서 개발자 용어 노출 여부 확인. 내부 import 경로 외 사용자 문구 노출 없음
 - API 키가 Git 추적 파일에 포함되지 않았는지 확인
 - `.env.local`이 Git 추적 대상이 아닌지 확인
+- GitHub `main`에 Day 11 구현 커밋 푸시 완료
+- Vercel Production 배포 `dpl_59Lr1fwHUUo3Xyj1xFMvsfSGpyPL` READY 확인
+- 프로덕션 `/`, `/dashboard`, `/agent`, `/pricing`, `/feedback`, `/calendar`, `/setup`, `/generate/inquiry`, `/generate/review`, `/generate/promo`, `/faq`, `/history` HTTP 200 확인
+- 프로덕션 `/api/generate` 한도 초과 요청이 HTTP 402로 막히는지 확인
+- 프로덕션 `/api/agent/daily-action` 한도 초과 요청이 HTTP 402로 막히는지 확인
 
 ## 11. 수익화 관점에서의 판단
 

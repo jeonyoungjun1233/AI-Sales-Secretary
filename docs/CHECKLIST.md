@@ -4,7 +4,7 @@ This is the live checklist shown and maintained by Codex.
 
 ## In Progress
 
-- [ ] Commit, push, and verify Day 11 Vercel production deployment.
+- [ ] Run Supabase SQL schema in the Supabase dashboard.
 
 ## Up Next
 
@@ -15,7 +15,7 @@ This is the live checklist shown and maintained by Codex.
 - [x] Show usage status on dashboard and generation screens.
 - [x] Add `/feedback` beta feedback flow.
 - [x] Update Day 11 docs and run verification.
-- [ ] Commit, push, and verify Vercel production deployment.
+- [x] Commit, push, and verify Day 11 Vercel production deployment.
 - [x] Add `/agent` one-click sales action page.
 - [x] Add `/api/agent/daily-action` route.
 - [x] Add daily action types and generation logic.
