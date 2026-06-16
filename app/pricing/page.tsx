@@ -55,6 +55,12 @@ export default function PricingPage() {
                 월 생성 {plan.monthlyGenerationLimit.toLocaleString("ko-KR")}회
               </p>
 
+              {plan.id === "pro" ? (
+                <div className="mt-4 rounded-2xl bg-emerald-500 px-4 py-3 text-sm font-black leading-6 text-white shadow-lg shadow-emerald-200">
+                  오늘 매출 액션과 주간 홍보 캘린더 포함
+                </div>
+              ) : null}
+
               <ul className="mt-4 grid gap-2">
                 {plan.features.slice(0, 5).map((feature) => (
                   <li

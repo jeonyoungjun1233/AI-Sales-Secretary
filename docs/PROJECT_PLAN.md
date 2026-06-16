@@ -6,7 +6,7 @@ Build an AI work assistant SaaS for Korean and global small business owners. The
 
 ## Current Phase
 
-Day 12 demo onboarding and final QA preparation is in progress. The app now has the paid-SaaS shape from Day 11, and Day 12 focuses on helping first-time visitors experience the value within one minute through `/demo`, industry quick-start examples, a clearer landing CTA, a dashboard quick-experience card, and final presentation documents.
+Day 13 conversion UX polish is in progress. Day 12 made the one-minute demo flow work; Day 13 focuses on making the first visit sharper, shorter, and more conversion-oriented by improving landing CTAs, industry selection, dashboard priority, action cards, generation options, pricing copy, and beta feedback.
 
 ## Priorities
 
@@ -25,6 +25,8 @@ Day 12 demo onboarding and final QA preparation is in progress. The app now has 
 - Protect paid generation calls with a free-plan limit during beta testing.
 - Add a one-minute quick experience so first-time users and judges can understand the app without setup.
 - Make the Wednesday demo reliable with an explicit scenario and final QA checklist.
+- Polish the first-use conversion path so visitors reach `/demo` or `/agent` with less hesitation.
+- Make the Pro plan feel like the natural upgrade for owners who manage replies, reviews, and promotions every day.
 - Keep app copy short, direct, and focused on the next action.
 - Connect paid external generation services through server-only routes and fallback behavior.
 - Keep user-facing screens focused on business outcomes instead of technical provider details.
@@ -49,6 +51,8 @@ Day 12 demo onboarding and final QA preparation is in progress. The app now has 
 - Day 11 shows pricing and upgrade intent without connecting Toss Payments or Stripe.
 - Day 12 adds `/demo` as the fastest entry point and keeps it separate from the real setup flow.
 - Quick-start examples add to the current browser experience and are used for presentation, onboarding, and beta testing.
+- Day 13 keeps `/agent` as the core value screen and makes `/dashboard` lead with today sales action first.
+- Day 13 improves conversion copy without adding payment, login, or automation features.
 - Supabase SQL still needs to be executed manually in the Supabase Dashboard before remote persistence can be fully verified.
 - Bottom navigation stays simple; history is reachable from the dashboard and app header instead of adding a fifth tab.
 - Codex is used for planning, implementation, and progress reporting.
@@ -64,4 +68,4 @@ Day 12 demo onboarding and final QA preparation is in progress. The app now has 
 
 ## Next Milestone
 
-Verify Day 12 demo onboarding end to end, deploy it to Vercel production, and use `/demo -> /agent -> /history -> /calendar -> /pricing -> /feedback` as the Wednesday presentation route. After submission, choose either login/Auth with Supabase user separation or payment/waitlist conversion as the next product step.
+Verify Day 13 conversion UX polish end to end, deploy it to Vercel production, and use `/ -> /demo -> /agent -> /history -> /calendar -> /pricing -> /feedback` as the Wednesday presentation route. Day 14 should focus on final submission stability, README, QA checklist, and video/demo flow.

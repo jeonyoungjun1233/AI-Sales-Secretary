@@ -106,11 +106,36 @@ export default function DashboardPage() {
       title="오늘은 무엇을 줄여드릴까요?"
       subtitle="답장, 리뷰, 홍보를 바로 시작하세요."
     >
-      <section className="rounded-[1.75rem] bg-slate-950 p-5 text-white shadow-2xl shadow-slate-300">
+      <section className="rounded-[1.75rem] bg-[linear-gradient(135deg,#10b981_0%,#14b8a6_100%)] p-5 text-white shadow-2xl shadow-emerald-200">
+        <div className="flex items-start justify-between gap-4">
+          <div>
+            <p className="text-sm font-black text-emerald-100">
+              오늘 매출 액션
+            </p>
+            <h2 className="mt-2 text-3xl font-black leading-tight">
+              오늘 할 일을 한 번에
+            </h2>
+            <p className="mt-2 text-sm font-semibold leading-6 text-emerald-50">
+              답장, 리뷰, 홍보를 한 번에 준비해요.
+            </p>
+          </div>
+          <span className="rounded-full bg-white/20 px-3 py-1 text-xs font-black">
+            추천
+          </span>
+        </div>
+        <Link
+          className="mt-5 flex min-h-14 items-center justify-center rounded-2xl bg-white px-5 py-3 text-base font-black text-emerald-700 shadow-lg shadow-emerald-700/10 transition active:scale-[0.99]"
+          href="/agent"
+        >
+          오늘 액션 만들기
+        </Link>
+      </section>
+
+      <section className="mt-4 rounded-[1.75rem] bg-slate-950 p-5 text-white shadow-xl shadow-slate-300">
         <p className="text-sm font-bold text-emerald-300">오늘 현황</p>
-        <h2 className="mt-2 text-3xl font-black leading-tight">
+        <h2 className="mt-2 text-2xl font-black leading-8">
           {summary.savedMinutesTotal
-            ? `오늘 ${summary.savedMinutesTotal}분 아꼈어요`
+            ? `${summary.savedMinutesTotal}분 아꼈어요`
             : `할 일 ${todayEvents.length}개`}
         </h2>
         <div className="mt-5 grid grid-cols-3 gap-2">
@@ -124,31 +149,6 @@ export default function DashboardPage() {
             </div>
           ))}
         </div>
-      </section>
-
-      <section className="mt-4 rounded-[1.75rem] bg-[linear-gradient(135deg,#10b981_0%,#14b8a6_100%)] p-5 text-white shadow-xl shadow-emerald-200">
-        <div className="flex items-start justify-between gap-4">
-          <div>
-            <p className="text-sm font-black text-emerald-100">
-              오늘 매출 액션
-            </p>
-            <h2 className="mt-2 text-2xl font-black leading-8">
-              답장, 리뷰, 홍보를 한 번에
-            </h2>
-            <p className="mt-2 text-sm font-semibold leading-6 text-emerald-50">
-              오늘 할 일을 바로 준비해요.
-            </p>
-          </div>
-          <span className="rounded-full bg-white/20 px-3 py-1 text-xs font-black">
-            추천
-          </span>
-        </div>
-        <Link
-          className="mt-5 flex min-h-14 items-center justify-center rounded-2xl bg-white px-5 py-3 text-base font-black text-emerald-700 shadow-lg shadow-emerald-700/10 transition active:scale-[0.99]"
-          href="/agent"
-        >
-          바로 만들기
-        </Link>
       </section>
 
       <section className="mt-4 rounded-[1.75rem] bg-white p-5 shadow-lg shadow-slate-950/5">

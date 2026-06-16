@@ -2,10 +2,22 @@
 
 ## Current Status
 
-Day 12 demo onboarding implementation is complete and deployed to Vercel production. The app now includes a `/demo` quick experience path, industry-specific example setup, landing/dashboard CTA updates, and an `/agent` first-visit prompt so first-time users can experience the value within one minute. Local lint/build passed, core routes returned HTTP 200, the browser flow verified `/demo -> /agent`, copy feedback, history save, and calendar save, and production routes returned HTTP 200. Supabase tables still need to be created in the dashboard before remote persistence can fully succeed.
+Day 13 conversion UX polish is implemented and local verification passed. The app keeps the Day 12 one-minute demo flow, and now the landing page, `/demo`, `/dashboard`, `/agent`, generation screens, `/pricing`, and `/feedback` are tighter so first-time owners can understand and act faster. Supabase tables still need to be created in the dashboard before remote persistence can fully succeed.
 
 ## Completed
 
+- Fixed mobile app header accessibility so the brand is not read as duplicated text.
+- Updated landing CTAs to focus on `/demo` and `/agent`.
+- Improved `/demo` industry cards with clearer selection styling and shorter descriptions.
+- Moved `/dashboard` today sales action card to the top.
+- Shortened `/agent` action card buttons to copy, history, calendar, and done actions.
+- Reduced visible option complexity on inquiry and promo generation screens.
+- Strengthened Pro plan conversion copy on `/pricing`.
+- Simplified `/feedback` into a shorter 30-second opinion flow.
+- Created `docs/UX_AUDIT_DAY13.md`.
+- Created `docs/DAY13_REPORT.md`.
+- Day 13 browser check confirmed landing CTA, `/demo` industry selection, `/dashboard` top sales action, `/agent` empty state, generation options, `/pricing`, and `/feedback` copy.
+- Day 13 mobile 390px check confirmed the main conversion screens do not horizontally overflow.
 - Added `/demo` as a one-minute quick experience route.
 - Added industry quick-start templates for cafe, restaurant, nail shop, hair salon, academy, and PT shop.
 - Added a quick-start apply function that prepares example store information, FAQs, schedules, and generation history.
@@ -178,6 +190,11 @@ Day 12 demo onboarding implementation is complete and deployed to Vercel product
 - Day 11 Vercel production deployment `dpl_59Lr1fwHUUo3Xyj1xFMvsfSGpyPL` is `READY`.
 - Day 11 production route checks returned HTTP 200 for `/`, `/dashboard`, `/agent`, `/pricing`, `/feedback`, `/calendar`, `/setup`, `/generate/inquiry`, `/generate/review`, `/generate/promo`, `/faq`, and `/history`.
 - Day 11 production usage-limit checks returned HTTP 402 before generation for `/api/generate` and `/api/agent/daily-action`.
+- Day 13 `npm run env:check` passed.
+- Day 13 `npm run supabase:check` confirmed Supabase config is OK and remote tables still need to be created.
+- Day 13 `npm run lint` passed.
+- Day 13 `npm run build` passed.
+- Day 13 local production server returned HTTP 200 for `/`, `/demo`, `/dashboard`, `/agent`, `/pricing`, `/feedback`, `/calendar`, `/setup`, `/generate/inquiry`, `/generate/review`, `/generate/promo`, `/faq`, and `/history`.
 
 ## Verification
 
@@ -320,4 +337,4 @@ Day 12 demo onboarding implementation is complete and deployed to Vercel product
 
 ## Next Action
 
-Run the latest `supabase/app_storage_schema.sql` in Supabase and re-run `npm run supabase:check` when ready. For the Wednesday submission, proceed to Day 12 demo stabilization and final QA.
+Commit and push the Day 13 conversion UX polish, then confirm the latest Vercel production deployment. After that, run the latest `supabase/app_storage_schema.sql` in Supabase and re-run `npm run supabase:check` when ready.

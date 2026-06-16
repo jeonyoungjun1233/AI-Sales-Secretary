@@ -24,7 +24,7 @@ export const billingPlans: BillingPlan[] = [
       "최근 기록 5개",
       "기본 답장/리뷰/홍보글 생성",
     ],
-    ctaLabel: "무료로 써보기",
+    ctaLabel: "무료로 시작",
     highlighted: false,
   },
   {
@@ -32,7 +32,7 @@ export const billingPlans: BillingPlan[] = [
     name: "베이직",
     priceLabel: "월 9,900원",
     monthlyGenerationLimit: 300,
-    recommendedFor: "작은 가게 1곳",
+    recommendedFor: "혼자 운영하는 가게",
     features: [
       "월 생성 300회",
       "생성 기록 저장",
@@ -47,7 +47,7 @@ export const billingPlans: BillingPlan[] = [
     name: "프로",
     priceLabel: "월 29,000원",
     monthlyGenerationLimit: 2000,
-    recommendedFor: "매일 홍보가 필요한 가게",
+    recommendedFor: "매일 홍보하고 리뷰 관리하는 사장님",
     features: [
       "월 생성 2,000회",
       "업종별 고급 템플릿",
@@ -55,7 +55,7 @@ export const billingPlans: BillingPlan[] = [
       "주간 홍보 캘린더",
       "고급 말투 설정",
     ],
-    ctaLabel: "준비 중",
+    ctaLabel: "출시 알림 받기",
     highlighted: true,
   },
   {
@@ -63,7 +63,7 @@ export const billingPlans: BillingPlan[] = [
     name: "비즈니스",
     priceLabel: "월 59,000원",
     monthlyGenerationLimit: 5000,
-    recommendedFor: "여러 매장 운영",
+    recommendedFor: "여러 매장을 운영할 때",
     features: [
       "여러 매장 관리",
       "직원 계정",

@@ -39,6 +39,7 @@ export default function InquiryGenerationPage() {
   const [response, setResponse] = useState<GenerateResponse | null>(null);
   const [isGenerating, setIsGenerating] = useState(false);
   const [notice, setNotice] = useState("");
+  const [showMoreTypes, setShowMoreTypes] = useState(false);
   const [usageSummary, setUsageSummary] = useState<UsageSnapshot>(() =>
     getUsageSummary([]),
   );
@@ -114,6 +115,12 @@ export default function InquiryGenerationPage() {
 
   const resultText = response?.text ?? "";
   const savedMinutes = response?.savedMinutes ?? 5;
+  const primaryInquiryTypes = inquiryCategoryOptions.filter((option) =>
+    ["reservation", "price", "hours", "other"].includes(option.value),
+  );
+  const secondaryInquiryTypes = inquiryCategoryOptions.filter((option) =>
+    ["parking", "menu", "location", "complaint"].includes(option.value),
+  );
 
   return (
     <GenerationPageLayout
@@ -128,7 +135,7 @@ export default function InquiryGenerationPage() {
 
         <InputCard
           title="손님 문의 내용"
-          description="질문을 넣고 유형을 고르세요."
+          description="질문을 넣고 자주 쓰는 유형만 고르세요."
         >
           <label className="grid gap-2">
             <span className="text-sm font-bold text-slate-800">
@@ -147,7 +154,7 @@ export default function InquiryGenerationPage() {
               문의 유형
             </legend>
             <div className="grid gap-2">
-              {inquiryCategoryOptions.map((type) => (
+              {primaryInquiryTypes.map((type) => (
                 <OptionChip
                   description={type.description}
                   key={type.value}
@@ -157,6 +164,26 @@ export default function InquiryGenerationPage() {
                 />
               ))}
             </div>
+            {showMoreTypes ? (
+              <div className="grid gap-2">
+                {secondaryInquiryTypes.map((type) => (
+                  <OptionChip
+                    description={type.description}
+                    key={type.value}
+                    label={type.label}
+                    onClick={() => setInquiryType(type.value)}
+                    selected={inquiryType === type.value}
+                  />
+                ))}
+              </div>
+            ) : null}
+            <button
+              className="text-left text-sm font-black text-emerald-700"
+              onClick={() => setShowMoreTypes((current) => !current)}
+              type="button"
+            >
+              {showMoreTypes ? "간단히 보기" : "주차·메뉴·위치 더 보기"}
+            </button>
           </fieldset>
 
           <fieldset className="grid gap-3">

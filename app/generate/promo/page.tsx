@@ -41,6 +41,7 @@ export default function PromoGenerationPage() {
   const [response, setResponse] = useState<GenerateResponse | null>(null);
   const [isGenerating, setIsGenerating] = useState(false);
   const [notice, setNotice] = useState("");
+  const [showMorePurposes, setShowMorePurposes] = useState(false);
   const [usageSummary, setUsageSummary] = useState<UsageSnapshot>(() =>
     getUsageSummary([]),
   );
@@ -115,6 +116,12 @@ export default function PromoGenerationPage() {
   }
 
   const resultText = response?.text ?? "";
+  const primaryPromoPurposes = promoPurposeOptions.filter((option) =>
+    ["reservation", "event", "new-menu", "rainy-day"].includes(option.value),
+  );
+  const secondaryPromoPurposes = promoPurposeOptions.filter(
+    (option) => option.value === "closing-soon",
+  );
 
   return (
     <GenerationPageLayout
@@ -129,23 +136,43 @@ export default function PromoGenerationPage() {
 
         <InputCard
           title="홍보글 조건"
-          description="목적과 채널을 골라주세요."
+          description="오늘 목적과 채널만 고르세요."
         >
           <fieldset className="grid gap-3">
             <legend className="text-sm font-bold text-slate-800">
               홍보 목적
             </legend>
             <div className="grid gap-2">
-              {promoPurposeOptions.map((item) => (
+              {primaryPromoPurposes.map((item) => (
                 <OptionChip
                   description={item.description}
                   key={item.value}
-                  label={item.label}
+                  label={item.value === "rainy-day" ? "날씨" : item.label}
                   onClick={() => setPurpose(item.value)}
                   selected={purpose === item.value}
                 />
               ))}
             </div>
+            {showMorePurposes ? (
+              <div className="grid gap-2">
+                {secondaryPromoPurposes.map((item) => (
+                  <OptionChip
+                    description={item.description}
+                    key={item.value}
+                    label={item.label}
+                    onClick={() => setPurpose(item.value)}
+                    selected={purpose === item.value}
+                  />
+                ))}
+              </div>
+            ) : null}
+            <button
+              className="text-left text-sm font-black text-emerald-700"
+              onClick={() => setShowMorePurposes((current) => !current)}
+              type="button"
+            >
+              {showMorePurposes ? "간단히 보기" : "마감 임박 더 보기"}
+            </button>
           </fieldset>
 
           <fieldset className="grid gap-3">

@@ -70,10 +70,10 @@ export default function DemoPage() {
 
               return (
                 <button
-                  className={`rounded-3xl border p-4 text-left transition active:scale-[0.99] ${
+                  className={`relative rounded-3xl border p-4 text-left transition active:scale-[0.99] ${
                     active
-                      ? "border-emerald-500 bg-emerald-50 shadow-lg shadow-emerald-100"
-                      : "border-slate-100 bg-slate-50 hover:border-emerald-200"
+                      ? "border-emerald-500 bg-emerald-50 shadow-lg shadow-emerald-100 ring-2 ring-emerald-100"
+                      : "border-slate-200 bg-white shadow-sm hover:border-emerald-200 hover:bg-emerald-50/40"
                   }`}
                   key={option.id}
                   onClick={() => {
@@ -82,6 +82,11 @@ export default function DemoPage() {
                   }}
                   type="button"
                 >
+                  {active ? (
+                    <span className="absolute right-3 top-3 rounded-full bg-emerald-500 px-2.5 py-1 text-[0.68rem] font-black text-white">
+                      선택됨
+                    </span>
+                  ) : null}
                   <span
                     className={`flex h-10 w-10 items-center justify-center rounded-2xl text-sm font-black ${
                       active
@@ -95,7 +100,7 @@ export default function DemoPage() {
                     {option.label}
                   </strong>
                   <span className="mt-1 block text-xs font-bold leading-5 text-slate-500">
-                    {option.description}
+                    {getShortIndustryDescription(option.id)}
                   </span>
                 </button>
               );
@@ -170,4 +175,17 @@ export default function DemoPage() {
       </div>
     </MobileAppShell>
   );
+}
+
+function getShortIndustryDescription(industry: QuickStartIndustry) {
+  const descriptions: Record<QuickStartIndustry, string> = {
+    cafe: "음료·디저트 홍보",
+    restaurant: "예약·포장 문의",
+    nail: "예약·가격 안내",
+    hair: "시술·예약 안내",
+    academy: "상담·수업 문의",
+    pt: "체험·상담 문의",
+  };
+
+  return descriptions[industry];
 }

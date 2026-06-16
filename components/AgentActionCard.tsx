@@ -61,47 +61,45 @@ export function AgentActionCard({
         {action.output}
       </p>
 
-      <div className="mt-4 grid gap-2">
+      <div className="mt-4 grid grid-cols-2 gap-2">
         {action.canCopy ? (
           <button
-            className="min-h-12 rounded-2xl bg-slate-950 px-4 py-2 text-sm font-black text-white transition active:scale-[0.99]"
+            className="min-h-11 rounded-2xl bg-slate-950 px-4 py-2 text-sm font-black text-white transition active:scale-[0.99]"
             onClick={() => onCopy(action)}
             type="button"
           >
-            복사하기
+            복사
           </button>
         ) : null}
-        <div className="grid grid-cols-2 gap-2">
-          {action.canSaveToHistory ? (
-            <button
-              className="min-h-11 rounded-2xl bg-emerald-50 px-4 py-2 text-sm font-black text-emerald-800 transition active:scale-[0.99]"
-              onClick={() => onSaveToHistory(action)}
-              type="button"
-            >
-              기록에 저장
-            </button>
-          ) : null}
-          {action.canAddToCalendar ? (
-            <button
-              className="min-h-11 rounded-2xl bg-sky-50 px-4 py-2 text-sm font-black text-sky-800 transition active:scale-[0.99]"
-              onClick={() => onAddToCalendar(action)}
-              type="button"
-            >
-              일정에 추가
-            </button>
-          ) : null}
+        {action.canSaveToHistory ? (
           <button
-            className={`min-h-11 rounded-2xl px-4 py-2 text-sm font-black transition active:scale-[0.99] ${
-              completed
-                ? "bg-emerald-500 text-white"
-                : "bg-slate-100 text-slate-600"
-            }`}
-            onClick={() => onComplete(action)}
+            className="min-h-11 rounded-2xl bg-emerald-50 px-4 py-2 text-sm font-black text-emerald-800 transition active:scale-[0.99]"
+            onClick={() => onSaveToHistory(action)}
             type="button"
           >
-            {completed ? "완료했어요" : "완료 표시"}
+            기록
           </button>
-        </div>
+        ) : null}
+        {action.canAddToCalendar ? (
+          <button
+            className="min-h-11 rounded-2xl bg-sky-50 px-4 py-2 text-sm font-black text-sky-800 transition active:scale-[0.99]"
+            onClick={() => onAddToCalendar(action)}
+            type="button"
+          >
+            일정
+          </button>
+        ) : null}
+        <button
+          className={`min-h-11 rounded-2xl px-4 py-2 text-sm font-black transition active:scale-[0.99] ${
+            completed
+              ? "bg-emerald-500 text-white"
+              : "bg-slate-100 text-slate-600"
+          }`}
+          onClick={() => onComplete(action)}
+          type="button"
+        >
+          {completed ? "완료됨" : "완료"}
+        </button>
       </div>
 
       <p className="min-h-5 pt-2 text-center text-xs font-black text-emerald-700">

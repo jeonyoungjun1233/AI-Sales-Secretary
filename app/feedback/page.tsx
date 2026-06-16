@@ -37,17 +37,17 @@ export default function FeedbackPage() {
     <MobileAppShell
       actionHref="/pricing"
       actionLabel="플랜"
-      title="써보신 느낌을 알려주세요"
-      subtitle="사장님 의견을 반영해 정식 버전을 준비하고 있어요."
+      title="30초 의견"
+      subtitle="정식 버전에 반영하겠습니다."
     >
       <div className="grid gap-5">
         <section className="rounded-[1.75rem] bg-slate-950 p-5 text-white shadow-2xl shadow-slate-300">
           <p className="text-sm font-black text-emerald-300">베타 테스트</p>
           <h2 className="mt-2 text-3xl font-black leading-tight">
-            실제로 쓸 만한지 알려주세요.
+            써볼 만한지 알려주세요.
           </h2>
           <p className="mt-3 text-sm font-semibold leading-6 text-slate-300">
-            답변은 제품 방향과 요금제 설계에 반영됩니다.
+            네 가지 질문만 답하면 끝입니다.
           </p>
         </section>
 
@@ -57,10 +57,10 @@ export default function FeedbackPage() {
               ✓
             </p>
             <h2 className="mt-3 text-2xl font-black text-slate-950">
-              의견을 남겨주셔서 감사합니다.
+              의견 감사합니다.
             </h2>
             <p className="mt-2 text-sm font-semibold leading-6 text-slate-500">
-              사장님이 더 쉽게 쓸 수 있게 다듬겠습니다.
+              정식 버전에 반영하겠습니다.
             </p>
           </section>
         ) : (
@@ -80,7 +80,7 @@ export default function FeedbackPage() {
             />
 
             <FeedbackSelect
-              label="월 얼마면 사용할 것 같나요?"
+              label="월 얼마면 괜찮나요?"
               onChange={setPrice}
               options={priceOptions}
               value={price}
@@ -88,12 +88,12 @@ export default function FeedbackPage() {
 
             <label className="grid gap-2">
               <span className="text-sm font-black text-slate-800">
-                불편했던 점
+                한마디 의견
               </span>
               <textarea
                 className="min-h-28 resize-none rounded-2xl border border-slate-200 bg-white px-4 py-3 text-base leading-7 outline-none transition placeholder:text-slate-400 focus:border-emerald-500 focus:ring-4 focus:ring-emerald-100"
                 onChange={(event) => setMemo(event.target.value)}
-                placeholder="예: 버튼 위치, 문구, 필요한 기능을 적어주세요."
+                placeholder="예: 가장 필요했던 기능이나 불편한 점을 적어주세요."
                 value={memo}
               />
             </label>

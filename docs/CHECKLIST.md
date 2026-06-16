@@ -4,10 +4,20 @@ This is the live checklist shown and maintained by Codex.
 
 ## In Progress
 
-- [ ] Plan Day 13 after Wednesday submission decision.
+- [ ] Verify, commit, push, and confirm Day 13 production deployment.
 
 ## Up Next
 
+- [x] Fix repeated brand text in the mobile app header.
+- [x] Strengthen landing CTA toward `/demo` and `/agent`.
+- [x] Improve `/demo` industry selection clarity.
+- [x] Move `/dashboard` today sales action to the top.
+- [x] Simplify `/agent` action card buttons.
+- [x] Reduce visible option complexity on generation screens.
+- [x] Strengthen `/pricing` plan conversion copy.
+- [x] Simplify `/feedback` into a 30-second survey.
+- [x] Create Day 13 UX audit and report docs.
+- [ ] Run verification, commit, push, and confirm Vercel production.
 - [x] Add `/demo` one-minute quick experience page.
 - [x] Add industry quick-start templates and apply flow.
 - [x] Connect landing, dashboard, and agent empty state to `/demo`.

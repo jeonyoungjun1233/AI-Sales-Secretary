@@ -246,10 +246,10 @@ export default function AgentPage() {
         <section className="rounded-[1.75rem] bg-slate-950 p-5 text-white shadow-2xl shadow-slate-300">
           <p className="text-sm font-bold text-emerald-300">원클릭 준비</p>
           <h2 className="mt-2 text-3xl font-black leading-tight">
-            {result?.summaryTitle || "버튼 하나로 정리해요"}
+            {result?.summaryTitle || "버튼 하나로 오늘 할 일 준비"}
           </h2>
           <p className="mt-3 text-sm font-semibold leading-6 text-slate-300">
-            {result?.summaryText || "답장, 리뷰, 홍보, 일정을 바로 준비합니다."}
+            {result?.summaryText || "답장, 리뷰, 홍보, 일정을 한 번에 준비해요."}
           </p>
         </section>
 

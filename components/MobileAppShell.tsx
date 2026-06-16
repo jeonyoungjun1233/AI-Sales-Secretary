@@ -25,11 +25,21 @@ export function MobileAppShell({
       <div className="mx-auto min-h-[100dvh] w-full max-w-[430px] bg-[#fbfffd] shadow-2xl shadow-slate-300/70 sm:min-h-[calc(100dvh-3rem)] sm:overflow-hidden sm:rounded-[2rem] sm:border sm:border-emerald-100">
         <header className="sticky top-0 z-30 border-b border-emerald-100 bg-[#fbfffd]/95 px-5 pb-4 pt-4 backdrop-blur-xl">
           <div className="flex items-center justify-between gap-3">
-            <Link className="flex items-center gap-2" href="/dashboard">
-              <span className="flex h-9 w-9 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-400 text-xs font-black text-white shadow-lg shadow-emerald-200">
+            <Link
+              aria-label={eyebrow}
+              className="flex items-center gap-2"
+              href="/dashboard"
+            >
+              <span
+                aria-hidden="true"
+                className="flex h-9 w-9 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-400 text-xs font-black text-white shadow-lg shadow-emerald-200"
+              >
                 AI
               </span>
-              <span className="text-sm font-black text-emerald-700">
+              <span
+                aria-hidden="true"
+                className="text-sm font-black text-emerald-700"
+              >
                 {eyebrow}
               </span>
             </Link>

@@ -90,7 +90,7 @@ export default function Home() {
               답장, 리뷰, 홍보글을 한 번에 준비하세요.
             </p>
             <p className="mt-4 max-w-2xl text-base font-semibold leading-7 text-slate-600">
-              복잡한 설정 없이 1분 만에 체험해보세요.
+              복잡한 설정 없이 1분 만에 체험해보세요. 복사해서 바로 쓰는 AI 알바생입니다.
             </p>
             <div className="mt-8 flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
               <PrimaryButton className="w-full sm:w-auto" href="/demo">
@@ -98,10 +98,10 @@ export default function Home() {
               </PrimaryButton>
               <PrimaryButton
                 className="w-full sm:w-auto"
-                href="/dashboard"
+                href="/agent"
                 variant="outline"
               >
-                데모 보기
+                오늘 액션 보기
               </PrimaryButton>
               <PrimaryButton
                 className="w-full sm:w-auto"
