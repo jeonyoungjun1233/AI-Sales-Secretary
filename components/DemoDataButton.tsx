@@ -146,7 +146,7 @@ export function DemoDataButton({ onLoaded }: DemoDataButtonProps) {
         onClick={handleLoadDemoData}
         type="button"
       >
-        {isLoading ? "예시 불러오는 중" : "데모 데이터 불러오기"}
+        {isLoading ? "예시 불러오는 중" : "발표 예시 불러오기"}
       </button>
       <p className="mt-2 min-h-5 text-center text-xs font-bold text-emerald-700">
         {message}

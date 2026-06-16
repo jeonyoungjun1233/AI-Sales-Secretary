@@ -6,7 +6,7 @@ Build an AI work assistant SaaS for Korean and global small business owners. The
 
 ## Current Phase
 
-Day 11 pricing and usage guard implementation is in progress. The app reads `.env.local` from the project root, calls OpenAI through server routes, and has a Supabase REST storage layer for business profile, FAQs, calendar events, and generation history. Day 11 adds `/pricing`, usage cards, free-plan generation limits, and beta feedback collection before real payment integration.
+Day 12 demo onboarding and final QA preparation is in progress. The app now has the paid-SaaS shape from Day 11, and Day 12 focuses on helping first-time visitors experience the value within one minute through `/demo`, industry quick-start examples, a clearer landing CTA, a dashboard quick-experience card, and final presentation documents.
 
 ## Priorities
 
@@ -23,6 +23,8 @@ Day 11 pricing and usage guard implementation is in progress. The app reads `.en
 - Add a one-click daily sales action workflow so owners do not need to choose between separate tools.
 - Add a pricing and usage experience so the app feels like a paid SaaS before real payment integration.
 - Protect paid generation calls with a free-plan limit during beta testing.
+- Add a one-minute quick experience so first-time users and judges can understand the app without setup.
+- Make the Wednesday demo reliable with an explicit scenario and final QA checklist.
 - Keep app copy short, direct, and focused on the next action.
 - Connect paid external generation services through server-only routes and fallback behavior.
 - Keep user-facing screens focused on business outcomes instead of technical provider details.
@@ -45,6 +47,8 @@ Day 11 pricing and usage guard implementation is in progress. The app reads `.en
 - Day 10 makes `/agent` the primary creation experience and keeps individual generation pages as deeper tools.
 - Day 11 keeps the default plan as free until login and payment exist.
 - Day 11 shows pricing and upgrade intent without connecting Toss Payments or Stripe.
+- Day 12 adds `/demo` as the fastest entry point and keeps it separate from the real setup flow.
+- Quick-start examples add to the current browser experience and are used for presentation, onboarding, and beta testing.
 - Supabase SQL still needs to be executed manually in the Supabase Dashboard before remote persistence can be fully verified.
 - Bottom navigation stays simple; history is reachable from the dashboard and app header instead of adding a fifth tab.
 - Codex is used for planning, implementation, and progress reporting.
@@ -60,4 +64,4 @@ Day 11 pricing and usage guard implementation is in progress. The app reads `.en
 
 ## Next Milestone
 
-Verify Day 11 pricing and usage flows end to end, then run `supabase/app_storage_schema.sql` in the Supabase SQL editor when ready and re-run `npm run supabase:check`. Keep login, payment, and real notification features out of scope until the next planned integration step.
+Verify Day 12 demo onboarding end to end, deploy it to Vercel production, and use `/demo -> /agent -> /history -> /calendar -> /pricing -> /feedback` as the Wednesday presentation route. After submission, choose either login/Auth with Supabase user separation or payment/waitlist conversion as the next product step.

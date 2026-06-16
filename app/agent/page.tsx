@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 
 import { AgentActionBundle } from "@/components/AgentActionBundle";
@@ -73,6 +74,9 @@ export default function AgentPage() {
   );
   const summary = getSavedWorkSummary(contextData.generations);
   const actionCount = result?.actions.length ?? 0;
+  const hasBusinessProfile = Boolean(
+    contextData.businessProfile?.businessName?.trim(),
+  );
   const completionText =
     actionCount > 0
       ? `오늘 ${actionCount}개 중 ${completedIds.length}개 완료`
@@ -255,6 +259,34 @@ export default function AgentPage() {
           todayEventCount={todayEvents.length}
         />
 
+        {!hasBusinessProfile ? (
+          <section className="rounded-[1.75rem] bg-white p-5 shadow-lg shadow-slate-950/5">
+            <p className="text-sm font-black text-emerald-700">
+              처음 오셨나요?
+            </p>
+            <h2 className="mt-2 text-2xl font-black leading-8 text-slate-950">
+              예시 가게로 체험해볼까요?
+            </h2>
+            <p className="mt-2 text-sm font-semibold leading-6 text-slate-600">
+              가게 정보가 있으면 더 자연스럽게 준비합니다.
+            </p>
+            <div className="mt-5 grid gap-3">
+              <Link
+                className="flex min-h-14 items-center justify-center rounded-2xl bg-emerald-500 px-5 py-3 text-base font-black text-white shadow-lg shadow-emerald-200 transition active:scale-[0.99]"
+                href="/demo"
+              >
+                1분 체험하기
+              </Link>
+              <Link
+                className="flex min-h-12 items-center justify-center rounded-2xl bg-emerald-50 px-5 py-3 text-sm font-black text-emerald-800 transition active:scale-[0.99]"
+                href="/setup"
+              >
+                내 가게 정보 입력
+              </Link>
+            </div>
+          </section>
+        ) : null}
+
         <UsageSummaryCard compact summary={usageSummary} />
 
         <section className="rounded-[1.5rem] bg-white p-4 shadow-lg shadow-slate-950/5">
@@ -309,9 +341,13 @@ function getTodayDateKey() {
 }
 
 async function copyText(text: string) {
-  if (navigator.clipboard) {
-    await navigator.clipboard.writeText(text);
-    return;
+  if (navigator.clipboard?.writeText) {
+    try {
+      await navigator.clipboard.writeText(text);
+      return;
+    } catch {
+      // 브라우저 권한이 막힌 경우 아래 방식으로 한 번 더 시도합니다.
+    }
   }
 
   const textarea = document.createElement("textarea");
@@ -321,7 +357,9 @@ async function copyText(text: string) {
   textarea.style.position = "fixed";
   textarea.style.left = "-9999px";
   document.body.appendChild(textarea);
+  textarea.focus();
   textarea.select();
+  textarea.setSelectionRange(0, textarea.value.length);
   document.execCommand("copy");
   document.body.removeChild(textarea);
 }

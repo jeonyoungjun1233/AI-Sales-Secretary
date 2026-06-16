@@ -4,10 +4,17 @@ This is the live checklist shown and maintained by Codex.
 
 ## In Progress
 
-- [ ] Run Supabase SQL schema in the Supabase dashboard.
+- [ ] Commit, push, and verify Day 12 Vercel production deployment.
 
 ## Up Next
 
+- [x] Add `/demo` one-minute quick experience page.
+- [x] Add industry quick-start templates and apply flow.
+- [x] Connect landing, dashboard, and agent empty state to `/demo`.
+- [x] Create demo scenario and final QA documents.
+- [x] Update README and Day 12 progress documents.
+- [x] Run `npm run env:check`, `npm run supabase:check`, `npm run lint`, and `npm run build`.
+- [ ] Commit, push, and verify Day 12 Vercel production deployment.
 - [x] Add billing plan definitions.
 - [x] Add usage calculation and free-plan guard utilities.
 - [x] Apply usage guard to `/api/generate` and `/api/agent/daily-action`.

@@ -84,24 +84,24 @@ export default function Home() {
               사장님 전용 AI 업무 앱
             </p>
             <h1 className="mt-5 max-w-3xl text-4xl font-black leading-tight text-slate-950 sm:text-5xl lg:text-6xl">
-              사장님, 손님 답장 놓치지 마세요.
+              사장님, 오늘 할 일을 AI가 정리해드릴게요.
             </h1>
             <p className="mt-5 max-w-2xl text-lg font-semibold leading-8 text-slate-700 sm:text-xl">
-              문의 답장, 리뷰 답글, 홍보글을 10초 만에 준비합니다.
+              답장, 리뷰, 홍보글을 한 번에 준비하세요.
             </p>
             <p className="mt-4 max-w-2xl text-base font-semibold leading-7 text-slate-600">
-              월 9,900원으로 AI 알바생처럼 반복 업무를 줄여보세요.
+              복잡한 설정 없이 1분 만에 체험해보세요.
             </p>
             <div className="mt-8 flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
-              <PrimaryButton className="w-full sm:w-auto" href="/dashboard">
-                앱 데모 보기
+              <PrimaryButton className="w-full sm:w-auto" href="/demo">
+                1분 체험하기
               </PrimaryButton>
               <PrimaryButton
                 className="w-full sm:w-auto"
-                href="/generate/inquiry"
+                href="/dashboard"
                 variant="outline"
               >
-                답장 먼저 만들기
+                데모 보기
               </PrimaryButton>
               <PrimaryButton
                 className="w-full sm:w-auto"
@@ -265,7 +265,7 @@ export default function Home() {
               리뷰 답글, 홍보글, 일정까지 한 번에 준비하세요.
             </p>
             </div>
-            <PrimaryButton href="/dashboard">앱 데모 보기</PrimaryButton>
+            <PrimaryButton href="/demo">1분 체험하기</PrimaryButton>
           </div>
         </div>
       </section>

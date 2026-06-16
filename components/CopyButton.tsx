@@ -21,25 +21,40 @@ export function CopyButton({ text, className = "" }: CopyButtonProps) {
 
   async function handleCopy() {
     try {
-      if (navigator.clipboard) {
-        await navigator.clipboard.writeText(text);
-      } else {
-        const textarea = document.createElement("textarea");
-        textarea.value = text;
-        textarea.setAttribute("readonly", "");
-        textarea.style.position = "fixed";
-        textarea.style.left = "-9999px";
-        document.body.appendChild(textarea);
-        textarea.select();
-        document.execCommand("copy");
-        document.body.removeChild(textarea);
+      if (navigator.clipboard?.writeText) {
+        try {
+          await navigator.clipboard.writeText(text);
+          setStatus("copied");
+          scheduleReset();
+          return;
+        } catch {
+          // 브라우저 권한이 막힌 경우 아래 방식으로 한 번 더 시도합니다.
+        }
       }
+
+      const textarea = document.createElement("textarea");
+
+      textarea.value = text;
+      textarea.setAttribute("readonly", "");
+      textarea.style.position = "fixed";
+      textarea.style.left = "-9999px";
+      document.body.appendChild(textarea);
+      textarea.focus();
+      textarea.select();
+      textarea.setSelectionRange(0, textarea.value.length);
+
+      document.execCommand("copy");
+      document.body.removeChild(textarea);
 
       setStatus("copied");
     } catch {
       setStatus("failed");
     }
 
+    scheduleReset();
+  }
+
+  function scheduleReset() {
     if (timeoutRef.current !== null) {
       window.clearTimeout(timeoutRef.current);
     }

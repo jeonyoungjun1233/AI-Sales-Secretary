@@ -151,6 +151,31 @@ export default function DashboardPage() {
         </Link>
       </section>
 
+      <section className="mt-4 rounded-[1.75rem] bg-white p-5 shadow-lg shadow-slate-950/5">
+        <div className="flex items-start justify-between gap-4">
+          <div>
+            <p className="text-sm font-black text-emerald-700">
+              처음이라면 1분 체험
+            </p>
+            <h2 className="mt-2 text-xl font-black leading-7 text-slate-950">
+              예시 가게로 바로 써보세요
+            </h2>
+            <p className="mt-2 text-sm font-semibold leading-6 text-slate-600">
+              업종만 고르면 바로 체험할 수 있어요.
+            </p>
+          </div>
+          <span className="rounded-full bg-emerald-50 px-3 py-1 text-xs font-black text-emerald-700">
+            1분
+          </span>
+        </div>
+        <Link
+          className="mt-5 flex min-h-14 items-center justify-center rounded-2xl bg-slate-950 px-5 py-3 text-base font-black text-white shadow-lg shadow-slate-200 transition active:scale-[0.99]"
+          href="/demo"
+        >
+          빠르게 체험하기
+        </Link>
+      </section>
+
       <div className="mt-4">
         <UsageSummaryCard summary={usageSummary} />
       </div>
