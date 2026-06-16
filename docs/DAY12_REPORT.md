@@ -117,6 +117,9 @@
 - 일정 추가 피드백과 `/calendar` 날짜 선택 후 반영 확인
 - API 키가 Git 추적 파일에 포함되지 않은 것 확인
 - `.env.local`이 Git 추적 파일이 아닌 것 확인
+- GitHub `main`에 Day 12 커밋 푸시 완료
+- Vercel Production 최신 배포 READY 확인
+- 프로덕션 `/`, `/demo`, `/dashboard`, `/agent`, `/pricing`, `/feedback`, `/calendar`, `/setup`, `/generate/inquiry`, `/generate/review`, `/generate/promo`, `/faq`, `/history` HTTP 200 확인
 
 ## 10. 수익화 관점에서의 판단
 

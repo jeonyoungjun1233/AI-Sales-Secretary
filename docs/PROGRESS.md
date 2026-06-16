@@ -2,7 +2,7 @@
 
 ## Current Status
 
-Day 12 demo onboarding implementation is complete locally and ready for GitHub/Vercel deployment. The app now includes a `/demo` quick experience path, industry-specific example setup, landing/dashboard CTA updates, and an `/agent` first-visit prompt so first-time users can experience the value within one minute. Local lint/build passed, core routes returned HTTP 200, and the browser flow verified `/demo -> /agent`, copy feedback, history save, and calendar save. Supabase tables still need to be created in the dashboard before remote persistence can fully succeed.
+Day 12 demo onboarding implementation is complete and deployed to Vercel production. The app now includes a `/demo` quick experience path, industry-specific example setup, landing/dashboard CTA updates, and an `/agent` first-visit prompt so first-time users can experience the value within one minute. Local lint/build passed, core routes returned HTTP 200, the browser flow verified `/demo -> /agent`, copy feedback, history save, and calendar save, and production routes returned HTTP 200. Supabase tables still need to be created in the dashboard before remote persistence can fully succeed.
 
 ## Completed
 
@@ -16,6 +16,8 @@ Day 12 demo onboarding implementation is complete locally and ready for GitHub/V
 - Created `docs/FINAL_QA_CHECKLIST.md`.
 - Updated `README.md` to reflect the Day 12 demo state.
 - Ran `npm run lint` successfully for the Day 12 implementation.
+- Built and deployed Day 12 to Vercel production from GitHub `main`.
+- Confirmed production `/`, `/demo`, `/dashboard`, `/agent`, `/pricing`, `/feedback`, `/calendar`, `/setup`, `/generate/inquiry`, `/generate/review`, `/generate/promo`, `/faq`, and `/history` return HTTP 200.
 - Added persistent project planning and progress documents.
 - Added instructions requiring Codex to keep these documents current.
 - Added a Codex-visible live checklist.
