@@ -2,7 +2,7 @@
 
 ## Current Status
 
-Day 13 conversion UX polish is implemented and local verification passed. The app keeps the Day 12 one-minute demo flow, and now the landing page, `/demo`, `/dashboard`, `/agent`, generation screens, `/pricing`, and `/feedback` are tighter so first-time owners can understand and act faster. Supabase tables still need to be created in the dashboard before remote persistence can fully succeed.
+Day 13 conversion UX polish is implemented, pushed to GitHub `main`, and deployed to Vercel production. The app keeps the Day 12 one-minute demo flow, and now the landing page, `/demo`, `/dashboard`, `/agent`, generation screens, `/pricing`, and `/feedback` are tighter so first-time owners can understand and act faster. Supabase tables still need to be created in the dashboard before remote persistence can fully succeed.
 
 ## Completed
 
@@ -195,6 +195,10 @@ Day 13 conversion UX polish is implemented and local verification passed. The ap
 - Day 13 `npm run lint` passed.
 - Day 13 `npm run build` passed.
 - Day 13 local production server returned HTTP 200 for `/`, `/demo`, `/dashboard`, `/agent`, `/pricing`, `/feedback`, `/calendar`, `/setup`, `/generate/inquiry`, `/generate/review`, `/generate/promo`, `/faq`, and `/history`.
+- Day 13 implementation was committed and pushed to GitHub `main`.
+- Day 13 Vercel production deployment `dpl_9eqxdrfFiN5GUHVqHpRZKwRFdAnv` is `READY`.
+- Day 13 production route checks returned HTTP 200 for `/`, `/demo`, `/dashboard`, `/agent`, `/pricing`, `/feedback`, `/calendar`, `/setup`, `/generate/inquiry`, `/generate/review`, `/generate/promo`, `/faq`, and `/history`.
+- Day 13 production HTML checks confirmed updated CTA and conversion copy on `/`, `/demo`, `/dashboard`, `/agent`, `/pricing`, and `/feedback`.
 
 ## Verification
 
@@ -337,4 +341,4 @@ Day 13 conversion UX polish is implemented and local verification passed. The ap
 
 ## Next Action
 
-Commit and push the Day 13 conversion UX polish, then confirm the latest Vercel production deployment. After that, run the latest `supabase/app_storage_schema.sql` in Supabase and re-run `npm run supabase:check` when ready.
+Proceed to Day 14 final submission stabilization: final README polish, presentation runbook, recording flow, and production QA. Separately, run the latest `supabase/app_storage_schema.sql` in Supabase and re-run `npm run supabase:check` when ready.

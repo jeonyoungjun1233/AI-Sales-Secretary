@@ -4,7 +4,7 @@ This is the live checklist shown and maintained by Codex.
 
 ## In Progress
 
-- [ ] Verify, commit, push, and confirm Day 13 production deployment.
+- [ ] Prepare Day 14 final submission stabilization.
 
 ## Up Next
 
@@ -17,7 +17,7 @@ This is the live checklist shown and maintained by Codex.
 - [x] Strengthen `/pricing` plan conversion copy.
 - [x] Simplify `/feedback` into a 30-second survey.
 - [x] Create Day 13 UX audit and report docs.
-- [ ] Run verification, commit, push, and confirm Vercel production.
+- [x] Run verification, commit, push, and confirm Vercel production.
 - [x] Add `/demo` one-minute quick experience page.
 - [x] Add industry quick-start templates and apply flow.
 - [x] Connect landing, dashboard, and agent empty state to `/demo`.

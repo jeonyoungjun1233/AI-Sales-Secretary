@@ -107,6 +107,10 @@
 - 사용자 화면에 개발자 용어가 노출되지 않도록 점검. 내부 import 경로의 `mockCalendar` 파일명만 검색됨
 - API 키 패턴 스캔 결과 코드/문서에서 키 노출 없음. `package-lock.json`의 무해한 integrity 문자열만 검색됨
 - `.env.local`은 Git 추적 대상이 아님을 확인
+- GitHub `main`에 커밋/푸시 완료
+- Vercel Production 배포 `dpl_9eqxdrfFiN5GUHVqHpRZKwRFdAnv` READY 확인
+- 프로덕션 URL에서 `/`, `/demo`, `/dashboard`, `/agent`, `/pricing`, `/feedback`, `/calendar`, `/setup`, `/generate/inquiry`, `/generate/review`, `/generate/promo`, `/faq`, `/history` HTTP 200 확인
+- 프로덕션 HTML에서 Day 13 CTA와 전환 카피 반영 확인
 
 ## 11. 수익화 관점에서의 판단
 
