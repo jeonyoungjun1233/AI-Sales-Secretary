@@ -6,15 +6,17 @@ import { PrimaryButton } from "./PrimaryButton";
 
 const navItems = [
   { label: "소개", href: "/" },
+  { label: "사용법", href: "/guide" },
   { label: "요금제", href: "/pricing" },
   { label: "대시보드", href: "/dashboard" },
-  { label: "가게 정보", href: "/setup" },
+  { label: "계정", href: "/account" },
 ];
 
 export function AppHeader() {
   const pathname = usePathname();
   const isAppRoute =
     pathname.startsWith("/dashboard") ||
+    pathname.startsWith("/demo") ||
     pathname.startsWith("/setup") ||
     pathname.startsWith("/generate") ||
     pathname.startsWith("/calendar") ||
@@ -22,7 +24,13 @@ export function AppHeader() {
     pathname.startsWith("/faq") ||
     pathname.startsWith("/history") ||
     pathname.startsWith("/pricing") ||
-    pathname.startsWith("/feedback");
+    pathname.startsWith("/feedback") ||
+    pathname.startsWith("/login") ||
+    pathname.startsWith("/signup") ||
+    pathname.startsWith("/account") ||
+    pathname.startsWith("/guide") ||
+    pathname.startsWith("/submission") ||
+    pathname.startsWith("/roadmap");
 
   if (isAppRoute) {
     return null;
@@ -33,7 +41,7 @@ export function AppHeader() {
       <div className="mx-auto flex min-h-16 w-full max-w-6xl items-center justify-between gap-3 px-4 sm:px-6">
         <Link className="flex min-w-0 items-center gap-3" href="/">
           <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500 to-teal-400 text-sm font-black text-white shadow-lg shadow-emerald-200">
-            AI
+            매
           </span>
           <span className="truncate text-base font-black text-slate-950 sm:text-lg">
             AI 사장님 매출 비서
@@ -52,8 +60,8 @@ export function AppHeader() {
           ))}
         </nav>
 
-        <PrimaryButton className="hidden sm:inline-flex" href="/setup">
-          무료로 시작하기
+        <PrimaryButton className="hidden sm:inline-flex" href="/demo">
+          1분 체험하기
         </PrimaryButton>
       </div>
     </header>

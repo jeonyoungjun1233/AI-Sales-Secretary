@@ -24,6 +24,10 @@ export function BottomTabNav() {
             (tab.href === "/account" &&
               ["/setup", "/login", "/signup"].some((path) =>
                 pathname.startsWith(path),
+              )) ||
+            (tab.href === "/dashboard" &&
+              ["/guide", "/submission", "/roadmap"].some((path) =>
+                pathname.startsWith(path),
               ));
 
           return (

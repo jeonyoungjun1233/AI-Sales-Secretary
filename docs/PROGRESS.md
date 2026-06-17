@@ -2,7 +2,7 @@
 
 ## Current Status
 
-Day 14 Supabase Auth account flow is implemented and deployed to Vercel production. Day 14 adds email/password login, signup, account status, and account-based storage separation while keeping `/demo` available without login. Supabase storage tables still need to be created in the dashboard before remote persistence can fully succeed.
+Day 16 final user guide and submission walkthrough are in progress. The app already has login/signup, account, demo, dashboard, generation, calendar, history, pricing, and feedback flows. Day 16 adds `/guide`, `/submission`, and `/roadmap` so first-time users and evaluators can understand the product quickly.
 
 ## Completed
 
@@ -219,6 +219,22 @@ Day 14 Supabase Auth account flow is implemented and deployed to Vercel producti
 - Day 14 Vercel production deployment is `READY`.
 - Day 14 production route checks returned HTTP 200 for `/`, `/demo`, `/login`, `/signup`, `/account`, `/dashboard`, `/agent`, `/pricing`, `/feedback`, `/calendar`, `/setup`, `/generate/inquiry`, `/generate/review`, `/generate/promo`, `/faq`, and `/history`.
 - Day 14 production HTML checks confirmed `/login`, `/signup`, `/account`, and `/dashboard` render the expected Korean headings.
+- Added Day 16 `/guide` page with a six-step user guide.
+- Added screenshot-style guide cards built with Tailwind components.
+- Added Day 16 `/submission` overview page for final presentation.
+- Added Day 16 `/roadmap` page for future update direction.
+- Added “사용법 보기” entry points to landing, demo, dashboard, agent, and account screens.
+- Updated the global app header and mobile shell badge to avoid repeated visual brand text.
+- Created `docs/USER_GUIDE.md`.
+- Created `docs/DAY16_REPORT.md`.
+- Updated `README.md`, `docs/DEMO_SCENARIO.md`, and `docs/FINAL_QA_CHECKLIST.md` for the final submission flow.
+- Day 16 `npm run env:check` passed.
+- Day 16 `npm run supabase:check` confirmed Supabase config is OK and remote tables still need to be created.
+- Day 16 `npm run lint` passed.
+- Day 16 `npm run build` passed and generated `/guide`, `/submission`, and `/roadmap`.
+- Day 16 local production server returned HTTP 200 for `/`, `/guide`, `/submission`, `/roadmap`, `/demo`, `/dashboard`, `/agent`, `/pricing`, `/feedback`, `/calendar`, `/setup`, `/generate/inquiry`, `/generate/review`, `/generate/promo`, `/faq`, `/history`, and `/account`.
+- Day 16 mobile browser check confirmed `/guide`, `/submission`, `/roadmap`, `/demo`, `/dashboard`, `/agent`, and `/account` do not horizontally overflow.
+- Day 16 secret scan found no committed API keys; only package-lock integrity false positives were found.
 
 ## Verification
 
@@ -361,4 +377,4 @@ Day 14 Supabase Auth account flow is implemented and deployed to Vercel producti
 
 ## Next Action
 
-Run the latest `supabase/app_storage_schema.sql` in Supabase and re-run `npm run supabase:check` when ready. Day 15 can focus on final submission stability, PWA polish, README, and presentation QA.
+Commit and push the Day 16 final guide work, then confirm Vercel production. Separately, run the latest `supabase/app_storage_schema.sql` in Supabase and re-run `npm run supabase:check` when ready.

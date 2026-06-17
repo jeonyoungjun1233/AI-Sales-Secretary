@@ -6,7 +6,7 @@ Build an AI work assistant SaaS for Korean and global small business owners. The
 
 ## Current Phase
 
-Day 14 Supabase Auth account flow is implemented and deployed. Day 13 polished the first-use conversion path; Day 14 turns the app into a more realistic SaaS by adding email/password login, signup, account status, and account-based storage separation while keeping the one-minute demo usable without login.
+Day 16 final user guide and submission walkthrough are in progress. Day 14 added email/password login, signup, account status, and account-based storage separation. Day 16 focuses on making the product understandable in one minute through `/guide`, `/submission`, and `/roadmap`.
 
 ## Priorities
 
@@ -30,6 +30,9 @@ Day 14 Supabase Auth account flow is implemented and deployed. Day 13 polished t
 - Keep app copy short, direct, and focused on the next action.
 - Add account creation and login so owners can keep store information and work records under a real account.
 - Preserve the `/demo` one-minute experience for visitors who are not ready to create an account.
+- Add a final user guide so first-time visitors know exactly which button to press.
+- Add a submission overview page that explains the service, demo order, and monetization path quickly.
+- Add a roadmap page that shows how the app can grow into a paid SaaS.
 - Connect paid external generation services through server-only routes and fallback behavior.
 - Keep user-facing screens focused on business outcomes instead of technical provider details.
 - Keep API keys out of Git, browser code, logs, and documentation.
@@ -59,6 +62,8 @@ Day 14 Supabase Auth account flow is implemented and deployed. Day 13 polished t
 - Day 14 keeps guest demo storage separate from signed-in account storage.
 - Day 14 does not automatically migrate guest records into an account.
 - Day 14 changes the bottom tab from store setup to account, while setup remains accessible from `/account`.
+- Day 16 uses code-built screenshot-style cards instead of static screenshot files so the guide stays easy to maintain.
+- Day 16 makes `/guide` the safest route for first-time users and evaluators.
 - Supabase SQL still needs to be executed manually in the Supabase Dashboard before remote persistence can be fully verified.
 - Bottom navigation stays simple; history is reachable from the dashboard and app header instead of adding a fifth tab.
 - Codex is used for planning, implementation, and progress reporting.
@@ -75,4 +80,4 @@ Day 14 Supabase Auth account flow is implemented and deployed. Day 13 polished t
 
 ## Next Milestone
 
-Use `/ -> /demo -> /signup or /login -> /account -> /dashboard -> /agent` as the account-based SaaS demo route. Day 15 should focus on final submission stability, PWA polish, README, QA checklist, Supabase SQL application, and video/demo flow.
+Use `/submission -> /guide -> /demo -> /agent -> /history -> /calendar -> /pricing -> /roadmap` as the final presentation route. After Day 16, the remaining submission work is final QA, Supabase SQL application, and production route confirmation.

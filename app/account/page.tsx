@@ -89,6 +89,9 @@ export default function AccountPage() {
           <PrimaryButton href="/demo" variant="outline">
             1분 체험
           </PrimaryButton>
+          <PrimaryButton href="/guide" variant="soft">
+            사용법 보기
+          </PrimaryButton>
         </section>
 
         {message ? (
@@ -157,6 +160,9 @@ export default function AccountPage() {
         </PrimaryButton>
         <PrimaryButton href="/feedback" variant="outline">
           의견 남기기
+        </PrimaryButton>
+        <PrimaryButton href="/guide" variant="soft">
+          사용법 보기
         </PrimaryButton>
         <button
           className="min-h-14 rounded-2xl border border-slate-200 bg-white px-5 py-3 text-base font-black text-slate-700 shadow-sm transition active:scale-[0.99]"

@@ -237,8 +237,8 @@ export default function AgentPage() {
 
   return (
     <MobileAppShell
-      actionHref="/history"
-      actionLabel="기록"
+      actionHref="/guide"
+      actionLabel="사용법"
       title="오늘 매출 액션"
       subtitle="오늘 할 일을 한 번에 준비해요."
     >
@@ -258,6 +258,34 @@ export default function AgentPage() {
           savedMinutes={result?.savedMinutes ?? summary.savedMinutesTotal}
           todayEventCount={todayEvents.length}
         />
+
+        <section className="rounded-[1.75rem] bg-white p-5 shadow-lg shadow-slate-950/5">
+          <div className="flex items-start justify-between gap-4">
+            <div>
+              <p className="text-sm font-black text-emerald-700">
+                버튼 하나로 시작
+              </p>
+              <h2 className="mt-2 text-xl font-black leading-7 text-slate-950">
+                오늘 할 일을 정리해요.
+              </h2>
+              <p className="mt-2 text-sm font-semibold leading-6 text-slate-600">
+                처음이면 사용법부터 봐도 좋아요.
+              </p>
+            </div>
+            <span
+              aria-hidden="true"
+              className="text-2xl font-black text-emerald-500"
+            >
+              →
+            </span>
+          </div>
+          <Link
+            className="mt-5 flex min-h-12 items-center justify-center rounded-2xl bg-emerald-50 px-5 py-3 text-sm font-black text-emerald-800 transition active:scale-[0.99]"
+            href="/guide"
+          >
+            사용법 보기
+          </Link>
+        </section>
 
         {!hasBusinessProfile ? (
           <section className="rounded-[1.75rem] bg-white p-5 shadow-lg shadow-slate-950/5">

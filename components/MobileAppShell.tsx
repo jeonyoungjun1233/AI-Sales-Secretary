@@ -34,7 +34,7 @@ export function MobileAppShell({
                 aria-hidden="true"
                 className="flex h-9 w-9 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-400 text-xs font-black text-white shadow-lg shadow-emerald-200"
               >
-                AI
+                매
               </span>
               <span
                 aria-hidden="true"

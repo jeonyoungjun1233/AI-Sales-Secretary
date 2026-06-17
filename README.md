@@ -1,54 +1,75 @@
-# AI Sales Secretary
+# AI 사장님 매출 비서
 
-AI 사장님 매출 비서는 한국 및 글로벌 소상공인, 자영업자, 1인 사업자를 위한 AI 업무 보조 SaaS 웹앱입니다.
+한국 및 글로벌 소상공인, 자영업자, 1인 사업자를 위한 AI 업무 보조 SaaS 웹앱입니다.
 
-현재 구현 범위는 Day 12 데모 제출 버전입니다.
+답장, 리뷰, 홍보글, 일정 관리를 한 번에 도와주는 “사장님 전용 AI 업무 비서”를 목표로 합니다.
 
 ## Production
 
-- URL: https://ai-sales-secretary.vercel.app/
-- 빠른 체험: https://ai-sales-secretary.vercel.app/demo
+- 서비스: https://ai-sales-secretary.vercel.app/
+- 사용법: https://ai-sales-secretary.vercel.app/guide
+- 제출용 요약: https://ai-sales-secretary.vercel.app/submission
+- 앞으로 업데이트: https://ai-sales-secretary.vercel.app/roadmap
 
-## 주요 기능
+## 주요 화면
 
-- 랜딩페이지
-- 모바일 앱형 대시보드
-- 1분 빠른 체험
-- 오늘 매출 액션 센터
+- `/` 랜딩페이지
+- `/guide` 사용 가이드
+- `/submission` 제출용 한눈에 보기
+- `/roadmap` 앞으로 업데이트 방향
+- `/demo` 1분 빠른 체험
+- `/dashboard` 모바일 앱형 대시보드
+- `/agent` 오늘 매출 액션 센터
+- `/generate/inquiry` 손님 문의 답장
+- `/generate/review` 리뷰 답글
+- `/generate/promo` 홍보글
+- `/history` 생성 기록
+- `/calendar` 월간 일정
+- `/faq` FAQ 관리
+- `/setup` 가게 정보
+- `/account` 계정 화면
+- `/pricing` 요금제
+- `/feedback` 베타 피드백
+
+## 핵심 기능
+
+- 업종별 1분 체험
+- 오늘 매출 액션 생성
 - 손님 문의 답장 생성
 - 리뷰 답글 생성
 - 홍보글 생성
-- FAQ 관리
+- 결과 복사와 기록 저장
 - 월간 캘린더 일정 관리
-- 가게 정보 등록
-- 생성 기록 저장
-- 요금제 화면
-- 베타 피드백 화면
+- 계정 기반 저장 흐름
+- 요금제와 베타 피드백 흐름
 
-## Tech Stack
+## 기술 스택
 
 - Next.js App Router
 - TypeScript
 - Tailwind CSS
 - OpenAI server route
-- Supabase REST storage layer
+- Supabase REST storage and Auth structure
 - Vercel
 
-## 구현 상태
+## 수익화 구조
 
-- OpenAI 생성은 서버 Route를 통해 연결되어 있습니다.
-- Supabase 저장 구조는 구현되어 있지만, 원격 테이블은 Supabase SQL 적용 후 완전히 검증됩니다.
-- 브라우저별 임시 저장으로 발표 데모는 로그인 없이도 작동합니다.
-- 실제 로그인, 결제, 알림, 외부 채널 자동 전송은 아직 구현하지 않았습니다.
+- 무료 체험: 제한된 생성 횟수
+- 베이직: 혼자 운영하는 가게
+- 프로: 매일 홍보하고 리뷰 관리하는 사장님
+- 비즈니스: 여러 매장과 직원 계정
 
-## 데모 흐름
+실제 결제는 아직 연결하지 않았습니다.
 
-1. `/demo`에서 업종을 선택합니다.
-2. “예시 가게로 시작하기”를 누릅니다.
-3. `/agent`에서 “오늘 액션 만들기”를 누릅니다.
-4. 생성된 문구를 복사하거나 기록에 저장합니다.
-5. 일정 제안을 캘린더에 추가합니다.
-6. `/pricing`과 `/feedback`으로 수익화와 베타 테스트 흐름을 설명합니다.
+## 향후 로드맵
+
+- Supabase 테이블과 RLS 완전 적용
+- 로그인 전 기록을 계정으로 가져오기
+- 실제 결제와 구독
+- 카카오톡, 인스타그램, 네이버 작업 연결
+- 날씨와 상권에 맞는 홍보 추천
+- 여러 매장 관리
+- 영어 버전
 
 ## Local Development
 
@@ -62,12 +83,17 @@ npm run dev
 ## Verification
 
 ```bash
+npm run env:check
+npm run supabase:check
 npm run lint
 npm run build
 ```
+
+Supabase 원격 테이블이 아직 없으면 `npm run supabase:check`는 실패할 수 있습니다.
 
 ## 보안 주의
 
 - API 키를 코드, 문서, 커밋 메시지에 쓰지 않습니다.
 - `.env.local`은 Git에 커밋하지 않습니다.
 - 브라우저 코드에서 서버 전용 키를 사용하지 않습니다.
+- 실제 결제, 실제 알림, 외부 채널 자동 전송은 아직 연결하지 않았습니다.

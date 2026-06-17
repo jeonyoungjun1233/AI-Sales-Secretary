@@ -110,6 +110,13 @@ export default function Home() {
               >
                 요금제 보기
               </PrimaryButton>
+              <PrimaryButton
+                className="w-full sm:w-auto"
+                href="/guide"
+                variant="soft"
+              >
+                사용법 보기
+              </PrimaryButton>
             </div>
           </div>
 
@@ -172,9 +179,9 @@ export default function Home() {
                 <span className="rounded-xl bg-emerald-500 py-2 text-white">
                   홈
                 </span>
-                <span className="py-2">만들기</span>
+                <span className="py-2">액션</span>
                 <span className="py-2">일정</span>
-                <span className="py-2">가게</span>
+                <span className="py-2">계정</span>
               </div>
             </div>
           </div>
@@ -265,7 +272,12 @@ export default function Home() {
               리뷰 답글, 홍보글, 일정까지 한 번에 준비하세요.
             </p>
             </div>
-            <PrimaryButton href="/demo">1분 체험하기</PrimaryButton>
+            <div className="grid gap-3 sm:flex sm:justify-end">
+              <PrimaryButton href="/demo">1분 체험하기</PrimaryButton>
+              <PrimaryButton href="/guide" variant="outline">
+                사용법 보기
+              </PrimaryButton>
+            </div>
           </div>
         </div>
       </section>

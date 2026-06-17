@@ -35,8 +35,8 @@ export default function DemoPage() {
 
   return (
     <MobileAppShell
-      actionHref="/agent"
-      actionLabel="액션"
+      actionHref="/guide"
+      actionLabel="사용법"
       title="1분 체험"
       subtitle="가게 예시를 넣고 바로 AI 매출 액션을 만들어보세요."
     >
@@ -49,6 +49,12 @@ export default function DemoPage() {
           <p className="mt-3 text-sm font-semibold leading-6 text-slate-300">
             업종을 고르면 예시 가게, 질문, 일정, 최근 문구를 채워드려요.
           </p>
+          <Link
+            className="mt-5 inline-flex min-h-11 items-center justify-center rounded-2xl bg-white/10 px-4 py-2 text-sm font-black text-white ring-1 ring-white/15 transition active:scale-[0.99]"
+            href="/guide"
+          >
+            사용법 보기
+          </Link>
         </section>
 
         <section className="rounded-[1.75rem] bg-white p-4 shadow-lg shadow-slate-950/5">

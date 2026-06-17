@@ -135,6 +135,34 @@ export default function DashboardPage() {
         </Link>
       </section>
 
+      <section className="mt-4 rounded-[1.75rem] bg-white p-5 shadow-lg shadow-slate-950/5">
+        <div className="flex items-start justify-between gap-4">
+          <div>
+            <p className="text-sm font-black text-emerald-700">
+              처음 쓰시나요?
+            </p>
+            <h2 className="mt-2 text-xl font-black leading-7 text-slate-950">
+              1분 체험부터 해보세요.
+            </h2>
+            <p className="mt-2 text-sm font-semibold leading-6 text-slate-600">
+              어디를 누를지 바로 보여드릴게요.
+            </p>
+          </div>
+          <span
+            aria-hidden="true"
+            className="text-2xl font-black text-emerald-500"
+          >
+            →
+          </span>
+        </div>
+        <Link
+          className="mt-5 flex min-h-12 items-center justify-center rounded-2xl bg-emerald-50 px-5 py-3 text-sm font-black text-emerald-800 transition active:scale-[0.99]"
+          href="/guide"
+        >
+          사용법 보기
+        </Link>
+      </section>
+
       {!signedIn ? (
         <section className="mt-4 rounded-[1.75rem] border border-emerald-100 bg-white p-5 shadow-lg shadow-emerald-950/5">
           <div className="flex items-start justify-between gap-4">
