@@ -6,7 +6,7 @@ Build an AI work assistant SaaS for Korean and global small business owners. The
 
 ## Current Phase
 
-Day 16 final user guide and submission walkthrough are in progress. Day 14 added email/password login, signup, account status, and account-based storage separation. Day 16 focuses on making the product understandable in one minute through `/guide`, `/submission`, and `/roadmap`.
+Day 16 final user guide and submission walkthrough are implemented and deployed. Day 14 added email/password login, signup, account status, and account-based storage separation. Day 16 makes the product understandable in one minute through `/guide`, `/submission`, and `/roadmap`.
 
 ## Priorities
 
@@ -80,4 +80,4 @@ Day 16 final user guide and submission walkthrough are in progress. Day 14 added
 
 ## Next Milestone
 
-Use `/submission -> /guide -> /demo -> /agent -> /history -> /calendar -> /pricing -> /roadmap` as the final presentation route. After Day 16, the remaining submission work is final QA, Supabase SQL application, and production route confirmation.
+Use `/submission -> /guide -> /demo -> /agent -> /history -> /calendar -> /pricing -> /roadmap` as the final presentation route. After Day 16, the remaining work is final live rehearsal and Supabase SQL application.

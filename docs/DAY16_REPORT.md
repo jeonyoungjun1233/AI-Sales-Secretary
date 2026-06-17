@@ -130,7 +130,10 @@
 
 ## 12. GitHub/Vercel 배포 결과
 
-배포 결과는 커밋과 Vercel 확인 후 업데이트한다.
+- GitHub `main`에 커밋 `0eafd27`을 푸시했다.
+- Vercel 최신 프로덕션 배포가 `READY` 상태임을 확인했다.
+- 프로덕션 URL에서 `/`, `/guide`, `/submission`, `/roadmap`, `/demo`, `/dashboard`, `/agent`, `/pricing`, `/feedback`, `/calendar`, `/setup`, `/generate/inquiry`, `/generate/review`, `/generate/promo`, `/faq`, `/history`, `/account`가 모두 HTTP 200을 반환했다.
+- 프로덕션 HTML에서 `/guide`, `/submission`, `/roadmap`, `/`, `/dashboard`, `/agent`의 핵심 문구가 렌더링되는 것을 확인했다.
 
 ## 13. 제출 전 최종 확인 사항
 

@@ -4,7 +4,7 @@ This is the live checklist shown and maintained by Codex.
 
 ## In Progress
 
-- [ ] Implement Day 16 final user guide and submission walkthrough.
+- [x] Day 16 final user guide and submission walkthrough deployed to Vercel production.
 
 ## Up Next
 
@@ -18,7 +18,7 @@ This is the live checklist shown and maintained by Codex.
 - [x] Update README and final demo documents.
 - [x] Run `npm run env:check`, `npm run supabase:check`, `npm run lint`, and `npm run build`.
 - [x] Verify guide, submission, roadmap, and core routes.
-- [ ] Commit, push, and confirm Vercel production.
+- [x] Commit, push, and confirm Vercel production.
 - [x] Day 14 Supabase Auth account flow deployed to Vercel production.
 - [x] Add Supabase Auth types and fetch-based client.
 - [x] Add browser auth store with account-based save key.

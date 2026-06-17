@@ -2,7 +2,7 @@
 
 ## Current Status
 
-Day 16 final user guide and submission walkthrough are in progress. The app already has login/signup, account, demo, dashboard, generation, calendar, history, pricing, and feedback flows. Day 16 adds `/guide`, `/submission`, and `/roadmap` so first-time users and evaluators can understand the product quickly.
+Day 16 final user guide and submission walkthrough are implemented and deployed. The app has login/signup, account, demo, dashboard, generation, calendar, history, pricing, feedback, guide, submission overview, and roadmap flows.
 
 ## Completed
 
@@ -235,6 +235,10 @@ Day 16 final user guide and submission walkthrough are in progress. The app alre
 - Day 16 local production server returned HTTP 200 for `/`, `/guide`, `/submission`, `/roadmap`, `/demo`, `/dashboard`, `/agent`, `/pricing`, `/feedback`, `/calendar`, `/setup`, `/generate/inquiry`, `/generate/review`, `/generate/promo`, `/faq`, `/history`, and `/account`.
 - Day 16 mobile browser check confirmed `/guide`, `/submission`, `/roadmap`, `/demo`, `/dashboard`, `/agent`, and `/account` do not horizontally overflow.
 - Day 16 secret scan found no committed API keys; only package-lock integrity false positives were found.
+- Day 16 implementation was committed as `0eafd27` and pushed to GitHub `main`.
+- Day 16 Vercel production deployment is `READY`.
+- Day 16 production route checks returned HTTP 200 for `/`, `/guide`, `/submission`, `/roadmap`, `/demo`, `/dashboard`, `/agent`, `/pricing`, `/feedback`, `/calendar`, `/setup`, `/generate/inquiry`, `/generate/review`, `/generate/promo`, `/faq`, `/history`, and `/account`.
+- Day 16 production HTML checks confirmed `/guide`, `/submission`, `/roadmap`, `/`, `/dashboard`, and `/agent` render the expected Korean headings.
 
 ## Verification
 
@@ -377,4 +381,4 @@ Day 16 final user guide and submission walkthrough are in progress. The app alre
 
 ## Next Action
 
-Commit and push the Day 16 final guide work, then confirm Vercel production. Separately, run the latest `supabase/app_storage_schema.sql` in Supabase and re-run `npm run supabase:check` when ready.
+Submit using `/submission -> /guide -> /demo -> /agent -> /history -> /calendar -> /pricing -> /roadmap`. Separately, run the latest `supabase/app_storage_schema.sql` in Supabase and re-run `npm run supabase:check` when ready.
