@@ -110,6 +110,10 @@
 - 브라우저 확인으로 `/login`, `/signup`, `/account` 화면의 주요 문구와 버튼을 확인했다.
 - 로그인 화면에서 빈 값 제출 시 쉬운 안내 문구가 표시되는 것을 확인했다.
 - 390px 모바일 폭에서 `/login`, `/signup`, `/account`, `/dashboard`, `/setup`의 가로 넘침이 없음을 확인했다.
+- GitHub `main`에 커밋 `5c811a6`을 푸시했다.
+- Vercel 프로덕션 배포가 `READY` 상태임을 확인했다.
+- 프로덕션 URL에서 `/`, `/demo`, `/login`, `/signup`, `/account`, `/dashboard`, `/agent`, `/pricing`, `/feedback`, `/calendar`, `/setup`, `/generate/inquiry`, `/generate/review`, `/generate/promo`, `/faq`, `/history`가 모두 HTTP 200을 반환했다.
+- 프로덕션 HTML에서 `/login`, `/signup`, `/account`, `/dashboard`의 주요 한국어 문구가 렌더링되는 것을 확인했다.
 - 사용자 화면에 개발자용 단어가 노출되지 않는지 확인했다. 내부 파일명 `mockCalendar`만 코드 import 경로에서 탐지됐고 화면 문구는 아니다.
 - API 키 검색에서 커밋 대상 파일에 실제 키가 들어간 흔적은 없었다. `package-lock.json`의 무결성 문자열만 오탐으로 탐지됐다.
 - 실제 신규 회원가입은 테스트 계정을 만들지 않기 위해 수행하지 않았다. 화면, 입력 검증, REST 연결 구조, 빌드 검증까지만 확인했다.

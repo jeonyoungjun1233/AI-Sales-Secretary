@@ -2,7 +2,7 @@
 
 ## Current Status
 
-Day 14 Supabase Auth account flow is implemented and is being deployed. Day 14 adds email/password login, signup, account status, and account-based storage separation while keeping `/demo` available without login. Supabase storage tables still need to be created in the dashboard before remote persistence can fully succeed.
+Day 14 Supabase Auth account flow is implemented and deployed to Vercel production. Day 14 adds email/password login, signup, account status, and account-based storage separation while keeping `/demo` available without login. Supabase storage tables still need to be created in the dashboard before remote persistence can fully succeed.
 
 ## Completed
 
@@ -215,6 +215,10 @@ Day 14 Supabase Auth account flow is implemented and is being deployed. Day 14 a
 - Day 14 local production server returned HTTP 200 for `/`, `/demo`, `/login`, `/signup`, `/account`, `/dashboard`, `/agent`, `/pricing`, `/feedback`, `/calendar`, `/setup`, `/generate/inquiry`, `/generate/review`, `/generate/promo`, `/faq`, and `/history`.
 - Day 14 browser check confirmed login, signup, account, setup, and dashboard mobile pages render without horizontal overflow.
 - Day 14 secret scan found no committed API keys; only package-lock integrity false positives were found.
+- Day 14 implementation was committed as `5c811a6` and pushed to GitHub `main`.
+- Day 14 Vercel production deployment is `READY`.
+- Day 14 production route checks returned HTTP 200 for `/`, `/demo`, `/login`, `/signup`, `/account`, `/dashboard`, `/agent`, `/pricing`, `/feedback`, `/calendar`, `/setup`, `/generate/inquiry`, `/generate/review`, `/generate/promo`, `/faq`, and `/history`.
+- Day 14 production HTML checks confirmed `/login`, `/signup`, `/account`, and `/dashboard` render the expected Korean headings.
 
 ## Verification
 
@@ -357,4 +361,4 @@ Day 14 Supabase Auth account flow is implemented and is being deployed. Day 14 a
 
 ## Next Action
 
-Commit and push the Day 14 Supabase Auth account flow, then confirm Vercel production. Separately, run the latest `supabase/app_storage_schema.sql` in Supabase and re-run `npm run supabase:check` when ready.
+Run the latest `supabase/app_storage_schema.sql` in Supabase and re-run `npm run supabase:check` when ready. Day 15 can focus on final submission stability, PWA polish, README, and presentation QA.

@@ -4,7 +4,7 @@ This is the live checklist shown and maintained by Codex.
 
 ## In Progress
 
-- [ ] Deploy Day 14 Supabase Auth account flow to Vercel production.
+- [x] Day 14 Supabase Auth account flow deployed to Vercel production.
 
 ## Up Next
 
@@ -17,7 +17,7 @@ This is the live checklist shown and maintained by Codex.
 - [x] Create auth implementation and Day 14 report docs.
 - [x] Run `npm run env:check`, `npm run supabase:check`, `npm run lint`, and `npm run build`.
 - [x] Verify auth pages and core routes in browser.
-- [ ] Commit, push, and confirm Vercel production.
+- [x] Commit, push, and confirm Vercel production.
 - [x] Fix repeated brand text in the mobile app header.
 - [x] Strengthen landing CTA toward `/demo` and `/agent`.
 - [x] Improve `/demo` industry selection clarity.

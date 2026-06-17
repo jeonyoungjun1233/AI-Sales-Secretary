@@ -6,7 +6,7 @@ Build an AI work assistant SaaS for Korean and global small business owners. The
 
 ## Current Phase
 
-Day 14 Supabase Auth account flow is implemented and awaiting production confirmation. Day 13 polished the first-use conversion path; Day 14 turns the app into a more realistic SaaS by adding email/password login, signup, account status, and account-based storage separation while keeping the one-minute demo usable without login.
+Day 14 Supabase Auth account flow is implemented and deployed. Day 13 polished the first-use conversion path; Day 14 turns the app into a more realistic SaaS by adding email/password login, signup, account status, and account-based storage separation while keeping the one-minute demo usable without login.
 
 ## Priorities
 
@@ -75,4 +75,4 @@ Day 14 Supabase Auth account flow is implemented and awaiting production confirm
 
 ## Next Milestone
 
-Confirm the Day 14 production deployment and use `/ -> /demo -> /signup or /login -> /account -> /dashboard -> /agent` as the account-based SaaS demo route. Day 15 should focus on final submission stability, PWA polish, README, QA checklist, Supabase SQL application, and video/demo flow.
+Use `/ -> /demo -> /signup or /login -> /account -> /dashboard -> /agent` as the account-based SaaS demo route. Day 15 should focus on final submission stability, PWA polish, README, QA checklist, Supabase SQL application, and video/demo flow.
