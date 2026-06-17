@@ -4,10 +4,20 @@ This is the live checklist shown and maintained by Codex.
 
 ## In Progress
 
-- [ ] Prepare Day 14 final submission stabilization.
+- [ ] Deploy Day 14 Supabase Auth account flow to Vercel production.
 
 ## Up Next
 
+- [x] Add Supabase Auth types and fetch-based client.
+- [x] Add browser auth store with account-based save key.
+- [x] Add `/login`, `/signup`, and `/account`.
+- [x] Change bottom tab navigation to Home, Action, Calendar, Account.
+- [x] Route storage stores through signed-in account key when available.
+- [x] Add login CTAs to dashboard and setup.
+- [x] Create auth implementation and Day 14 report docs.
+- [x] Run `npm run env:check`, `npm run supabase:check`, `npm run lint`, and `npm run build`.
+- [x] Verify auth pages and core routes in browser.
+- [ ] Commit, push, and confirm Vercel production.
 - [x] Fix repeated brand text in the mobile app header.
 - [x] Strengthen landing CTA toward `/demo` and `/agent`.
 - [x] Improve `/demo` industry selection clarity.

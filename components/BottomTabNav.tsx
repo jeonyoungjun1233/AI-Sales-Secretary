@@ -5,9 +5,9 @@ import { usePathname } from "next/navigation";
 
 const tabs = [
   { label: "홈", href: "/dashboard", icon: "⌂", match: "/dashboard" },
-  { label: "만들기", href: "/agent", icon: "+", match: "/agent" },
+  { label: "액션", href: "/agent", icon: "+", match: "/agent" },
   { label: "일정", href: "/calendar", icon: "□", match: "/calendar" },
-  { label: "가게", href: "/setup", icon: "◇", match: "/setup" },
+  { label: "계정", href: "/account", icon: "◇", match: "/account" },
 ];
 
 export function BottomTabNav() {
@@ -20,7 +20,11 @@ export function BottomTabNav() {
           const active =
             pathname === tab.href ||
             pathname.startsWith(`${tab.match}/`) ||
-            (tab.href === "/agent" && pathname.startsWith("/generate/"));
+            (tab.href === "/agent" && pathname.startsWith("/generate/")) ||
+            (tab.href === "/account" &&
+              ["/setup", "/login", "/signup"].some((path) =>
+                pathname.startsWith(path),
+              ));
 
           return (
             <Link

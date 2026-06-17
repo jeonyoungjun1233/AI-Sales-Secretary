@@ -6,6 +6,7 @@ import { MobileAppShell } from "@/components/MobileAppShell";
 import { PreviewReplyCard } from "@/components/PreviewReplyCard";
 import { PrimaryButton } from "@/components/PrimaryButton";
 import { ToneSelector } from "@/components/ToneSelector";
+import { refreshAuthState } from "@/lib/auth/authStore";
 import {
   getBusinessProfile,
   saveBusinessProfile,
@@ -35,6 +36,7 @@ const tips = [
 
 export default function SetupPage() {
   const [saved, setSaved] = useState(false);
+  const [signedIn, setSignedIn] = useState(true);
   const [profile, setProfile] = useState<StoredBusinessProfile>({
     businessName: "",
     businessType: businessTypes[0],
@@ -66,9 +68,12 @@ export default function SetupPage() {
     }, 0);
 
     async function loadProfile() {
+      const authState = await refreshAuthState();
       const storedProfile = getBusinessProfile();
       const remoteProfile = await getRemoteBusinessProfile();
       const nextProfile = remoteProfile ?? storedProfile;
+
+      setSignedIn(authState.signedIn);
 
       if (nextProfile) {
         setProfile(nextProfile);
@@ -208,9 +213,26 @@ export default function SetupPage() {
             aria-live="polite"
           >
             {saved
-              ? "가게 정보를 저장했어요. 이 기기에서 다시 볼 수 있어요."
+              ? signedIn
+                ? "가게 정보를 저장했어요. 계정에서 이어서 볼 수 있어요."
+                : "가게 정보를 저장했어요. 이 기기에서 다시 볼 수 있어요."
               : "저장하면 다음에 다시 볼 수 있어요."}
           </div>
+
+          {saved && !signedIn ? (
+            <div className="rounded-2xl bg-slate-950 p-4 text-white">
+              <p className="text-sm font-black text-emerald-300">계정 저장</p>
+              <h2 className="mt-2 text-lg font-black leading-7">
+                다음에도 이어서 쓰세요
+              </h2>
+              <p className="mt-2 text-sm font-semibold leading-6 text-slate-300">
+                계정으로 저장하면 가게 정보와 기록을 이어서 볼 수 있어요.
+              </p>
+              <PrimaryButton className="mt-4 w-full" href="/signup">
+                계정 만들기
+              </PrimaryButton>
+            </div>
+          ) : null}
 
           <div className="grid gap-3">
             <PrimaryButton className="min-h-14" onClick={handleSaveProfile}>

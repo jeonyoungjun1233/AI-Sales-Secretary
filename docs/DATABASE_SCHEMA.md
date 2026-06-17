@@ -147,3 +147,21 @@ supabase/app_storage_schema.sql
 ```
 
 이 구조는 로그인 도입 전 임시 구조다. Supabase Auth를 연결한 뒤에는 위의 정식 `profiles`, `stores`, `faqs`, `generations`, `usage_events` 구조로 이전하고 RLS를 강화한다.
+
+## Day 14 Auth 연결 상태
+
+Day 14에서는 Supabase Auth REST 기반 로그인/회원가입을 추가했다.
+
+현재 저장 분리 기준:
+
+- 로그인 사용자: Supabase Auth user id 기반 계정 저장 키
+- 비로그인 사용자: 브라우저별 임시 저장 키
+
+`app_business_profiles`, `app_faqs`, `app_calendar_events`, `app_generations`의 `owner_key`는 Day 14부터 로그인 계정 저장과 비로그인 체험 저장을 모두 구분하는 임시 소유자 키로 사용한다.
+
+주의:
+
+- 정식 출시 전에는 `profiles`, `stores`, `faqs`, `generations`, `usage_events` 구조로 이전해야 한다.
+- 로그인 기반 저장이 완성되면 RLS 정책을 user id 기준으로 강화해야 한다.
+- service role key는 서버 전용이며 클라이언트에 노출하지 않는다.
+- 로그인 전 기록을 계정으로 가져오는 마이그레이션은 아직 구현하지 않았다.

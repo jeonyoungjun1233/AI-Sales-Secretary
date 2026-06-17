@@ -6,7 +6,7 @@ Build an AI work assistant SaaS for Korean and global small business owners. The
 
 ## Current Phase
 
-Day 13 conversion UX polish is in progress. Day 12 made the one-minute demo flow work; Day 13 focuses on making the first visit sharper, shorter, and more conversion-oriented by improving landing CTAs, industry selection, dashboard priority, action cards, generation options, pricing copy, and beta feedback.
+Day 14 Supabase Auth account flow is implemented and awaiting production confirmation. Day 13 polished the first-use conversion path; Day 14 turns the app into a more realistic SaaS by adding email/password login, signup, account status, and account-based storage separation while keeping the one-minute demo usable without login.
 
 ## Priorities
 
@@ -28,6 +28,8 @@ Day 13 conversion UX polish is in progress. Day 12 made the one-minute demo flow
 - Polish the first-use conversion path so visitors reach `/demo` or `/agent` with less hesitation.
 - Make the Pro plan feel like the natural upgrade for owners who manage replies, reviews, and promotions every day.
 - Keep app copy short, direct, and focused on the next action.
+- Add account creation and login so owners can keep store information and work records under a real account.
+- Preserve the `/demo` one-minute experience for visitors who are not ready to create an account.
 - Connect paid external generation services through server-only routes and fallback behavior.
 - Keep user-facing screens focused on business outcomes instead of technical provider details.
 - Keep API keys out of Git, browser code, logs, and documentation.
@@ -53,6 +55,10 @@ Day 13 conversion UX polish is in progress. Day 12 made the one-minute demo flow
 - Quick-start examples add to the current browser experience and are used for presentation, onboarding, and beta testing.
 - Day 13 keeps `/agent` as the core value screen and makes `/dashboard` lead with today sales action first.
 - Day 13 improves conversion copy without adding payment, login, or automation features.
+- Day 14 uses Supabase Auth REST with `fetch` instead of adding a Supabase client package.
+- Day 14 keeps guest demo storage separate from signed-in account storage.
+- Day 14 does not automatically migrate guest records into an account.
+- Day 14 changes the bottom tab from store setup to account, while setup remains accessible from `/account`.
 - Supabase SQL still needs to be executed manually in the Supabase Dashboard before remote persistence can be fully verified.
 - Bottom navigation stays simple; history is reachable from the dashboard and app header instead of adding a fifth tab.
 - Codex is used for planning, implementation, and progress reporting.
@@ -60,12 +66,13 @@ Day 13 conversion UX polish is in progress. Day 12 made the one-minute demo flow
 
 ## Open Questions
 
-- Which auth method should be used first: email OTP, password, or social login?
 - When should production OpenAI generation be verified after `.env.local` is restored?
 - Should generation history or business profile become the first Supabase-backed data feature?
 - Which daily workflow creates the strongest reason to subscribe: calendar, generation history, or FAQ quality improvement?
 - Which payment provider should be connected first after the pricing UI is validated?
+- When should guest demo records be imported into a signed-in account?
+- Should Day 15 focus on PWA polish or Supabase RLS hardening first?
 
 ## Next Milestone
 
-Verify Day 13 conversion UX polish end to end, deploy it to Vercel production, and use `/ -> /demo -> /agent -> /history -> /calendar -> /pricing -> /feedback` as the Wednesday presentation route. Day 14 should focus on final submission stability, README, QA checklist, and video/demo flow.
+Confirm the Day 14 production deployment and use `/ -> /demo -> /signup or /login -> /account -> /dashboard -> /agent` as the account-based SaaS demo route. Day 15 should focus on final submission stability, PWA polish, README, QA checklist, Supabase SQL application, and video/demo flow.

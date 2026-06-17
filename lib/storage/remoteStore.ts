@@ -4,7 +4,8 @@ import type {
   StoredFaq,
   StoredGeneration,
 } from "@/lib/storage/types";
-import { ensureOwnerKey } from "@/lib/storage/ownerKey";
+import { getAccountOwnerKey } from "@/lib/auth/authStore";
+import { getAuthHeader } from "@/lib/auth/supabaseAuthClient";
 
 type ListResponse<TItem> = {
   storage?: string;
@@ -17,7 +18,7 @@ type ItemResponse<TItem> = {
 };
 
 export async function getRemoteBusinessProfile() {
-  const ownerKey = ensureOwnerKey();
+  const ownerKey = getAccountOwnerKey();
 
   if (!ownerKey) {
     return null;
@@ -33,7 +34,7 @@ export async function getRemoteBusinessProfile() {
 export async function saveRemoteBusinessProfile(
   profile: StoredBusinessProfile,
 ) {
-  const ownerKey = ensureOwnerKey();
+  const ownerKey = getAccountOwnerKey();
 
   if (!ownerKey) {
     return null;
@@ -51,7 +52,7 @@ export async function saveRemoteBusinessProfile(
 }
 
 export async function getRemoteFaqs() {
-  const ownerKey = ensureOwnerKey();
+  const ownerKey = getAccountOwnerKey();
 
   if (!ownerKey) {
     return [];
@@ -65,7 +66,7 @@ export async function getRemoteFaqs() {
 }
 
 export async function saveRemoteFaq(faq: StoredFaq) {
-  const ownerKey = ensureOwnerKey();
+  const ownerKey = getAccountOwnerKey();
 
   if (!ownerKey) {
     return null;
@@ -80,7 +81,7 @@ export async function saveRemoteFaq(faq: StoredFaq) {
 }
 
 export async function getRemoteCalendarEvents() {
-  const ownerKey = ensureOwnerKey();
+  const ownerKey = getAccountOwnerKey();
 
   if (!ownerKey) {
     return [];
@@ -94,7 +95,7 @@ export async function getRemoteCalendarEvents() {
 }
 
 export async function saveRemoteCalendarEvent(event: StoredCalendarEvent) {
-  const ownerKey = ensureOwnerKey();
+  const ownerKey = getAccountOwnerKey();
 
   if (!ownerKey) {
     return null;
@@ -112,7 +113,7 @@ export async function saveRemoteCalendarEvent(event: StoredCalendarEvent) {
 }
 
 export async function getRemoteGenerationHistory() {
-  const ownerKey = ensureOwnerKey();
+  const ownerKey = getAccountOwnerKey();
 
   if (!ownerKey) {
     return [];
@@ -126,7 +127,7 @@ export async function getRemoteGenerationHistory() {
 }
 
 export async function saveRemoteGeneration(generation: StoredGeneration) {
-  const ownerKey = ensureOwnerKey();
+  const ownerKey = getAccountOwnerKey();
 
   if (!ownerKey) {
     return null;
@@ -144,7 +145,7 @@ export async function saveRemoteGeneration(generation: StoredGeneration) {
 }
 
 export async function deleteRemoteGeneration(id: string) {
-  const ownerKey = ensureOwnerKey();
+  const ownerKey = getAccountOwnerKey();
 
   if (!ownerKey) {
     return;
@@ -176,12 +177,18 @@ async function requestRemote<TResponse>(
   init: RequestInit = {},
 ) {
   try {
+    const headers = new Headers(init.headers);
+    const authHeader = getAuthHeader();
+
+    headers.set("Content-Type", "application/json");
+
+    for (const [key, value] of Object.entries(authHeader)) {
+      headers.set(key, value);
+    }
+
     const response = await fetch(url, {
       ...init,
-      headers: {
-        "Content-Type": "application/json",
-        ...(init.headers ?? {}),
-      },
+      headers,
     });
 
     if (!response.ok) {

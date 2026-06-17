@@ -8,6 +8,7 @@ import {
   upsertStorageItem,
 } from "@/lib/supabase/server";
 import type { StorageResource } from "@/lib/supabase/types";
+import { getAuthenticatedOwnerKey } from "@/lib/auth/supabaseAuthServer";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -32,7 +33,8 @@ export async function GET(request: Request, context: RouteParams) {
     return Response.json({ message: "요청을 다시 확인해주세요." }, { status: 404 });
   }
 
-  const ownerKey = getOwnerKeyFromUrl(request.url);
+  const ownerKey =
+    (await getAuthenticatedOwnerKey(request)) ?? getOwnerKeyFromUrl(request.url);
 
   if (!ownerKey) {
     return Response.json(getEmptyStorageResponse(resource));
@@ -73,7 +75,8 @@ export async function POST(request: Request, context: RouteParams) {
   }
 
   const payload = getPayload(body);
-  const ownerKey = getOwnerKeyFromBody(body);
+  const ownerKey =
+    (await getAuthenticatedOwnerKey(request)) ?? getOwnerKeyFromBody(body);
   const id = getPayloadId(resource, payload);
 
   if (!ownerKey) {
@@ -105,7 +108,8 @@ export async function DELETE(request: Request, context: RouteParams) {
 
   const { searchParams } = new URL(request.url);
   const id = searchParams.get("id");
-  const ownerKey = searchParams.get("ownerKey");
+  const ownerKey =
+    (await getAuthenticatedOwnerKey(request)) ?? searchParams.get("ownerKey");
 
   if (!ownerKey) {
     return Response.json(getEmptyStorageResponse(resource));

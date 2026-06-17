@@ -17,8 +17,8 @@ export function MobileAppShell({
   subtitle,
   eyebrow = "AI 매출 비서",
   children,
-  actionHref = "/setup",
-  actionLabel = "가게",
+  actionHref = "/account",
+  actionLabel = "계정",
 }: MobileAppShellProps) {
   return (
     <main className="min-h-[100dvh] bg-slate-100 text-slate-950 sm:py-6">

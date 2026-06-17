@@ -2,7 +2,7 @@
 
 ## Current Status
 
-Day 13 conversion UX polish is implemented, pushed to GitHub `main`, and deployed to Vercel production. The app keeps the Day 12 one-minute demo flow, and now the landing page, `/demo`, `/dashboard`, `/agent`, generation screens, `/pricing`, and `/feedback` are tighter so first-time owners can understand and act faster. Supabase tables still need to be created in the dashboard before remote persistence can fully succeed.
+Day 14 Supabase Auth account flow is implemented and is being deployed. Day 14 adds email/password login, signup, account status, and account-based storage separation while keeping `/demo` available without login. Supabase storage tables still need to be created in the dashboard before remote persistence can fully succeed.
 
 ## Completed
 
@@ -199,6 +199,22 @@ Day 13 conversion UX polish is implemented, pushed to GitHub `main`, and deploye
 - Day 13 Vercel production deployment `dpl_9eqxdrfFiN5GUHVqHpRZKwRFdAnv` is `READY`.
 - Day 13 production route checks returned HTTP 200 for `/`, `/demo`, `/dashboard`, `/agent`, `/pricing`, `/feedback`, `/calendar`, `/setup`, `/generate/inquiry`, `/generate/review`, `/generate/promo`, `/faq`, and `/history`.
 - Day 13 production HTML checks confirmed updated CTA and conversion copy on `/`, `/demo`, `/dashboard`, `/agent`, `/pricing`, and `/feedback`.
+- Added Day 14 Supabase Auth REST types and fetch-based client.
+- Added browser auth store and account-based save key selection.
+- Added `/login`, `/signup`, and `/account`.
+- Updated bottom navigation to Home, Action, Calendar, and Account.
+- Updated local and remote storage helpers to use account-based storage when signed in.
+- Added login CTA to `/dashboard`.
+- Added account creation CTA to `/setup` after saving store information.
+- Created `docs/AUTH_IMPLEMENTATION.md`.
+- Created `docs/DAY14_REPORT.md`.
+- Day 14 `npm run env:check` passed.
+- Day 14 `npm run supabase:check` confirmed Supabase config is OK and remote tables still need to be created.
+- Day 14 `npm run lint` passed.
+- Day 14 `npm run build` passed and generated `/login`, `/signup`, and `/account`.
+- Day 14 local production server returned HTTP 200 for `/`, `/demo`, `/login`, `/signup`, `/account`, `/dashboard`, `/agent`, `/pricing`, `/feedback`, `/calendar`, `/setup`, `/generate/inquiry`, `/generate/review`, `/generate/promo`, `/faq`, and `/history`.
+- Day 14 browser check confirmed login, signup, account, setup, and dashboard mobile pages render without horizontal overflow.
+- Day 14 secret scan found no committed API keys; only package-lock integrity false positives were found.
 
 ## Verification
 
@@ -341,4 +357,4 @@ Day 13 conversion UX polish is implemented, pushed to GitHub `main`, and deploye
 
 ## Next Action
 
-Proceed to Day 14 final submission stabilization: final README polish, presentation runbook, recording flow, and production QA. Separately, run the latest `supabase/app_storage_schema.sql` in Supabase and re-run `npm run supabase:check` when ready.
+Commit and push the Day 14 Supabase Auth account flow, then confirm Vercel production. Separately, run the latest `supabase/app_storage_schema.sql` in Supabase and re-run `npm run supabase:check` when ready.

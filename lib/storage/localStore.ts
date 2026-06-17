@@ -1,4 +1,4 @@
-import { ensureOwnerKey } from "./ownerKey";
+import { getAccountOwnerKey } from "@/lib/auth/authStore";
 
 const STORAGE_PREFIX = "ai-boss-sales-agent";
 
@@ -43,7 +43,7 @@ export function removeItem(key: string) {
 }
 
 export function getOwnerItem<T>(key: string, fallback: T): T {
-  const ownerKey = ensureOwnerKey();
+  const ownerKey = getAccountOwnerKey();
 
   if (!ownerKey) {
     return fallback;
@@ -53,7 +53,7 @@ export function getOwnerItem<T>(key: string, fallback: T): T {
 }
 
 export function setOwnerItem<T>(key: string, value: T) {
-  const ownerKey = ensureOwnerKey();
+  const ownerKey = getAccountOwnerKey();
 
   if (!ownerKey) {
     return;
@@ -63,7 +63,7 @@ export function setOwnerItem<T>(key: string, value: T) {
 }
 
 export function removeOwnerItem(key: string) {
-  const ownerKey = ensureOwnerKey();
+  const ownerKey = getAccountOwnerKey();
 
   if (!ownerKey) {
     return;

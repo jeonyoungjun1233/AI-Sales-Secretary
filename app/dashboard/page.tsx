@@ -8,6 +8,7 @@ import { DemoDataButton } from "@/components/DemoDataButton";
 import { MobileAppShell } from "@/components/MobileAppShell";
 import { QuickActionButton } from "@/components/QuickActionButton";
 import { UsageSummaryCard } from "@/components/UsageSummaryCard";
+import { refreshAuthState } from "@/lib/auth/authStore";
 import { getUsageSummary } from "@/lib/billing/usage";
 import {
   calendarEventTypeLabels,
@@ -49,6 +50,7 @@ export default function DashboardPage() {
     initialStoredCalendarEvents,
   );
   const [generations, setGenerations] = useState<StoredGeneration[]>([]);
+  const [signedIn, setSignedIn] = useState(true);
   const todayEvents = getEventsForDate(calendarEvents, TODAY_DATE_KEY);
   const upcomingEvents = getUpcomingEvents(calendarEvents, 3);
   const recentGenerations = generations.slice(0, 2);
@@ -78,11 +80,13 @@ export default function DashboardPage() {
     }, 0);
 
     async function loadDashboardData() {
+      const authState = await refreshAuthState();
       const localEvents = getCalendarEvents(initialStoredCalendarEvents);
       const remoteEvents = await getRemoteCalendarEvents();
       const localGenerations = getGenerationHistory();
       const remoteGenerations = await getRemoteGenerationHistory();
 
+      setSignedIn(authState.signedIn);
       setCalendarEvents(mergeById(remoteEvents, localEvents));
       setGenerations(sortGenerations(mergeById(remoteGenerations, localGenerations)));
     }
@@ -130,6 +134,33 @@ export default function DashboardPage() {
           오늘 액션 만들기
         </Link>
       </section>
+
+      {!signedIn ? (
+        <section className="mt-4 rounded-[1.75rem] border border-emerald-100 bg-white p-5 shadow-lg shadow-emerald-950/5">
+          <div className="flex items-start justify-between gap-4">
+            <div>
+              <p className="text-sm font-black text-emerald-700">
+                계정 저장
+              </p>
+              <h2 className="mt-2 text-xl font-black leading-7 text-slate-950">
+                내 기록을 이어서 쓰세요
+              </h2>
+              <p className="mt-2 text-sm font-semibold leading-6 text-slate-600">
+                로그인하면 가게 정보와 기록을 이어서 볼 수 있어요.
+              </p>
+            </div>
+            <span className="rounded-full bg-emerald-50 px-3 py-1 text-xs font-black text-emerald-700">
+              추천
+            </span>
+          </div>
+          <Link
+            className="mt-5 flex min-h-12 items-center justify-center rounded-2xl bg-slate-950 px-5 py-3 text-base font-black text-white shadow-lg shadow-slate-200 transition active:scale-[0.99]"
+            href="/login"
+          >
+            로그인하기
+          </Link>
+        </section>
+      ) : null}
 
       <section className="mt-4 rounded-[1.75rem] bg-slate-950 p-5 text-white shadow-xl shadow-slate-300">
         <p className="text-sm font-bold text-emerald-300">오늘 현황</p>
